@@ -1,0 +1,19 @@
+{
+  "name": "baseball-website",
+  "version": "0.0.1",
+  "description": "baseball website!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathansharpe/baseball-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathansharpe/baseball-website/issues"
+  },
+  "homepage": "https://github.com/jonathansharpe/baseball-website#readme"
+}
