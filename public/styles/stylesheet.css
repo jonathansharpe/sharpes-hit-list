@@ -1,0 +1,169 @@
+* {
+    font-family: "Iosevka Aile Medium", sans-serif;
+}
+.orioles, .redsox, .yankees, .rays, .bluejays, .whitesox, .guardians, .tigers, .royals, .twins, .astros, .angels, .athletics, .mariners, .rangers, .braves, .marlins, .mets, .phillies, .nationals, .cubs, .reds, .brewers, .pirates, .cardinals, .dbacks, .rockies, .dodgers, .padres, .giants {
+    -webkit-text-stroke-width: 1px;
+    font-family: "Iosevka Aile Heavy", sans-serif;
+}
+.mariners {
+    color: #0c2c56;
+    background-color: #005c5c !important;
+    -webkit-text-stroke-color: #c4ced4;
+}
+.dbacks {
+    color: #000000;
+    background-color: #a71930;
+    -webkit-text-stroke-color: #30ced8;
+}
+.braves {
+    color: #ce1141;
+    background-color: #ce1141;
+    -webkit-text-stroke-color: #13274f;
+}
+.orioles {
+    color: #df4601;
+    background-color: #DF4601;
+    -webkit-text-stroke-color: #000000;
+}
+.redsox {
+    color: #bd3039;
+    background-color: #bd3039;
+    -webkit-text-stroke-color: #0c2340;
+}
+.cubs {
+    color: #cc3433;
+    background-color: #0e3386;
+    -webkit-text-stroke-color: #ffffff;
+}
+.whitesox {
+    color: #27251f;
+    background-color: #000000;
+    -webkit-text-stroke-color: #c4ced4;
+}
+.reds {
+    color: #c6011f;
+    background-color: #c6011f;
+    -webkit-text-stroke-color: #000000;
+}
+.guardians {
+    color: #e31937;
+    background-color: #e31937;
+    -webkit-text-stroke-color: #e31937;
+}
+.rockies{
+    color: #33006f;
+    background-color: #33006f;
+    -webkit-text-stroke-color: #c4ced4;
+}
+.tigers {
+    color: #0c2340;
+    background-color: #0c2340;
+    -webkit-text-stroke-color: #fa4616;
+}
+.astros {
+    color: #002d62;
+    background-color: #eb6e1f;
+    -webkit-text-stroke-color: #ffffff;
+}
+.royals {
+    color: #004687;
+    background-color: #004687;
+    -webkit-text-stroke-color: #bd9b60;
+}
+.angels {
+    color: #862633;
+    background-color: #ba0021;
+    -webkit-text-stroke-color: #003263;
+}
+.dodgers {
+    color: #005a9c;
+    background-color: #a4acaf;
+    -webkit-text-stroke-color: #a4acaf;
+}
+.marlins {
+    color: #000000;
+    background-color: #00a3e0;
+    -webkit-text-stroke-color: #ef3340;
+}
+.brewers {
+    color: #12284b;
+    background-color: #12284b;
+    -webkit-text-stroke-color: #ffc52f;
+}
+.twins {
+    color: #d31145;
+    background-color: #002b5c;
+    -webkit-text-stroke-color: #b9975b;
+}
+.mets {
+    color: #002d72;
+    background-color: #002d72;
+    -webkit-text-stroke-color: #ff5910;
+}
+.yankees {
+    color: #0c2340;
+    background-color: #0c2340;
+    -webkit-text-stroke-color: #c4ced3;
+}
+.athletics {
+    color: #006544;
+    background-color: #006544;
+    -webkit-text-stroke-color: #ffb70f;
+}
+.phillies {
+    color: #e81828;
+    background-color: #002d72;
+    -webkit-text-stroke-color: #ffffff;
+}
+.pirates {
+    color: #27251f;
+    background-color: #27251f;
+    -webkit-text-stroke-color: #fdb827;
+}
+.cardinals {
+    color: #c41e3a;
+    background-color: #c41e3a;
+    -webkit-text-stroke-color: #0c2340;
+}
+.padres {
+    color: #24241d;
+    background-color: #24241d;
+    -webkit-text-stroke-color: #ffc425;
+}
+.giants {
+    color: #27251f;
+    background-color: #27251f;
+    -webkit-text-stroke-color: #fd5a1e;
+}
+.rays {
+    color: #092c5c;
+    background-color: #8fbce6;
+    -webkit-text-stroke-color: #ffffff;
+}
+.rangers {
+    color: #003278;
+    background-color: #c0111f;
+    -webkit-text-stroke-color: #ffffff;
+}
+.bluejays {
+    color: #ffffff;
+    background-color: #6cace4;
+    -webkit-text-stroke-color: #1d2d5c;
+}
+.nationals {
+    color: #ffffff;
+    background-color: #14225a;
+    -webkit-text-stroke-color: #ab0003;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+.card-img-top {
+    width: 100%;
+    height: 12vw;
+    object-fit: cover;
+}
+.list-group-item {
+    padding: 0;
+}
