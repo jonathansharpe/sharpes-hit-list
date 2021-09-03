@@ -1,22 +1,15 @@
 {
   "name": "baseball-website",
-  "version": "0.0.1",
-  "description": "baseball website!",
-  "engines": {
-    "node": "12.x"
-  }
+  "version": "1.0.0",
+  "description": "baseball website with neat info",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonathansharpe/baseball-website.git"
   },
-  "keywords": [
-    "nodejs"
-    ],
   "author": "Jonathan Sharpe",
   "license": "ISC",
   "bugs": {
