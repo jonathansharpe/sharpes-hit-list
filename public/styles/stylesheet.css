@@ -1,5 +1,9 @@
+@font-face {
+    font-family: "Iosevka";
+    src: url('../fonts/iosevka-aile-medium.ttf') format('ttf');
+}
 * {
-    font-family: "Iosevka Aile Medium", sans-serif;
+    font-family: "Iosevka", sans-serif;
 }
 .orioles, .redsox, .yankees, .rays, .bluejays, .whitesox, .guardians, .tigers, .royals, .twins, .astros, .angels, .athletics, .mariners, .rangers, .braves, .marlins, .mets, .phillies, .nationals, .cubs, .reds, .brewers, .pirates, .cardinals, .dbacks, .rockies, .dodgers, .padres, .giants {
     -webkit-text-stroke-width: 1px;
