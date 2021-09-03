@@ -48,7 +48,7 @@
 .guardians {
     color: #e31937;
     background-color: #e31937;
-    -webkit-text-stroke-color: #e31937;
+    -webkit-text-stroke-color: #0c2340;
 }
 .rockies{
     color: #33006f;
@@ -77,7 +77,7 @@
 }
 .dodgers {
     color: #005a9c;
-    background-color: #a4acaf;
+    background-color: #005a9c;
     -webkit-text-stroke-color: #a4acaf;
 }
 .marlins {
