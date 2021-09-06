@@ -48,6 +48,11 @@ let teams = [
         fullName: "Cleveland Guardians"
     },
     {
+        teamClassName: "guardians",
+        teamAbbr: "CLE",
+        fullName: "Cleveland Indians"
+    },
+    {
         teamClassName: "tigers",
         teamAbbr: "DET",
         fullName: "Detroit Tigers"
@@ -168,8 +173,8 @@ async function getGames() {
     const response = await fetch('../scripts/games.tsv');
     await response.text().then(function (text) {
         let gamesTSV = text;
-        console.log(gamesTSV);
-        let lines = gamesTSV.split("\n");
+        // console.log(gamesTSV);
+        let lines = gamesTSV.split("\t\n");
         // console.log(lines);
         let numLines = lines.length - 1;
         for (let i = 0; i < numLines; i++) {
@@ -187,10 +192,11 @@ async function getGames() {
             currentGame.roadTeamRuns = words[6];
             currentGame.venue = words[7];
             currentGame.gamenotes = words[8];
+            // console.log(currentGame.gamenotes);
             gamesList.push(currentGame);
         }
         console.log('this should show first!');
-        console.log(gamesList);
+        // console.log(gamesList);
     });
     return;
 }
@@ -199,15 +205,13 @@ async function getGames() {
     await getGames();
     console.log('this should show second!');
 
-    console.log(gamesList);
-    console.log(gamesList.length);
+    // console.log(gamesList);
+    // console.log(gamesList.length);
     let totalGames;
     for (let i = 0; i < gamesList.length; i++) {
         let currentGame = gamesList[i]; // assign the current array element to a variable
-        console.log(currentGame);
-        let currentLink = linkBuilder(currentGame.gameDate, currentGame.homeTeam); // build the boxscore link for the current game
+        // console.log(currentGame);
         let currentYear = currentGame.gameYear;
-        currentGame.boxscoreLink = currentLink; // assign the link to the element
         if (document.getElementById('accordion'+currentYear) == null) {
 
             // create a new accordion list item, assign the 'accordion-item' class to it and add an id including the current year so it can be found easily later
@@ -370,6 +374,7 @@ async function getGames() {
         let offCanvasBody = document.createElement('div');
         offCanvasBody.classList.add('offcanvas-body');
         offCanvasBody.innerHTML = currentGame.gamenotes;
+        offCanvasBody.style.whiteSpace = 'pre-wrap';
         offCanvasBody.style.textAlign = 'justify';
 
         // newCardBody.appendChild(newOffCanvasButton);
@@ -392,7 +397,9 @@ async function getGames() {
         // newCardParagraph.innerHTML = currentGame.gamenotes;
 
         let newCardLink = document.createElement('a');
-        newCardLink.href = linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam);
+        let currentTeamIndex = teams.findIndex(arrayItem => arrayItem.fullName == currentGame.homeTeam);
+        let currentTeamAbbr = teams[currentTeamIndex].teamAbbr
+        newCardLink.href = linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentTeamAbbr);
         newCardLink.classList.add('btn');
         newCardLink.classList.add('btn-primary');
         newCardLink.innerHTML = 'Boxscore';
@@ -410,6 +417,7 @@ async function getGames() {
 // console.log(teams);
 function linkBuilder(gDay, gMonth, gYear, hTeam) {
     let currentDate = dateBuilder(gDay, gMonth, gYear);
+    
     return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + currentDate +"0.shtml";
 }
 function dateBuilder(gameDay, gameMonth, gameYear) {
@@ -422,7 +430,8 @@ function scoreboardBuilder(team, runs) {
     newList.classList.add('rounded');
     newList.classList.add('border');
 
-    let currentTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == team);
+    let currentTeamIndex = teams.findIndex(arrayItem => arrayItem.fullName == team);
+    let currentTeamAbbr = teams[currentTeamIndex].teamAbbr;
     let currentTeamClassName = teams[currentTeamIndex].teamClassName;
     let currentFullName = teams[currentTeamIndex].fullName;
     // console.log(currentFullName);
