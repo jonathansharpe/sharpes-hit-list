@@ -302,6 +302,7 @@ async function getGames() {
 
         let venueImage = document.createElement('img');
         venueImage.classList.add('card-img-top');
+        venueImage.classList.add('rounded-0');
         venueImage.src = '../images/' + currentGame.venue + '.jpg';
         venueImage.alt = currentGame.venue;
         

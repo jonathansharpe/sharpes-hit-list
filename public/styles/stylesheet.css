@@ -1,13 +1,17 @@
 @font-face {
-    font-family: Iosevka;
-    src: url('../fonts/iosevka-aile-medium.ttf');
+    font-family: Barlow;
+    src: url('../fonts/Barlow-Regular.ttf');
+}
+@font-face {
+    font-family: Barlow Heavy;
+    src: url('../fonts/Barlow-Black.ttf');
 }
 * {
-    font-family: Iosevka, sans-serif;
+    font-family: Barlow, sans-serif;
 }
 .orioles, .redsox, .yankees, .rays, .bluejays, .whitesox, .guardians, .tigers, .royals, .twins, .astros, .angels, .athletics, .mariners, .rangers, .braves, .marlins, .mets, .phillies, .nationals, .cubs, .reds, .brewers, .pirates, .cardinals, .dbacks, .rockies, .dodgers, .padres, .giants {
     -webkit-text-stroke-width: 1px;
-    font-family: "Iosevka Aile Heavy", sans-serif;
+    font-family: Barlow Heavy, sans-serif;
 }
 .mariners {
     color: #0c2c56;
