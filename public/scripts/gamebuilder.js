@@ -236,13 +236,13 @@ async function gameBuilder() {
 			let ariaExpanded = document.createAttribute('aria-expanded');
 			ariaExpanded.value = 'false';
 			newButton.setAttributeNode(ariaExpanded);
-			
+
 			let ariaControls = document.createAttribute('aria-controls');
 			ariaControls.value = 'collapse' + currentYear;
 			newButton.setAttributeNode(ariaControls);
 
 			newButton.innerHTML = currentYear;
-			
+
 			// add the button to the header
 			newHeader.appendChild(newButton);
 
@@ -255,7 +255,7 @@ async function gameBuilder() {
 			let ariaLabelledBy = document.createAttribute('aria-labelledby');
 			ariaLabelledBy.value = 'header' + currentYear;
 			newCollapseData.setAttributeNode(ariaLabelledBy);
-			
+
 			let dataBsParent = document.createAttribute('data-bs-parent');
 			dataBsParent.value = '#yearList';
 			newCollapseData.setAttributeNode(dataBsParent);
@@ -271,7 +271,7 @@ async function gameBuilder() {
 			document.getElementById("yearList").appendChild(newAccordionListItem);
 		}
 		let currentBody = document.getElementById('accordionbody'+currentYear);
-		
+
 		if (document.getElementById('cardgroup'+currentYear) == null) {
 			let newCardGroup = document.createElement('div');
 			newCardGroup.classList.add('card-group');
@@ -286,7 +286,7 @@ async function gameBuilder() {
 		newCard.classList.add('rounded');
 		newCard.classList.add('border');
 		newCard.classList.add('gamecard'+currentYear);
-		
+
 		let newCardHeader = document.createElement('h5');
 		newCardHeader.classList.add('card-header');
 		newCardHeader.classList.add('text-center');
@@ -300,9 +300,9 @@ async function gameBuilder() {
 		venueImage.classList.add('rounded-0');
 		venueImage.src = '../images/' + currentGame.venue + '.jpg';
 		venueImage.alt = currentGame.venue;
-		
+
 		newCard.appendChild(venueImage);
-		
+
 		newCard.appendChild(scoreboardBuilder(currentGame.roadTeam, currentGame.roadTeamRuns, currentGame.gameYear));
 		newCard.appendChild(scoreboardBuilder(currentGame.homeTeam, currentGame.homeTeamRuns, currentGame.gameYear));
 
@@ -323,7 +323,7 @@ async function gameBuilder() {
 
 		offCanvasDataBsTarget.value = '#offcanvas' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear);
 		newOffCanvasButton.setAttributeNode(offCanvasDataBsTarget);
-		
+
 		let offCanvasAriaControls = document.createAttribute('aria-controls');
 		offCanvasAriaControls.value = 'offcanvasRight';
 		newOffCanvasButton.setAttributeNode(offCanvasAriaControls);
@@ -413,7 +413,7 @@ async function gameBuilder() {
 // console.log(teams);
 function linkBuilder(gDay, gMonth, gYear, hTeam) {
 	let currentDate = dateBuilder(gDay, gMonth, gYear);
-	
+
 	return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + currentDate +"0.shtml";
 }
 function dateBuilder(gameDay, gameMonth, gameYear) {
@@ -465,7 +465,7 @@ async function teamsSeenList() {
 		let currentTeamIndex = teams[i];
 		if ((i % 5) == 0) {
 			teamsTable +=
-				'	<div class="row m-0 p-0">\n';
+				'<div class="row m-0 p-0">\n';
 		}
 
 		teamsTable += 
@@ -476,12 +476,69 @@ async function teamsSeenList() {
 			'	</div>\n';
 
 		if (((i + 1) % 5 == 0)) {
+			console.log(i);
 			teamsTable += 
-				'	</div>'
+				'</div>\n';
+			teamsTable +=
+				'<div class="row m-0 p-0">\n';
+			for (let k = i - 4; k <= i; k++) {
+				console.log(k);
+				currentTeamIndex = teams[k];
+				let currentTeamAbbr = currentTeamIndex.teamAbbr;
+				console.log(currentTeamAbbr);
+				teamsTable += 
+					'<div class="collapse w-100 bg-dark text-light" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
+					'	<div class="card card-body bg-dark text-light">\n' +
+					'		<table class="table table-bordered table-sm rounded text-center bg-dark text-light">\n' +
+					'			<thead>\n' +
+					'				<tr>\n' +
+					'					<th scope="col">Date</th>\n' +
+					'					<th scope="col">Opponent</th>\n' +
+					'					<th scope="col">Park</th>\n' +
+					'					<th scope="col">Boxscore</th>\n' +
+					'				</tr>\n' +
+					'			</thead>\n' +
+					'			<tbody>\n';
+				for (let j = 0; j < gamesList.length; j++) {
+					let currentGame = gamesList[j];
+					if (currentGame.homeTeam == currentTeamAbbr || currentGame.roadTeam == currentTeamAbbr) {
+						let currentGame = gamesList[j];
+						let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
+						let opponentAbbr = "";
+						if (currentGame.homeTeam == currentTeamAbbr) {
+							opponentAbbr = currentGame.roadTeam;
+						}
+						else {
+							opponentAbbr = currentGame.homeTeam;
+						}
+						let opponentIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
+
+						let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
+						teamsTable += 
+							'				<tr class="align-middle">\n' + 
+							'					<td scope="row">' + currentMonth + ' ' + currentGame.gameDay +  ' ' + currentGame.gameYear + '</td>\n' +
+							'					<td class="' + teams[opponentIndex].teamClassName + '">' + teams[opponentIndex].fullName + '</td>\n' +
+							'					<td>' + currentGame.venue + '</td>\n' +
+							'					<td>\n' +
+							'						<a class="btn btn-primary" href="' + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + '">Boxscore</a>\n' +
+							'					</td>\n' +
+							'				</tr>\n';
+					}
+				}
+				teamsTable +=
+					'			</tbody>\n' +
+					'		</table>\n' +
+					'	</div>\n' +
+					'</div>\n';
+
+			}
+			teamsTable += 
+				'</div>\n';
 		}
 	}
-	teamsTable += 
+	/* teamsTable += 
 		'<div class="row">\n';
+	
 	for (let i = 0; i < numberOfTeams; i++) {
 		let currentTeamIndex = teams[i];
 		let currentTeamAbbr = currentTeamIndex.teamAbbr;
@@ -531,6 +588,7 @@ async function teamsSeenList() {
 			'	</div>' +
 			'</div>';
 	}
+	*/
 	teamsTable +=
 		'</div>';
 	console.log(teamsTable);
