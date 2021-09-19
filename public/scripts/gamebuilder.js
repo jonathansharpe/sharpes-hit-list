@@ -165,7 +165,7 @@ let teams = [
 ];
 
 async function getGames() {
-	const response = await fetch('../scripts/games.tsv');
+	const response = await fetch('../scripts/games.txt');
 	await response.text().then(function (text) {
 		let gamesTSV = text;
 		// console.log(gamesTSV);
@@ -200,261 +200,102 @@ async function gameBuilder() {
 	await getGames();
 	console.log('this should show second!');
 
-	// console.log(gamesList);
-	// console.log(gamesList.length);
-	let totalGames;
+	let output = "";
 	for (let i = 0; i < gamesList.length; i++) {
 		let currentGame = gamesList[i]; // assign the current array element to a variable
 		// console.log(currentGame);
 		let currentYear = currentGame.gameYear;
 		if (document.getElementById('accordion'+currentYear) == null) {
-
 			// create a new accordion list item, assign the 'accordion-item' class to it and add an id including the current year so it can be found easily later
-			let newAccordionListItem = document.createElement('div');
-			newAccordionListItem.classList.add('accordion-item');
-			newAccordionListItem.id = 'accordion' + currentYear;
 
-			// create a new h2 element for the header, add the 'accordion-header' class to it and set an id including the current year
-			let newHeader = document.createElement('h2');
-			newHeader.classList.add('accordion-header');
-			newHeader.id = 'header' + currentYear;
-
-			// create a new button element, and add all the things to it so bootstrap can recognize it and so it works as an accordion
-			let newButton = document.createElement('button');
-			newButton.classList.add('accordion-button');
-			newButton.classList.add('collapsed');
-			newButton.type = 'button';
-
-			let dataBsToggle = document.createAttribute('data-bs-toggle');
-			dataBsToggle.value = 'collapse';
-			newButton.setAttributeNode(dataBsToggle);
-
-			let dataBsTarget = document.createAttribute('data-bs-target');
-			dataBsTarget.value = '#collapse' + currentYear;
-			newButton.setAttributeNode(dataBsTarget);
-
-			let ariaExpanded = document.createAttribute('aria-expanded');
-			ariaExpanded.value = 'false';
-			newButton.setAttributeNode(ariaExpanded);
-
-			let ariaControls = document.createAttribute('aria-controls');
-			ariaControls.value = 'collapse' + currentYear;
-			newButton.setAttributeNode(ariaControls);
-
-			newButton.innerHTML = currentYear;
-
-			// add the button to the header
-			newHeader.appendChild(newButton);
-
-			// create a new div to hold the data for the games
-			let newCollapseData = document.createElement('div');
-			newCollapseData.id = 'collapse' + currentYear;
-			newCollapseData.classList.add('accordion-collapse');
-			newCollapseData.classList.add('collapse');
-
-			let ariaLabelledBy = document.createAttribute('aria-labelledby');
-			ariaLabelledBy.value = 'header' + currentYear;
-			newCollapseData.setAttributeNode(ariaLabelledBy);
-
-			let dataBsParent = document.createAttribute('data-bs-parent');
-			dataBsParent.value = '#yearList';
-			newCollapseData.setAttributeNode(dataBsParent);
-
-			let newAccordionBody = document.createElement('div');
-			newAccordionBody.classList.add('accordion-body');
-			newAccordionBody.id = 'accordionbody' + currentYear;
-
-			newCollapseData.appendChild(newAccordionBody);
-			newAccordionListItem.appendChild(newHeader);
-			newAccordionListItem.appendChild(newCollapseData);
-
-			document.getElementById("yearList").appendChild(newAccordionListItem);
-		}
-		let currentBody = document.getElementById('accordionbody'+currentYear);
-
-		if (document.getElementById('cardgroup'+currentYear) == null) {
-			let newCardGroup = document.createElement('div');
-			newCardGroup.classList.add('card-group');
-			newCardGroup.classList.add('wrapper');
-			newCardGroup.id = ('cardgroup' + currentYear);
-			currentBody.appendChild(newCardGroup);
+		// the output here is replacing the previous output, so the single "=" is correct; it should NOT be "+="
+			output = 
+				"<div class='accordion-item bg-dark text-light' id='accordion" + currentYear + "'>\n" +
+				"	<h2 class='accordion-header' id='header" + currentYear + "'></h2>\n" +
+				"		<button class='accordion-button collapsed bg-dark text-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapse" + currentYear + "' aria-expanded='false' aria-controls='collapse" + currentYear + "' data-bs-parent='#yearList'>" + currentYear + "</button>\n" +
+				"		<div id='collapse" + currentYear + "' class='accordion-collapse collapse' aria-labelledby='header" + currentYear + "' data-bs-parent='#yearList'>\n" + 
+				"			<div class='accordion-body' id='accordionbody" + currentYear + "'>\n" +
+				"				<div class='card-group wrapper' id='cardgroup" + currentYear + "'>\n" +
+				"				</div>\n" +
+				"			</div>\n" +
+				"		</div>\n" +
+				"</div>\n";
+			let currentYearList = document.getElementById('yearList');
+			currentYearList.innerHTML += output;
 		}
 		let currentCardGroup = document.getElementById('cardgroup'+currentYear);
-		let newCard = document.createElement('div');
-		newCard.classList.add('card');
-		newCard.classList.add('bg-light');
-		newCard.classList.add('rounded');
-		newCard.classList.add('border');
-		newCard.classList.add('gamecard'+currentYear);
+		console.log("the value of i is " + i);
+		// the output here is replacing the previous output, so the single "=" is correct; it should NOT be "+="
 
-		let newCardHeader = document.createElement('h5');
-		newCardHeader.classList.add('card-header');
-		newCardHeader.classList.add('text-center');
-		let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
+		output = 
+			"<div class='card bg-dark rounded border border-primary gamecard" + currentYear + "'>\n" +
+			"	<h5 class='card-header text-center text-light'>";
+
+		let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth - 1, currentGame.gameDay);
 		let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
-		newCardHeader.innerHTML = currentMonth + ' ' + currentGame.gameDay + ' ' + currentGame.gameYear;
-		newCard.appendChild(newCardHeader);
+		let currentRoadTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.roadTeam);
+		let currentRoadTeamAbbr = teams[currentRoadTeamIndex].teamAbbr;
+		let currentRoadTeamClassName = teams[currentRoadTeamIndex].teamClassName;
+		let currentRoadFullName = teams[currentRoadTeamIndex].fullName;
 
-		let venueImage = document.createElement('img');
-		venueImage.classList.add('card-img-top');
-		venueImage.classList.add('rounded-0');
-		venueImage.src = '../images/' + currentGame.venue + '.jpg';
-		venueImage.alt = currentGame.venue;
+		let currentHomeTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.homeTeam);
+		let currentHomeTeamAbbr = teams[currentHomeTeamIndex].teamAbbr;
+		let currentHomeTeamClassName = teams[currentHomeTeamIndex].teamClassName;
+		let currentHomeFullName = teams[currentHomeTeamIndex].fullName;
+		output +=
+			currentMonth + " " + currentGame.gameDay + " " + currentGame.gameYear + "</h5>";
 
-		newCard.appendChild(venueImage);
+		output +=
+			"<img class='card-img-top rounded-0' src='../images/" + currentGame.venue + ".jpg' alt='" + currentGame.venue + "'>\n" + 
+			"<ul class='list-group list-group-horizontal rounded border border-dark'>\n" +
+			"	<li class='list-group-item text-center fs-5 " + currentRoadTeamClassName + "' style='width:80%;'>";
+		if (currentRoadTeamAbbr == 'CLE' && currentYear < 2022) {
+			currentRoadFullName = 'Cleveland Indians';
+		}
 
-		newCard.appendChild(scoreboardBuilder(currentGame.roadTeam, currentGame.roadTeamRuns, currentGame.gameYear));
-		newCard.appendChild(scoreboardBuilder(currentGame.homeTeam, currentGame.homeTeamRuns, currentGame.gameYear));
+		output +=
+			currentRoadFullName + 
+			"	</li>\n" +
+			"	<li class='list-group-item text-center fs-5 " + currentRoadTeamClassName + "' style='width:20%;'>" + currentGame.roadTeamRuns+ "</li>\n" +
+			"</ul>\n" +
+			"<ul class='list-group list-group-horizontal rounded border border-dark'>\n" +
+			"	<li class='list-group-item text-center fs-5 " + currentHomeTeamClassName + "' style='width:80%;'>" +
+			currentHomeFullName +
+			"	</li>\n" +
+			"	<li class='list-group-item text-center fs-5 " + currentHomeTeamClassName + "' style='width:20%;'>" + currentGame.homeTeamRuns + "</li>\n" +
+			"</ul>\n";
+		
+		output +=
+			"<div class='card-body'>\n" +
+				"<div id='offcanvas" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "' class='offcanvas offcanvas-end bg-dark text-light' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
+			"<div class='offcanvas-header'>\n" +
+			"	<h5 id='offcanvasLabel" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "'>Game Notes</h5>\n" +
+			"	<button class='btn-close text-reset' type='button' data-bs-dismiss='offcanvas' aria-label='Close'></button>\n" +
+			"</div>\n" +
+			"<div class='offcanvas-body' style='white-space: pre-wrap; text-align: justify;'>\n" +
+			currentGame.gamenotes + "\n" +
+			"</div>\n" + 
+			"</div>\n";
 
-		let newCardBody = document.createElement('div');
-		newCardBody.classList.add('card-body');
+		output += 
+			"<div class='btn-group' role='group' aria-label='game" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "' style='width:100%;'>\n" +
+			"	<button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
+			"	<a class='btn btn-primary' href='" + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + "'>Boxscore</a>" +
+			"</div>\n" +
+			"</div>" +
+			"</div>";
 
-		let newOffCanvasButton= document.createElement('button');
-		newOffCanvasButton.classList.add('btn');
-		newOffCanvasButton.classList.add('btn-primary');
-		newOffCanvasButton.type = 'button';
+		currentCardGroup.innerHTML += output;
 
-		let offCanvasDataBsToggle = document.createAttribute('data-bs-toggle');
 
-		offCanvasDataBsToggle.value = 'offcanvas';
-		newOffCanvasButton.setAttributeNode(offCanvasDataBsToggle);
-
-		let offCanvasDataBsTarget = document.createAttribute('data-bs-target');
-
-		offCanvasDataBsTarget.value = '#offcanvas' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear);
-		newOffCanvasButton.setAttributeNode(offCanvasDataBsTarget);
-
-		let offCanvasAriaControls = document.createAttribute('aria-controls');
-		offCanvasAriaControls.value = 'offcanvasRight';
-		newOffCanvasButton.setAttributeNode(offCanvasAriaControls);
-
-		newOffCanvasButton.innerHTML = 'Game notes';
-
-		let offCanvasDiv = document.createElement('div');
-		offCanvasDiv.classList.add('offcanvas');
-		offCanvasDiv.classList.add('offcanvas-end');
-		let tabIndex = document.createAttribute('tabindex');
-		tabIndex.value = '-1';
-		offCanvasDiv.setAttributeNode(tabIndex);
-		offCanvasDiv.style.width = '35%';
-
-		offCanvasDiv.id = 'offcanvas' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear);
-
-		let offCanvasAriaLabelledBy = document.createAttribute('aria-labelledby');
-		offCanvasAriaLabelledBy.value = 'offcanvasLabel' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear);
-		offCanvasDiv.setAttributeNode(offCanvasAriaLabelledBy);
-
-		let offCanvasHeaderDiv = document.createElement('div');
-		offCanvasHeaderDiv.classList.add('offcanvas-header');
-
-		let offCanvasHeader = document.createElement('h5');
-		offCanvasHeader.id = offCanvasAriaLabelledBy.value; 
-		offCanvasHeader.innerHTML = "Game Notes";
-
-		let closeButton = document.createElement('button');
-		closeButton.type = 'button';
-		closeButton.classList.add('btn-close');
-		closeButton.classList.add('text-reset');
-
-		let dataBsDismiss = document.createAttribute('data-bs-dismiss');
-		dataBsDismiss.value = offCanvasDataBsToggle.value;
-		closeButton.setAttributeNode(dataBsDismiss);
-
-		let offCanvasAriaLabel = document.createAttribute('aria-label');
-		offCanvasAriaLabel.value = 'Close';
-		closeButton.setAttributeNode(offCanvasAriaLabel);
-
-		offCanvasHeaderDiv.appendChild(offCanvasHeader);
-		offCanvasHeaderDiv.appendChild(closeButton);
-
-		let offCanvasBody = document.createElement('div');
-		offCanvasBody.classList.add('offcanvas-body');
-		offCanvasBody.innerHTML = currentGame.gamenotes;
-		offCanvasBody.style.whiteSpace = 'pre-wrap';
-		offCanvasBody.style.textAlign = 'justify';
-
-		// newCardBody.appendChild(newOffCanvasButton);
-		offCanvasDiv.appendChild(offCanvasHeaderDiv);
-		offCanvasDiv.appendChild(offCanvasBody);
-		newCardBody.appendChild(offCanvasDiv);
-
-		let newButtonGroup = document.createElement('div');
-		newButtonGroup.classList.add('btn-group');
-		let buttonGroupRole = document.createAttribute('role');
-		buttonGroupRole.value = 'group';
-		newButtonGroup.setAttributeNode(buttonGroupRole);
-		let buttonGroupAriaLabel = document.createAttribute('aria-label');
-		buttonGroupAriaLabel.value = 'game' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear);
-		newButtonGroup.setAttributeNode(buttonGroupAriaLabel);
-		newButtonGroup.style.width = '100%';
-
-		// let newCardParagraph = document.createElement('p');
-		// newCardParagraph.classList.add('card-text');
-		// newCardParagraph.innerHTML = currentGame.gamenotes;
-
-		let newCardLink = document.createElement('a');
-		let currentTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.homeTeam);
-		let currentTeamAbbr = teams[currentTeamIndex].teamAbbr
-		newCardLink.href = linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentTeamAbbr);
-		newCardLink.classList.add('btn');
-		newCardLink.classList.add('btn-primary');
-		newCardLink.innerHTML = 'Boxscore';
-
-		// newCardBody.appendChild(newCardParagraph);
-		newButtonGroup.appendChild(newOffCanvasButton);
-		newButtonGroup.appendChild(newCardLink);
-		newCardBody.appendChild(newButtonGroup);
-		newCard.appendChild(newCardBody);
-
-		currentCardGroup.appendChild(newCard);
 	}
 }
-
-// console.log(teams);
 function linkBuilder(gDay, gMonth, gYear, hTeam) {
 	let currentDate = dateBuilder(gDay, gMonth, gYear);
-
 	return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + currentDate +"0.shtml";
 }
 function dateBuilder(gameDay, gameMonth, gameYear) {
 	return gameYear + gameMonth + gameDay;
-}
-function scoreboardBuilder(team, runs, year) {
-	let newList = document.createElement('ul');
-	newList.classList.add('list-group');
-	newList.classList.add('list-group-horizontal');
-	newList.classList.add('rounded');
-	newList.classList.add('border');
-
-	let currentTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == team);
-	let currentTeamAbbr = teams[currentTeamIndex].teamAbbr;
-	let currentTeamClassName = teams[currentTeamIndex].teamClassName;
-	let currentFullName = teams[currentTeamIndex].fullName;
-	// console.log(currentFullName);
-
-	let isTeam = true;
-	for (let i = 0; i < 2; i++) {
-		let newListItem = document.createElement('li');
-		newListItem.classList.add('list-group-item')
-		newListItem.classList.add('text-center');
-		newListItem.classList.add('fs-5');
-		newListItem.classList.add(currentTeamClassName);
-		if (isTeam) {
-			newListItem.style.width = '80%';
-			newListItem.innerHTML = currentFullName; 
-			if (currentTeamAbbr == "CLE" && year < 2022) {
-				newListItem.innerHTML = "Cleveland Indians";
-			}
-			isTeam = false;
-		}
-		else {
-			newListItem.style.width = '20%';
-			newListItem.innerHTML = runs;
-		}
-		// console.log(newList.innerHTML);
-		newList.appendChild(newListItem);
-	}
-	return newList;
 }
 async function teamsSeenList() {
 	await getGames();
@@ -536,59 +377,6 @@ async function teamsSeenList() {
 				'</div>\n';
 		}
 	}
-	/* teamsTable += 
-		'<div class="row">\n';
-	
-	for (let i = 0; i < numberOfTeams; i++) {
-		let currentTeamIndex = teams[i];
-		let currentTeamAbbr = currentTeamIndex.teamAbbr;
-		console.log(currentTeamAbbr);
-		teamsTable += 
-			'<div class="collapse w-100" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
-			'	<div class="card card-body">\n' +
-			'		<table class="table table-bordered table-sm rounded text-center>\n"' +
-			'			<thead>\n' +
-			'				<tr>\n' +
-			'					<th scope="col">Date</th>\n' +
-			'					<th scope="col">Opponent</th>\n' +
-			'					<th scope="col">Park</th>\n' +
-			'					<th scope="col">Boxscore</th>\n' +
-			'				</tr>\n' +
-			'			</thead>\n' +
-			'			<tbody>\n';
-		for (let j = 0; j < gamesList.length; j++) {
-			let currentGame = gamesList[j];
-			if (currentGame.homeTeam == currentTeamAbbr || currentGame.roadTeam == currentTeamAbbr) {
-				let currentGame = gamesList[j];
-				let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
-				let opponentAbbr = "";
-				if (currentGame.homeTeam == currentTeamAbbr) {
-					opponentAbbr = currentGame.roadTeam;
-				}
-				else {
-					opponentAbbr = currentGame.homeTeam;
-				}
-				let opponentIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
-
-				let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
-				teamsTable += 
-					'				<tr class="align-middle">\n' + 
-					'					<td scope="row">' + currentMonth + ' ' + currentGame.gameDay +  ' ' + currentGame.gameYear + '</td>\n' +
-					'					<td class="' + teams[opponentIndex].teamClassName + '">' + teams[opponentIndex].fullName + '</td>\n' +
-					'					<td>' + currentGame.venue + '</td>\n' +
-					'					<td>\n' +
-					'						<a class="btn btn-primary" href="' + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + '">Boxscore</a>\n' +
-					'					</td>\n' +
-					'				</tr>\n';
-			}
-		}
-		teamsTable +=
-			'			</tbody>\n' +
-			'		</table>\n' +
-			'	</div>' +
-			'</div>';
-	}
-	*/
 	teamsTable +=
 		'</div>';
 	console.log(teamsTable);
