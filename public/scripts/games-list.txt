@@ -1,0 +1,43 @@
+// if there's no existing accordion for the current year, insert one
+
+<div class='accordion-item bg-dark text-light' id=('accordion' + currentYear)>
+	<h2 class='accordion-header' id=('header' + currentYear)>
+		<button class='accordion-button collapsed bg-dark text-light' type='button' data-bs-toggle='collapse' data-bs-target=('#collapse' + currentYear) aria-expanded='false' aria-controls='collapse' + currentYear>
+			currentYear
+		</button>
+		<div id=('collapse' + currentYear) class='accordion-collapse collapse' aria-labelledby=('header' + currentYear) data-bs-parent='#yearList'>
+			<div class='accordion-body' id=('accordionbody' + currentYear)>
+				// if no cardgroup for the current year, create one
+				<div class='card-group wrapper' id=('cardgroup' + currentYear)>
+					<div class='card bg-dark rounded border ('gamecard' + currentYear)'>
+						<h5 class='card-header text-center text-light'>
+							// create date object and insert correctly formatted date here
+						</h5>
+						<img class='card-img-top rounded-0' src=('../images/' + currentGame.venue + '.jpg') alt=(currentGame.venue)>
+						<ul class='list-group list-group-horizontal rounded border'>
+							<li class='list-group-item text-center fs-5 currentTeamClassName' style='80%'>
+								// if currentTeamAbbr is CLE and year < 2022, set it to Cleveland Indians
+								currentFullName
+							</li>
+							<li class='list-group-item text-center fs-5 currentTeamClassName' style='20%'>
+								runs
+							</li>
+							<div class='card-body'>
+								<button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) aria-controls='offCanvasRight'>Game notes</button>
+							</div>
+							<div id='offcanvas' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) class='offcanvas offcanvas-end' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear)>
+								<div class='offcanvas-header'>
+									<h5 id='offcanvasLabel' + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear)>Game Notes</h5>
+									<button class='btn-close text-reset' type='button' data-bs-dismiss='offcanvas' aria-label='close'></button>
+								</div>
+								<div class='offcanvas-body' style='white-space: pre-wrap; text-align: justify;'>
+									currentGame.notes
+								</div>
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h2>
+</div>
