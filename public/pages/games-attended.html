@@ -11,36 +11,12 @@
         <script type="text/javascript" src="../scripts/gamebuilder.js"></script>
     </head>
     <body class="bg-dark">
-        <h1></h1>
-        <div class="m-4">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="games-attended.html">Games Attended</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Sections Sat In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Tier List</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">All Parks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="teams-seen.html">Teams Seen</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        <div class="m-4" id="teamNavbar"></div>
         <div class="accordion m-4" id="yearList">
         </div><!--end of accordion div-->
         <script>
             document.getElementById("yearList").onload = gameBuilder();
+			document.getElementById("teamNavbar").onload = buildNavbar();
         </script>
     </body>
 </html>

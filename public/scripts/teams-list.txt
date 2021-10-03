@@ -1,0 +1,30 @@
+Baltimore Orioles	BAL	orioles	
+Boston Red Sox	BOS	redsox	
+New York Yankees	NYA	yankees	
+Tampa Bay Rays	TBA	rays	
+Toronto Blue Jays	TOR	bluejays	
+Chicago White Sox	CHA	whitesox	
+Cleveland Guardians	CLE	guardians	
+Detroit Tigers	DET	tigers	
+Kansas City Royals	KCA	royals	
+Minnesota Twins	MIN	twins	
+Houston Astros	HOU	astros	
+Los Angeles Angels	ANA	angels	
+Oakland Athletics	OAK	athletics	
+Seattle Mariners	SEA	mariners	
+Texas Rangers	TEX	rangers	
+Atlanta Braves	ATL	braves	
+Miami Marlins	MIA	marlins	
+New York Mets	NYN	mets	
+Philadelphia Phillies	PHI	phillies	
+Washington Nationals	WAS	nationals	
+Chicago Cubs	CHN	cubs	
+Cincinnati Reds	CIN	reds	
+Milwaukee Brewers	MIL	brewers	
+Pittsburgh Pirates	PIT	pirates	
+St. Louis Cardinals	SLN	cardinals	
+Arizona Diamondbacks	ARI	dbacks	
+Colorado Rockies	COL	rockies	
+Los Angeles Dodgers	LAN	dodgers	
+San Diego Padres	SDN	padres	
+San Francisco Giants	SFN	giants	

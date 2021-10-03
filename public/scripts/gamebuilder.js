@@ -1,16 +1,6 @@
-let game = {
-	gameDay: "",
-	gameMonth: "",
-	gameYear: "",
-	homeTeam: "",
-	homeTeamRuns: "",
-	roadTeamRuns: "",
-	roadTeam: "",
-	venue: "",
-	boxscoreLink: "",
-	gamenotes: ""
-};
 let gamesList = [];
+let teamsList = [];
+/*
 let teams = [
 	{
 		teamClassName: "orioles",
@@ -162,8 +152,28 @@ let teams = [
 		teamAbbr: "SFN",
 		fullName: "San Francisco Giants"
 	}
-];
-
+];*/
+async function getTeams() {
+	const response = await fetch('../scripts/teams-list.txt');
+	await response.text().then(function (text) {
+		let teamsTXT = text;
+		let lines = teamsTXT.split("\t\n");
+		let numLines = lines.length - 1;
+		for (let i = 0; i < numLines; i++) {
+			let line = lines[i];
+			let words = line.split("\t");
+			let numWords = words.length;
+			let currentTeam = new Object();
+			currentTeam.fullName = words[0];
+			currentTeam.teamAbbr = words[1];
+			currentTeam.teamClassName = words[2];
+			currentTeam.games = 0;
+			teamsList.push(currentTeam);
+		}
+	});
+	console.log(teamsList);
+	return;
+}
 async function getGames() {
 	const response = await fetch('../scripts/games.txt');
 	await response.text().then(function (text) {
@@ -203,6 +213,7 @@ async function getGames() {
 async function gameBuilder() {
 	// the "await" keyword forces an asynchronus function to finish before proceeding with the code. it's extremely important here since it makes sure the array is filled with the games before proceeding, otherwise the array will be empty when trying to write the HTML to the page
 	await getGames();
+	await getTeams();
 	// console.log('this should show second!');
 
 	// sets the output to an empty string, to ensure it's not null before it is used
@@ -239,16 +250,16 @@ async function gameBuilder() {
 
 		let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth - 1, currentGame.gameDay);
 		let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
-		let currentRoadTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.roadTeam);
-		let currentRoadTeamAbbr = teams[currentRoadTeamIndex].teamAbbr;
-		let currentRoadTeamClassName = teams[currentRoadTeamIndex].teamClassName;
-		let currentRoadFullName = teams[currentRoadTeamIndex].fullName;
+		let currentRoadTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.roadTeam);
+		let currentRoadTeamAbbr = teamsList[currentRoadTeamIndex].teamAbbr;
+		let currentRoadTeamClassName = teamsList[currentRoadTeamIndex].teamClassName;
+		let currentRoadFullName = teamsList[currentRoadTeamIndex].fullName;
 
-		let currentHomeTeamIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.homeTeam);
+		let currentHomeTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.homeTeam);
 		// the following variable is not currently used, it's mostly here in case it's needed in the future
-		let currentHomeTeamAbbr = teams[currentHomeTeamIndex].teamAbbr;
-		let currentHomeTeamClassName = teams[currentHomeTeamIndex].teamClassName;
-		let currentHomeFullName = teams[currentHomeTeamIndex].fullName;
+		let currentHomeTeamAbbr = teamsList[currentHomeTeamIndex].teamAbbr;
+		let currentHomeTeamClassName = teamsList[currentHomeTeamIndex].teamClassName;
+		let currentHomeFullName = teamsList[currentHomeTeamIndex].fullName;
 		output +=
 			currentMonth + " " + currentGame.gameDay + " " + currentGame.gameYear + "</h5>";
 
@@ -312,13 +323,14 @@ function dateBuilder(gameDay, gameMonth, gameYear) {
 async function teamsSeenList() {
 	// await makes sure getGames has finished before proceeding
 	await getGames();
+	await getTeams();
 	// console.log('this should show second!');
 	// the teamsTable variable is really just an output
 	let teamsTable = "";
 	// just sets the length of the teams array to the numberOfTeams variable for easier use I guess
-	let numberOfTeams = teams.length;
+	let numberOfTeams = teamsList.length;
 	for (let i = 0; i < numberOfTeams; i++) {
-		let currentTeamIndex = teams[i];
+		let currentTeamIndex = teamsList[i];
 		// this if statement creates a new row of teams, based on the fact that there should only be 5 teams in each row, which is exactly one division per row
 		if ((i % 5) == 0) {
 			teamsTable +=
@@ -327,27 +339,26 @@ async function teamsSeenList() {
 
 		// this block creates the button for the team
 		teamsTable += 
-			'	<div class="col p-0 m-0" style="min-width:200px">\n' +
-			'		<button class="btn ' + currentTeamIndex.teamClassName + ' fs-4" style="width:100%; min-width: 200px;" type="button" data-bs-toggle="collapse" data-bs-target="#' + currentTeamIndex.teamClassName + 'btn" aria-expanded="false" aria-controls="' + currentTeamIndex.teamClassName + 'btn">\n' +
-			'			' + currentTeamIndex.fullName + '\n' + 
+			'	<div class="container-fluid col p-0 m-0" style="min-width:200px">\n' +
+			'		<button class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between btn ' + currentTeamIndex.teamClassName + ' fs-5" style="width:100%; min-width: 200px;" type="button" data-bs-toggle="collapse" data-bs-target="#' + currentTeamIndex.teamClassName + 'btn" aria-expanded="false" aria-controls="' + currentTeamIndex.teamClassName + 'btn">\n' +
+			'			' + '<span class="float-start" style="font-family: inherit">' + currentTeamIndex.fullName + '</span>\n' + 
 			'		</button>\n' +
 			'	</div>\n';
 
 		if (((i + 1) % 5 == 0)) {
-			console.log(i);
 			teamsTable += 
 				'</div>\n';
 			teamsTable +=
 				'<div class="row m-0 p-0">\n';
 			for (let k = i - 4; k <= i; k++) {
-				console.log(k);
-				currentTeamIndex = teams[k];
+				//console.log(k);
+				currentTeamIndex = teamsList[k];
 				let currentTeamAbbr = currentTeamIndex.teamAbbr;
 				console.log(currentTeamAbbr);
 				teamsTable += 
 					'<div class="collapse w-100 bg-dark text-light" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
 					'	<div class="card card-body bg-dark text-light">\n' +
-					'		<table class="table table-bordered border-primary table-sm rounded text-center bg-dark text-light">\n' +
+					'		<table class="table table-sm rounded text-center table-dark table-borderless text-light" id="' + currentTeamIndex.teamClassName + 'table">\n' +
 					'			<thead>\n' +
 					'				<tr>\n' +
 					'					<th scope="col" style="width: 25%;">Date</th>\n' +
@@ -360,7 +371,6 @@ async function teamsSeenList() {
 				for (let j = 0; j < gamesList.length; j++) {
 					let currentGame = gamesList[j];
 					if (currentGame.homeTeam == currentTeamAbbr || currentGame.roadTeam == currentTeamAbbr) {
-						let currentGame = gamesList[j];
 						let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
 						let opponentAbbr = "";
 						if (currentGame.homeTeam == currentTeamAbbr) {
@@ -369,18 +379,20 @@ async function teamsSeenList() {
 						else {
 							opponentAbbr = currentGame.homeTeam;
 						}
-						let opponentIndex = teams.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
+						let opponentIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
+						console.log("opponentIndex: " + opponentIndex);
 
 						let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
 						teamsTable += 
 							'				<tr class="align-middle">\n' + 
 							'					<td scope="row">' + currentMonth + ' ' + currentGame.gameDay +  ' ' + currentGame.gameYear + '</td>\n' +
-							'					<td class="' + teams[opponentIndex].teamClassName + '">' + teams[opponentIndex].fullName + '</td>\n' +
+							'					<td class="' + teamsList[opponentIndex].teamClassName + '">' + teamsList[opponentIndex].fullName + '</td>\n' +
 							'					<td>' + currentGame.venue + '</td>\n' +
 							'					<td>\n' +
 							'						<a class="btn btn-primary" href="' + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + '">Boxscore</a>\n' +
 							'					</td>\n' +
 							'				</tr>\n';
+						teamsList[k].games++;
 					}
 				}
 				teamsTable +=
@@ -396,7 +408,37 @@ async function teamsSeenList() {
 	}
 	teamsTable +=
 		'</div>';
-	console.log(teamsTable);
 	document.getElementById("teamCollapse").innerHTML = teamsTable;
+	for (let i = 0; i < teamsList.length; i++) {
+		console.log(teamsList[i].games);
+		let currentButton = document.getElementsByTagName("button")[i];
+		currentButton.innerHTML += '<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>';
+	}
+
+	return;
+}
+function buildNavbar() {
+	let output = 
+		"<nav class='navbar navbar-expand-lg navbar-dark bg-dark rounded'>\n" +
+		"	<div class='container-fluid'>\n" +
+		"		<div class='collapse navbar-collapse'>\n" +
+		"			<ul class='navbar-nav me-auto mb-2 mb-lg-0'>\n" +
+		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='games-attended.html'>Games Attended</a>\n" +
+		"				</li>\n" +
+		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='#'>Sections Sat In</a>\n" +
+		"				</li>\n" +
+		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='#'>Tier List</a>\n" +
+		"				</li>\n" +
+		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='teams-seen.html'>Teams Seen</a>\n" +
+		"				</li>\n" +
+		"			</ul>\n" +
+		"		</div>\n" +
+		"	</div>\n" +
+		"</nav>\n";
+	document.getElementById('teamNavbar').innerHTML = output;
 	return;
 }
