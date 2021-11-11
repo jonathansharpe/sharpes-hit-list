@@ -1,6 +1,6 @@
 # My Baseball Website
 
-This is a repository for my baseball website, which currently is a database of all the baseball games I've attended in person. While a couple pages are finished, the site as a whole is still in development, and I'm interested to see what other content I can add to improve the site.
+This is a repository for my baseball website, which currently is a database of all the baseball games I've attended in person. While a couple pages are finished, the site as a whole is still in development, and I'm interested to see what other content I can add to improve the site. It is written in HTML and CSS, with Bootstrap as a framework. I also use JavaScript for generating the list of games for example.
 
 ## Pages
 ### Main Page
