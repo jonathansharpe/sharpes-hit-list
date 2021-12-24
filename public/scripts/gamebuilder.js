@@ -419,21 +419,44 @@ async function teamsSeenList() {
 }
 function buildNavbar() {
 	let output = 
-		"<nav class='navbar navbar-expand-lg navbar-dark bg-dark rounded'>\n" +
+		"<nav class='navbar navbar-expand-lg navbar-dark bg-secondary rounded'>\n" +
 		"	<div class='container-fluid'>\n" +
-		"		<div class='collapse navbar-collapse'>\n" +
+		"		<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>\n" +
+		"			<span class='navbar-toggler-icon'></span>\n"+
+		"		</button>\n" +
+		"		<div class='collapse navbar-collapse' id='navbarCollapse'>\n" +
 		"			<ul class='navbar-nav me-auto mb-2 mb-lg-0'>\n" +
 		"				<li class='nav-item'>\n" +
-		"					<a class='nav-link' href='games-attended.html'>Games Attended</a>\n" +
+		"					<a class='nav-link' href='games-attended'>Games Attended</a>\n" +
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='#'>Sections Sat In</a>\n" +
+		"				</li>\n" +
+		"				<li class='nav-item dropdown'>\n" +
+		"					<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Ballparks</a>\n" +
+		"					<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>\n" +
+		"						<li><a class='dropdown-item' href='angelstadium'>Angel Stadium</a></li>\n" +
+		"						<li><a class='dropdown-item' href='dodgerstadium'>Dodger Stadium</a></li>\n" +
+		"						<li><a class='dropdown-item' href='fenwaypark'>Fenway Park</a></li>\n" +
+		"						<li><a class='dropdown-item' href='guaranteedratefield'>Guaranteed Rate Field</a></li>\n" +
+		"						<li><a class='dropdown-item' href='kauffmanstadium'>Kauffman Stadium</a></li>\n" +
+		"						<li><a class='dropdown-item' href='oaklandcoliseum'>Oakland Coliseum</a></li>\n" +
+		"						<li><a class='dropdown-item' href='oraclepark'>Oracle Park</a></li>\n" +
+		"						<li><a class='dropdown-item' href='petcopark'>PETCO Park</a></li>\n" +
+		"						<li><a class='dropdown-item' href='tmobilepark'>T-Mobile Park</a></li>\n" +
+		"						<li><a class='dropdown-item' href='targetfield'>Target Field</a></li>\n" +
+		"						<li><a class='dropdown-item' href='wrigleyfield'>Wrigley Field</a></li>\n" +
+		"						<li><a class='dropdown-item' href='yankeestadium'>Yankee Stadium II</a></li>\n" +
+		"					</ul>\n"+
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='#'>Tier List</a>\n" +
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
-		"					<a class='nav-link' href='teams-seen.html'>Teams Seen</a>\n" +
+		"					<a class='nav-link' href='teams-seen'>Teams Seen</a>\n" +
+		"				</li>\n" +
+		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='about'>About</a>\n" +
 		"				</li>\n" +
 		"			</ul>\n" +
 		"		</div>\n" +

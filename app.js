@@ -13,11 +13,17 @@ app.use('/scripts', express.static(__dirname + 'public/scripts'));
 app.get('', (req, res) => {
     res.sendFile(__dirname + '/public/pages/index.html');
 });
-app.get('/games-attended.html', function(req, res) {
+app.get('/games-attended', function(req, res) {
     res.sendFile(__dirname + '/public/pages/games-attended.html');
 });
-app.get('/teams-seen.html', function(req, res) {
+app.get('/teams-seen', function(req, res) {
     res.sendFile(__dirname + '/public/pages/teams-seen.html');
+});
+app.get('/about', function(req, res) {
+    res.sendFile(__dirname + '/public/pages/about.html');
+});
+app.get('/tmobilepark', function(req, res){
+	res.sendFile(__dirname + '/public/pages/tmobilepark.html');
 });
 /*
 const server = http.createServer((request, response) => {
