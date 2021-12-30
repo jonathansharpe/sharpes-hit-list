@@ -411,7 +411,7 @@ async function teamsSeenList() {
 	document.getElementById("teamCollapse").innerHTML = teamsTable;
 	for (let i = 0; i < teamsList.length; i++) {
 		console.log(teamsList[i].games);
-		let currentButton = document.getElementsByTagName("button")[i];
+		let currentButton = document.getElementsByTagName("button")[i+1];
 		currentButton.innerHTML += '<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>';
 	}
 
