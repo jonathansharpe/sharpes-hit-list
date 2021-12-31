@@ -223,7 +223,9 @@ async function gameBuilder() {
 		let currentGame = gamesList[i]; // assign the current array element to a variable
 		// console.log(currentGame);
 		let currentYear = currentGame.gameYear;
-		if (document.getElementById('accordion'+currentYear) == null) {
+		// if (document.getElementById('accordion'+currentYear) == null) {
+		let idName = "#accordion" + currentYear;
+		if ($("#accordion" + currentYear).length == 0) {
 			// this block creates the "shell" for a year if it doesn't yet exist. if there were a year with no games in it, this would be the html shown
 			output = 
 				"<div class='accordion-item bg-dark text-light' id='accordion" + currentYear + "'>\n" +
@@ -237,11 +239,14 @@ async function gameBuilder() {
 				"		</div>\n" +
 				"</div>\n";
 			// the next two lines append the generated html to the page, so it can then be found and added on to after this if statement ends
-			let currentYearList = document.getElementById('yearList');
-			currentYearList.innerHTML += output;
+			// let currentYearList = document.getElementById('yearList');
+			// currentYearList.innerHTML += output;
+			$("#yearList").append(output)
+			// the above line replaces the two lines above that :D
 		}
 		// this gets the card group of the current year, so the HTML can be added to it
-		let currentCardGroup = document.getElementById('cardgroup'+currentYear);
+		// the following line is no longer needed but i'm commenting it out for now
+		// let currentCardGroup = document.getElementById('cardgroup'+currentYear);
 		// console.log("the value of i is " + i);
 		// the output here is replacing the previous output, so the single "=" is correct; it should NOT be "+="
 		output = 
@@ -307,7 +312,8 @@ async function gameBuilder() {
 			"</div>\n" +
 			"</div>\n";
 
-		currentCardGroup.innerHTML += output;
+		$("#cardgroup"+currentYear).append(output)
+		// currentCardGroup.innerHTML += output;
 	}
 }
 // this function just builds the link for the boxscore; could probably just be build straight into the main code but this works fine too
@@ -408,11 +414,13 @@ async function teamsSeenList() {
 	}
 	teamsTable +=
 		'</div>';
-	document.getElementById("teamCollapse").innerHTML = teamsTable;
+	$("#teamCollapse").html(teamsTable);
+	// document.getElementById("teamCollapse").innerHTML = teamsTable;
 	for (let i = 0; i < teamsList.length; i++) {
 		console.log(teamsList[i].games);
-		let currentButton = document.getElementsByTagName("button")[i+1];
-		currentButton.innerHTML += '<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>';
+		$("button").eq(i+1).append('<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>')
+		// let currentButton = document.getElementsByTagName("button")[i+1];
+		// currentButton.innerHTML += '<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>';
 	}
 
 	return;
