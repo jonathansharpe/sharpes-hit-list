@@ -11,8 +11,8 @@
 		<div class="m-4 p-0" id="teamCollapse"></div>
 	</body>
 	<script>
-		document.getElementsByTagName("head").onload = importHeadModules();
-		document.getElementById("teamCollapse").onload = teamsSeenList();
-		document.getElementById("teamNavbar").onload = buildNavbar();
+		$("head").ready(importHeadModules());
+		$("#teamCollapse").ready(teamsSeenList());
+		$("#teamNavbar").ready(buildNavbar());
 	</script>
 </html>

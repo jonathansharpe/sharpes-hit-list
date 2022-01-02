@@ -9,12 +9,12 @@
     <body class="bg-dark text-light">
         <div class="bg-secondary m-4 border border-light border-2 rounded-3" id='teamNavbar'></div>
 		<div class="container border-light border border-2 rounded">
-			<h1 class="p-2">About Me</h1>
+			<h1 class="p-2">About this website</h1>
 			<p class="p-2">Hello, my name is Jonathan. I'm currently using this website as a creative haven to bring two of my favorite things together, baseball and programming. In the past I had recorded this information on a spreadsheet, but that can only be customized so much, and it's harder to show it to other people. By creating a website, I was able to learn more about programming in JavaScript and styling with Bootstrap. Currently, this website has the games I've attended, along with the teams I've seen in those games. Eventually, I'd like to add a ballpark review for each park I've been to, as that number has grown to 12. </p>
 		</div>
     </body>
 	<script>
-		document.getElementsByTagName("head").onload = importHeadModules();
-		document.getElementById("teamNavbar").onload = buildNavbar();
+		$("head").ready(importHeadModules());
+		$("#teamNavbar").ready(buildNavbar());
 	</script>
 </html>

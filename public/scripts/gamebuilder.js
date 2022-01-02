@@ -325,6 +325,6 @@ function buildNavbar() {
 		"		</div>\n" +
 		"	</div>\n" +
 		"</nav>\n";
-	document.getElementById('teamNavbar').innerHTML = output;
+	$("#teamNavbar").html(output);
 	return;
 }
