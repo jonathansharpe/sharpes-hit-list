@@ -319,6 +319,9 @@ function buildNavbar() {
 		"					<a class='nav-link' href='teams-seen'>Teams Seen</a>\n" +
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='empirical-project'>Empirical Investigation Project</a>\n" +
+		"				</li>\n" +
+		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='about'>About</a>\n" +
 		"				</li>\n" +
 		"			</ul>\n" +
