@@ -2,17 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Games Attended</title>
+        <title>Baseball and stuff</title>
         <script type='text/javascript' src='../scripts/gamebuilder.js'></script>
 		<script src='https://code.jquery.com/jquery-3.6.0.js' integrity='sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=' crossorigin='anonymous'></script>
     </head>
     <body class="bg-dark">
-        <div class="m-4" id="teamNavbar"></div>
-        <div class="accordion m-4" id="yearList">
-        </div><!--end of accordion div-->
-        <script>
-			$("head").ready(importHeadModules());
-			$("#teamNavbar").ready(buildNavbar());
-        </script>
+        <div class="m-4" id='teamNavbar'></div>
     </body>
+	<script>
+		$("head").ready(importHeadModules());
+		$("#teamNavbar").ready(buildNavbar());
+	</script>
 </html>

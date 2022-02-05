@@ -25,6 +25,9 @@ app.get('/about', function(req, res) {
 app.get('/tmobilepark', function(req, res){
 	res.sendFile(__dirname + '/public/pages/tmobilepark.html');
 });
+app.get('/empirical-project', function(req, res){
+	res.sendFile(__dirname + '/public/pages/empirical-project.html');
+});
 /*
 const server = http.createServer((request, response) => {
     response.writeHead(200, {'content-type': 'text/html'});
