@@ -281,8 +281,17 @@
 					</tr>
 				</tbody>
 			</table>
-			<p>So at first glance, one can see that elevation isn't the sole factor in determining how far balls will fly. While the top two parks in elevation are also the top two parks in feet added, number 3 in elevation is way down at 8 for feet added. There's also a clear outlier with Tropicana Field at 4 despite being only 15 feet aove sea level, but that is because it has a fixed roof.</p>
+			<p>So at first glance, one can see that elevation isn't the sole factor in determining how far balls will fly. While the top two parks in elevation are also the top two parks in feet added, number 3 in elevation is way down at 8 for feet added. There's also a clear outlier with Tropicana Field at 4 despite being only 15 feet above sea level, but that is because it has a fixed roof. At first glance, we might think that this answers our question, that elevation <i>sometimes</i> affects the air resistance. Or maybe just that there are other factors affecting air resistance, besides just the elevation. To better answer this question, let's look a little more into the data on the other environmental effects.</p>
 		</div>
+		<h2>Equations</h2>
+		<p>But first, let's look at some equations. Air resistance is also known as "drag force", measured in Newtons. The equation to find the force of air resistance, is one half the density (of the air) times the velocity of the object squared, times the drag coefficient times the cross-sectional area. </p>
+		<span class="math inline">\(F_D=\frac{1}{2}\rho v^2 C_D A\)</span>
+		<p>So this makes it quite clear that air resistance is what affects the flight of the baseball, and the air resistance is affected by the air density, which varies depending on multiple conditions. One of those is humidity, which is affected based on proximity to water. </p>
+		<h2>Sources</h2>
+		<ul>
+			<li><a href="https://baseballsavant.mlb.com/leaderboard/statcast-park-factors?type=distance&year=2021&batSide=&stat=index_wOBA&condition=All&rolling=">Park Factors Leaderboard</a></li>
+			<li><a href="https://www.wikiwand.com/en/Drag_(physics)">Drag (Physics) - Wikipedia</a></li>
+		</ul>
 	</body>
 	<script>
 		$("head").ready(importHeadModules());
