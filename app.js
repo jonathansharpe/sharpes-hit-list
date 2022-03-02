@@ -13,21 +13,28 @@ app.use('/scripts', express.static(__dirname + 'public/scripts'));
 app.get('', (req, res) => {
     res.sendFile(__dirname + '/public/pages/index.html');
 });
-app.get('/games-attended', function(req, res) {
-    res.sendFile(__dirname + '/public/pages/games-attended.html');
+var currentPage;
+app.get('/:pageId', function(req, res) {
+	req.params;
+	res.sendFile(__dirname + "/public/pages/" + req.params.pageId + ".html", (err) => {
+		if (err) {
+			res.sendFile(__dirname + "/public/pages/404.html");
+		}
+	});
+	// console.log("code reached");
 });
-app.get('/teams-seen', function(req, res) {
-    res.sendFile(__dirname + '/public/pages/teams-seen.html');
-});
-app.get('/about', function(req, res) {
-    res.sendFile(__dirname + '/public/pages/about.html');
-});
-app.get('/tmobilepark', function(req, res){
-	res.sendFile(__dirname + '/public/pages/tmobilepark.html');
-});
-app.get('/empirical-project', function(req, res){
-	res.sendFile(__dirname + '/public/pages/empirical-project.html');
-});
+// app.get('/teams-seen', function(req, res) {
+//     res.sendFile(__dirname + '/public/pages/teams-seen.html');
+// });
+// app.get('/about', function(req, res) {
+//     res.sendFile(__dirname + '/public/pages/about.html');
+// });
+// app.get('/tmobilepark', function(req, res){
+// 	res.sendFile(__dirname + '/public/pages/tmobilepark.html');
+// });
+// app.get('/empirical-project', function(req, res){
+// 	res.sendFile(__dirname + '/public/pages/empirical-project.html');
+// });
 /*
 const server = http.createServer((request, response) => {
     response.writeHead(200, {'content-type': 'text/html'});
