@@ -5,28 +5,53 @@
         <title>T-Mobile Park Overview</title>
         <script type='text/javascript' src='../scripts/gamebuilder.js'></script>
 		<script src='https://code.jquery.com/jquery-3.6.0.js' integrity='sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=' crossorigin='anonymous'></script>
-		<style type="text/css" >
-			#header-img {
-				background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/T-Mobile Park.jpg');
-				background-size: 100%;
-				background-repeat: no-repeat;
-				background-position: center;
+		<style type="text/css">
+			.demoB {
 				width: 100%;
 				height: 300px;
+				position: relative;
 			}
-			#header-img h1 {
-				-webkit-text-stroke-width: 3px;
+			.backB, .frontB {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			.backB {
+				z-index: 1;
+			}
+			.frontB {
+				z-index: 2;
+			}
+			.backB {
+				background: url("../images/T-Mobile Park.jpg");
+				background-repeat: no-repeat;
+				background-position: center 35%;
+				background-size: cover;
+				/*filter: blur(2px);*/	
+			}
+			/* FRONT TEXT */
+			.frontB {
+				display: flex;
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+			}
+			.frontB h1 {
+				transform: translate(0%, -100%);
+				-webkit-text-stroke-width: 2px;
 				-webkit-text-stroke-color: black;
 			}
 		</style>
     </head>
     <body class="bg-dark text-light">
-        <div class="bg-secondary m-4 border border-light border-2 rounded-3" id='teamNavbar'></div>
-		<div class="container border-light border border-2 rounded">
-			<div id="header-img" class="p-5 text-center bg-image rounded">
-				<h1 class="p-2">T-Mobile Park Overview</h1>
+        <div class="m-4" id='teamNavbar'></div>
+		<div class="container border border-primary border-radius">
+			<div class="demoB">
+				<div class="backB"></div>
+				<div class="frontB border-light border border-2 rounded"><h1 class="p-2">T-Mobile Park Overview</h1></div>
 			</div>
-			<!-- <img src="../images/T-Mobile Park.jpg" class="rounded img-fluid" style="height: 50%;" alt="tmobile-park"> -->
 			<p class="p-2">T-Mobile Park is the home park of my Seattle Mariners. I grew up going to games here, and have gone to almost 60 games over the past ten seasons. This has been home to many memorable experiences, including historic games and other exciting moments. While I won't be going over every game I've attended, as I already have the game notes for that, I'll expand upon certain aspects of the park that I haven't dug into yet.</p>
 			<h2 class="p-2">Exterior</h2>
 			<p class="p-2">There are four main gates; left field, center field, right field, and home plate. There is also the third base entry, but that is currently only available for T-Mobile customers, a change made when T-Mobile purchased the naming rights to the stadium after Safeco Insurance decided to not renew the naming rights contract. It had previously been known as Safeco Field, which I still call it occasionally. While the home plate gate has the fancy bat sculpture chandelier, I always enter the center field gate. The stairway is enormous, and it's right across the street from my regular parking spot, the Lumen Field Event Center Parking Garage.  </p>
@@ -39,8 +64,8 @@
 			<h2 class="p-2">Field</h2>
 			<p class="p-2">The field dimensions of T-Mobile Park have been largely the same. The fences were pulled in before the 2013 season, but only by a little bit. It reduced the distances everywhere except for the right field foul line. There is an odd divot in the right field corner, where the fence is at an angle not directed to the foul pole, resulting in an odd imperfection in the field shape. While imperfections are usually a neat quirk, I kinda hope the Mariners just fill that area in with a few more seats and make it a nicer looking corner. A minor detail for sure, but it'd be a neat change. The backstop was padded for a long time, but upon the name change, the Mariners decided to change it to a brick backstop, which looks really nice in my opinion. It also results in balls bouncing back much more quickly than before. I do wish they had extended the brick wall down to the foul lines, to maintain consistency, but it doesn't look weird at all the way it is now.</p>
 			<h2 class="p-2">Game Experience</h2>
-			<p class="p-2">The game experience is pretty great. The scoreboard always has fun attractions. The most notable includes the hydro boat race, where 3 animated boats race on Lake Washington. The winner means absolutely nothing, but it's funny seeing people getting so passionate about a meaningless boat race during a commercial break (full disclosure, I get into it as well). There is also the hat trick, where a baseball is placed under a hat, the hats are shuffled, and then everyone guesses where the ball is. I've seen these in other stadiums, so this one seems rather common. There's also a "guess the song" challenge done by the local classic rock radio station, along with some baseball trivia based on the year the song was from. The Mariners play "Louie Louie" in the 7th inning stretch after Take Me Out to the Ballgame. The scoreboard will also encourage fans to get loud at certain times, which isn't terrible, but I prefer the more natural excitement from fans just paying attention to the situation. It feels more genuine that way. One thing I dislike about T-Mobile Park's scoreboard and audio is that the organ sounds really fake, and honestly it probably is. Fortunately, it's not relied on too heavily, as the sound person does a great job of playing songs that get you excited for the game. Speaking of songs, the Mariners will play a song from their TV intro from the 90s; it's also currently played on the radio. It is honestly a fantastic song, and has no right to be as good as it is. </p>
-			<p class="p-2">While the Mariners have generally been considered "not good" over the past decade, they've had at least some success. They had 4 winning seasons where they came relatively close to a playoff spot, and every year in between those they had a competitive team. Really the only years where they were definitely non-competitive were 2012, 2013, and 2019. </p>
+			<p class="p-2">The game experience is pretty great. The scoreboard always has fun attractions. The most notable includes the hydro boat race, where 3 animated boats race on Lake Washington. The winner means absolutely nothing, but it's funny seeing people getting so passionate about a meaningless boat race during a commercial break (full disclosure, I get into it as well). There is also the hat trick, where a baseball is placed under a hat, the hats are shuffled, and then everyone guesses where the ball is. I've seen these in other stadiums, so this one seems rather common. There's also a "guess the song" challenge done by the local classic rock radio station, along with some baseball trivia based on the year the song was from. The Mariners play "Louie Louie" in the 7th inning stretch after Take Me Out to the Ballgame. The scoreboard will also encourage fans to get loud at certain times, which isn't terrible, but I prefer the more natural excitement from fans just paying attention to the situation. It feels more genuine that way. One thing I dislike about T-Mobile Park's scoreboard and audio is that the organ sounds really fake, and honestly it probably is. Fortunately, it's not relied on too heavily, as the sound person does a great job of playing songs that get you excited for the game. Speaking of songs, the Mariners will play a song from their TV intro from the 90s; it's also currently played on the radio. It's a fantastic song, and has no right to be as good as it is. </p>
+			<p class="p-2">While the Mariners have generally been considered "not good" over the past decade, they've had at least some success. They had 4 winning seasons where they came relatively close to a playoff spot, and every year in between those they had a competitive team. The only full seasons I'd definitely say were non-competitive are 2012, 2013, and 2019. All together, I've seen 20 Mariners wins and 16 losses.</p>
 		</div>
     </body>
 	<script>
