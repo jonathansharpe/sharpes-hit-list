@@ -83,12 +83,12 @@ async function gameBuilder() {
 		if ($("#accordion" + currentYear).length == 0) {
 			// this block creates the "shell" for a year if it doesn't yet exist. if there were a year with no games in it, this would be the html shown
 			output = 
-				"<div class='accordion-item bg-dark text-light' id='accordion" + currentYear + "'>\n" +
+				"<div style='overflow: auto' class='accordion-item bg-dark text-light' id='accordion" + currentYear + "'>\n" +
 				"	<h2 class='accordion-header' id='header" + currentYear + "'></h2>\n" +
 				"		<button class='accordion-button collapsed bg-dark text-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapse" + currentYear + "' aria-expanded='false' aria-controls='collapse" + currentYear + "' data-bs-parent='#yearList'>" + currentYear + "</button>\n" +
-				"		<div id='collapse" + currentYear + "' class='accordion-collapse collapse' aria-labelledby='header" + currentYear + "' data-bs-parent='#yearList'>\n" + 
+				"		<div style='overflow: auto' id='collapse" + currentYear + "' class='accordion-collapse collapse' aria-labelledby='header" + currentYear + "' data-bs-parent='#yearList'>\n" + 
 				"			<div class='accordion-body' id='accordionbody" + currentYear + "'>\n" +
-				"				<div class='card-group wrapper' id='cardgroup" + currentYear + "'>\n" +
+				"				<div style='min-width: 60em; overflow: auto' class='card-group wrapper' id='cardgroup" + currentYear + "'>\n" +
 				"				</div>\n" +
 				"			</div>\n" +
 				"		</div>\n" +
@@ -105,8 +105,8 @@ async function gameBuilder() {
 		// console.log("the value of i is " + i);
 		// the output here is replacing the previous output, so the single "=" is correct; it should NOT be "+="
 		output = 
-			"<div class='card bg-dark rounded border border-primary gamecard" + currentYear + "'>\n" +
-			"	<h5 class='card-header text-center text-light'>";
+			"<div class='card bg-dark border border-primary gamecard" + currentYear + "'>\n" +
+			"	<h5 style='height: 3em; line-height: 1em;' class='card-header text-center text-light'>";
 
 		let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth - 1, currentGame.gameDay);
 		let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
@@ -126,24 +126,20 @@ async function gameBuilder() {
 		// this creates the element that houses the image of the venue, and creates the first part of the scoreboard
 		output +=
 			"<img class='card-img-top rounded-0' src='../images/" + currentGame.venue + ".jpg' alt='" + currentGame.venue + "'>\n" + 
-			"<ul class='list-group list-group-horizontal rounded border border-dark'>\n" +
-			"	<li class='list-group-item text-center fs-5 " + currentRoadTeamClassName + "' style='width:80%;'>";
-		if (currentRoadTeamAbbr == 'CLE' && currentYear < 2022) {
-			currentRoadFullName = 'Cleveland Indians';
-		}
-
-		// this next block finishes the scoreboard
+			"<table class='table table-borderless rounded'>\n" +
+			"	<tr style='height: 4em;'>\n" +
+			"		<th class='align-middle " + currentRoadTeamClassName + "'>"+ currentRoadFullName +"</th>\n";
+			if (currentRoadTeamAbbr == 'CLE' && currentYear < 2022) {
+				currentRoadFullName = 'Cleveland Indians';
+			}
 		output +=
-			currentRoadFullName + 
-			"	</li>\n" +
-			"	<li class='list-group-item text-center fs-5 " + currentRoadTeamClassName + "' style='width:20%;'>" + currentGame.roadTeamRuns+ "</li>\n" +
-			"</ul>\n" +
-			"<ul class='list-group list-group-horizontal rounded border border-dark'>\n" +
-			"	<li class='list-group-item text-center fs-5 " + currentHomeTeamClassName + "' style='width:80%;'>" +
-			currentHomeFullName +
-			"	</li>\n" +
-			"	<li class='list-group-item text-center fs-5 " + currentHomeTeamClassName + "' style='width:20%;'>" + currentGame.homeTeamRuns + "</li>\n" +
-			"</ul>\n";
+			"		<th class='align-middle " + currentRoadTeamClassName + "'>"+ currentGame.roadTeamRuns +"</th>\n" +
+			"	</tr>\n" +
+			"	<tr style='height: 4em;'>\n" +
+			"		<th class='align-middle " + currentHomeTeamClassName + "'>"+ currentHomeFullName +"</th>\n" +
+			"		<th class='align-middle " + currentHomeTeamClassName + "'>"+ currentGame.homeTeamRuns +"</th>\n" +
+			"	</tr>\n" +
+			"</table>\n";
 		
 		// this block sets up the offcanvas. the constant use of the dateBuilder function ensures that all offcanvases are unique and that all the buttons point to the correct game notes
 		output +=
@@ -160,9 +156,9 @@ async function gameBuilder() {
 
 		// this final block generates the game notes offcanvas trigger button, and the link to the boxscore for the game. the final tags are there to of course close all divs before the HTML is appended to the page
 		output += 
-			"<div class='btn-group' role='group' aria-label='game" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "' style='width:100%;'>\n" +
-			"	<button class='btn btn-primary' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
-			"	<a class='btn btn-primary' href='" + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + "'>Boxscore</a>" +
+			"<div class='d-grid d-md-flex btn-group' role='group' aria-label='game" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "'>\n" +
+			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + dateBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
+			"	<a class='btn btn-primary btn-sm' href='" + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + "'>Boxscore</a>" +
 			"</div>\n" +
 			"</div>\n" +
 			"</div>\n";
@@ -292,9 +288,9 @@ function buildNavbar() {
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='games-attended'>Games Attended</a>\n" +
 		"				</li>\n" +
-		"				<li class='nav-item'>\n" +
-		"					<a class='nav-link' href='#'>Sections Sat In</a>\n" +
-		"				</li>\n" +
+		// "				<li class='nav-item'>\n" +
+		// "					<a class='nav-link' href='#'>Sections Sat In</a>\n" +
+		// "				</li>\n" +
 		"				<li class='nav-item dropdown'>\n" +
 		"					<a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Ballparks</a>\n" +
 		"					<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>\n" +
@@ -313,13 +309,10 @@ function buildNavbar() {
 		"					</ul>\n"+
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
-		"					<a class='nav-link' href='#'>Tier List</a>\n" +
+		"					<a class='nav-link' href='tier-list'>Tier List</a>\n" +
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='teams-seen'>Teams Seen</a>\n" +
-		"				</li>\n" +
-		"				<li class='nav-item'>\n" +
-		"					<a class='nav-link' href='empirical-project'>Empirical Investigation Project</a>\n" +
 		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='about'>About</a>\n" +
