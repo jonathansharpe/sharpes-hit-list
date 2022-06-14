@@ -1,5 +1,5 @@
-let gamesList = [];
-let teamsList = [];
+const gamesList = [];
+const teamsList = [];
 function importHeadModules() {
 	$("head").append("<meta name='viewport' content='width=device-width, initial-scale=1'>\n");
 	$("head").append("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'>\n");
@@ -11,14 +11,14 @@ function importHeadModules() {
 async function getTeams() {
 	const response = await fetch('../scripts/teams-list.txt');
 	await response.text().then(function (text) {
-		let teamsTXT = text;
-		let lines = teamsTXT.split("\t\n");
-		let numLines = lines.length - 1;
+		const teamsTXT = text;
+		const lines = teamsTXT.split("\t\n");
+		const numLines = lines.length - 1;
 		for (let i = 0; i < numLines; i++) {
-			let line = lines[i];
-			let words = line.split("\t");
+			const line = lines[i];
+			const words = line.split("\t");
 			let numWords = words.length;
-			let currentTeam = new Object();
+			const currentTeam = new Object();
 			currentTeam.fullName = words[0];
 			currentTeam.teamAbbr = words[1];
 			currentTeam.teamClassName = words[2];
@@ -33,18 +33,18 @@ async function getGames() {
 	const response = await fetch('../scripts/games.txt');
 	await response.text().then(function (text) {
 		// gets the response in the form of text so it can be parsed
-		let gamesTSV = text;
+		const gamesTSV = text;
 		// splits the file by game
-		let lines = gamesTSV.split("\t\n");
+		const lines = gamesTSV.split("\t\n");
 		
-		let numLines = lines.length - 1;
+		const numLines = lines.length - 1;
 		// for loop that iterates through the split up file
 		for (let i = 0; i < numLines; i++) {
-			let line = lines[i];
+			const line = lines[i];
 			// console.log(line);
-			let words = line.split("\t");
-			let numWords = words.length;
-			let currentGame = new Object();
+			const words = line.split("\t");
+			const numWords = words.length;
+			const currentGame = new Object();
 			// the next 8 lines assign the parts of the line to their respective values in the currentGame object
 			currentGame.gameMonth = words[0];
 			currentGame.gameDay = words[1];
@@ -75,9 +75,9 @@ async function gameBuilder() {
 	let output = "";
 	// for loop that iterates through all the games in the array
 	for (let i = 0; i < gamesList.length; i++) {
-		let currentGame = gamesList[i]; // assign the current array element to a variable
+		const currentGame = gamesList[i]; // assign the current array element to a variable
 		// console.log(currentGame);
-		let currentYear = currentGame.gameYear;
+		const currentYear = currentGame.gameYear;
 		// if (document.getElementById('accordion'+currentYear) == null) {
 		let idName = "#accordion" + currentYear;
 		if ($("#accordion" + currentYear).length == 0) {
@@ -108,18 +108,18 @@ async function gameBuilder() {
 			"<div class='card bg-dark border border-primary gamecard" + currentYear + "'>\n" +
 			"	<h5 style='height: 3em; line-height: 1em;' class='card-header text-center text-light'>";
 
-		let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth - 1, currentGame.gameDay);
-		let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
-		let currentRoadTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.roadTeam);
-		let currentRoadTeamAbbr = teamsList[currentRoadTeamIndex].teamAbbr;
-		let currentRoadTeamClassName = teamsList[currentRoadTeamIndex].teamClassName;
+		const currentDate = new Date(currentGame.gameYear, currentGame.gameMonth - 1, currentGame.gameDay);
+		const currentMonth = currentDate.toLocaleString('default', {month: 'long'});
+		const currentRoadTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.roadTeam);
+		const currentRoadTeamAbbr = teamsList[currentRoadTeamIndex].teamAbbr;
+		const currentRoadTeamClassName = teamsList[currentRoadTeamIndex].teamClassName;
 		let currentRoadFullName = teamsList[currentRoadTeamIndex].fullName;
 
-		let currentHomeTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.homeTeam);
+		const currentHomeTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.homeTeam);
 		// the following variable is not currently used, it's mostly here in case it's needed in the future
-		let currentHomeTeamAbbr = teamsList[currentHomeTeamIndex].teamAbbr;
-		let currentHomeTeamClassName = teamsList[currentHomeTeamIndex].teamClassName;
-		let currentHomeFullName = teamsList[currentHomeTeamIndex].fullName;
+		const currentHomeTeamAbbr = teamsList[currentHomeTeamIndex].teamAbbr;
+		const currentHomeTeamClassName = teamsList[currentHomeTeamIndex].teamClassName;
+		const currentHomeFullName = teamsList[currentHomeTeamIndex].fullName;
 		output +=
 			currentMonth + " " + currentGame.gameDay + " " + currentGame.gameYear + "</h5>";
 
@@ -169,7 +169,7 @@ async function gameBuilder() {
 }
 // this function just builds the link for the boxscore; could probably just be build straight into the main code but this works fine too
 function linkBuilder(gDay, gMonth, gYear, hTeam) {
-	let currentDate = dateBuilder(gDay, gMonth, gYear);
+	const currentDate = dateBuilder(gDay, gMonth, gYear);
 	return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + currentDate +"0.shtml";
 }
 // this just formats the date correctly
@@ -185,7 +185,7 @@ async function teamsSeenList() {
 	// the teamsTable variable is really just an output
 	let teamsTable = "";
 	// just sets the length of the teams array to the numberOfTeams variable for easier use I guess
-	let numberOfTeams = teamsList.length;
+	const numberOfTeams = teamsList.length;
 	for (let i = 0; i < numberOfTeams; i++) {
 		let currentTeamIndex = teamsList[i];
 		// this if statement creates a new row of teams, based on the fact that there should only be 5 teams in each row, which is exactly one division per row
@@ -210,7 +210,7 @@ async function teamsSeenList() {
 			for (let k = i - 4; k <= i; k++) {
 				//console.log(k);
 				currentTeamIndex = teamsList[k];
-				let currentTeamAbbr = currentTeamIndex.teamAbbr;
+				const currentTeamAbbr = currentTeamIndex.teamAbbr;
 				console.log(currentTeamAbbr);
 				teamsTable += 
 					'<div class="collapse w-100 bg-dark text-light" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
@@ -226,9 +226,9 @@ async function teamsSeenList() {
 					'			</thead>\n' +
 					'			<tbody>\n';
 				for (let j = 0; j < gamesList.length; j++) {
-					let currentGame = gamesList[j];
+					const currentGame = gamesList[j];
 					if (currentGame.homeTeam == currentTeamAbbr || currentGame.roadTeam == currentTeamAbbr) {
-						let currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
+						const currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
 						let opponentAbbr = "";
 						if (currentGame.homeTeam == currentTeamAbbr) {
 							opponentAbbr = currentGame.roadTeam;
@@ -236,10 +236,10 @@ async function teamsSeenList() {
 						else {
 							opponentAbbr = currentGame.homeTeam;
 						}
-						let opponentIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
+						const opponentIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
 						console.log("opponentIndex: " + opponentIndex);
 
-						let currentMonth = currentDate.toLocaleString('default', {month: 'long'});
+						const currentMonth = currentDate.toLocaleString('default', {month: 'long'});
 						teamsTable += 
 							'				<tr class="align-middle">\n' + 
 							'					<td scope="row">' + currentMonth + ' ' + currentGame.gameDay +  ' ' + currentGame.gameYear + '</td>\n' +
@@ -285,6 +285,9 @@ function buildNavbar() {
 		"		</button>\n" +
 		"		<div class='collapse navbar-collapse' id='navbarCollapse'>\n" +
 		"			<ul class='navbar-nav me-auto mb-2 mb-lg-0'>\n" +
+		"				<li class='nav-item'>\n" +
+		"					<a class='nav-link' href='index'>Home Page</a>\n" +
+		"				</li>\n" +
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='games-attended'>Games Attended</a>\n" +
 		"				</li>\n" +
