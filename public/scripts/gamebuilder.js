@@ -32,8 +32,8 @@ async function getTeams() {
 async function getGames() {
 	const responseJSON = await fetch('../scripts/games.json');
 	await responseJSON.json().then(function (text){
-		const gamesJSON = text;
-		gamesList = gamesJSON
+		gamesList = text;
+		// gamesList = gamesJSON
 	});
 	// ends the function, more of a formality than anything
 	return;
