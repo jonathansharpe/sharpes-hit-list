@@ -149,18 +149,33 @@ async function gameBuilder() {
 	}
 }
 // this function just builds the link for the boxscore; could probably just be build straight into the main code but this works fine too
+/**
+ * @param {any} gDay: the day object of the date, i.e. the 25 in May 25 2022
+ * @param {any} gMonth: the month object of the date, i.e. the May in May 25 2022
+ * @param {any} gYear: the year object of the date, i.e. the 2022 in May 25 2022
+ * @param {any} hTeam: the home team for the current game
+ * @returns {string}: returns the URL of the boxscore that goes into the button 
+ */
 function linkBuilder(gDay, gMonth, gYear, hTeam) {
 	const currentDate = dateBuilder(gDay, gMonth, gYear);
 	return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + currentDate +"0.shtml";
 }
 // this just formats the date correctly
+/**
+ * @param {any} gameDay 
+ * @param {any} gameMonth 
+ * @param {any} gameYear 
+ * @returns {} 
+ */
 function dateBuilder(gameDay, gameMonth, gameYear) {
 	gameDay += '';
 	gameMonth += '';
 	gameYear += '';
 	return gameYear + gameMonth + gameDay;
 }
-// this function generates the list of games I've seen for each team. this function is asynchronus for the same reasons as the gameBuilder function
+/**this function generates the list of games I've seen for each team. this function is asynchronus for the same reasons as the gameBuilder function
+ * @returns {void} 
+ */
 async function teamsSeenList() {
 	// await makes sure getGames has finished before proceeding
 	await getGames();
