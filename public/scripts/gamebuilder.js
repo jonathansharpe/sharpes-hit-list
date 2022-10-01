@@ -38,9 +38,9 @@ async function getGames() {
 	// ends the function, more of a formality than anything
 	return;
 }
-// this function is where the entire list of games is generated. the function has to be asynchronus so it can use the await keywoard, even though it essentially operates like a synchronus one.
+// this function is where the entire list of games is generated. the function has to be asynchronous so it can use the await keyword, even though it essentially operates like a synchronous one.
 async function gameBuilder() {
-	// the "await" keyword forces an asynchronus function to finish before proceeding with the code. it's extremely important here since it makes sure the array is filled with the games before proceeding, otherwise the array will be empty when trying to write the HTML to the page
+	// the "await" keyword forces an asynchronous function to finish before proceeding with the code. it's extremely important here since it makes sure the array is filled with the games before proceeding, otherwise the array will be empty when trying to write the HTML to the page
 	await getGames();
 	await getTeams();
 	// console.log('this should show second!');
@@ -55,7 +55,7 @@ async function gameBuilder() {
 		// if (document.getElementById('accordion'+currentYear) == null) {
 		let idName = "#accordion" + currentYear;
 		if ($("#accordion" + currentYear).length == 0) {
-			// this block creates the "shell" for a year if it doesn't yet exist. if there were a year with no games in it, this would be the html shown
+			// this block creates the "shell" for a year if it doesn't yet exist. if there were a year with no games in it, this would be the HTML shown
 			output = 
 				"<div style='overflow: auto' class='accordion-item bg-dark text-light' id='accordion" + currentYear + "'>\n" +
 				"	<h2 class='accordion-header' id='header" + currentYear + "'></h2>\n" +
@@ -67,7 +67,7 @@ async function gameBuilder() {
 				"			</div>\n" +
 				"		</div>\n" +
 				"</div>\n";
-			// the next two lines append the generated html to the page, so it can then be found and added on to after this if statement ends
+			// the next two lines append the generated HTML to the page, so it can then be found and added on to after this if statement ends
 			// let currentYearList = document.getElementById('yearList');
 			// currentYearList.innerHTML += output;
 			$("#yearList").append(output)
@@ -118,7 +118,7 @@ async function gameBuilder() {
 			"	</tr>\n" +
 			"</table>\n";
 		
-		// this block sets up the offcanvas. the constant use of the dateBuilder function ensures that all offcanvases are unique and that all the buttons point to the correct game notes
+		// this block sets up the offcanvas. The constant use of the dateBuilder function ensures that all offcanvases are unique and that all the buttons point to the correct game notes
 		output +=
 			"<div class='card-body'>\n" +
 				"<div id='offcanvas" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-dark text-light' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
@@ -131,7 +131,7 @@ async function gameBuilder() {
 			"</div>\n" + 
 			"</div>\n";
 
-		// this final block generates the game notes offcanvas trigger button, and the link to the boxscore for the game. the final tags are there to of course close all divs before the HTML is appended to the page
+		// this final block generates the game notes offcanvas trigger button, and the link to the boxscore for the game. The final tags are there to of course close all divs before the HTML is appended to the page
 		output += 
 			"<div class='d-grid d-md-flex btn-group' role='group' aria-label='game" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>\n" +
 			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
@@ -173,7 +173,7 @@ function dateBuilder(gameDay, gameMonth, gameYear) {
 	gameYear += '';
 	return gameYear + gameMonth + gameDay;
 }
-/**this function generates the list of games I've seen for each team. this function is asynchronus for the same reasons as the gameBuilder function
+/**this function generates the list of games I've seen for each team. this function is asynchronous for the same reasons as the gameBuilder function
  * @returns {void} 
  */
 async function teamsSeenList() {
