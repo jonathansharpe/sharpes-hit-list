@@ -11,18 +11,18 @@ app.use('/styles', express.static(__dirname + 'public/styles'));
 app.use('/scripts', express.static(__dirname + 'public/scripts'));
 
 app.get('', (req, res) => {
-    res.sendFile(__dirname + '/public/pages/index.html');
+    res.sendFile(__dirname + '/public/index.html');
 });
 let currentPage;
 app.get('/:pageId', function(req, res) {
 	req.params;
 	res.sendFile(__dirname + "/public/pages/" + req.params.pageId + ".html", (err) => {
 		if (err) {
-			res.sendFile(__dirname + "/public/pages/404.html");
+			res.sendFile(__dirname + "/public/404.html");
 		}
 	});
 	// console.log("code reached");
 });
 
-console.log(__dirname + '/public/pages/index.html');
+console.log(__dirname + '/public/index.html');
 app.listen(port, () => console.info(`Listening on port ${port}`));

@@ -226,8 +226,11 @@ async function teamsSeenList() {
 					'			<tbody>\n';
 				for (let j = 0; j < gamesList.length; j++) {
 					const currentGame = gamesList[j];
+					console.log("gamesList: {" + gamesList + "}");
 					if (currentGame.homeTeam == currentTeamAbbr || currentGame.roadTeam == currentTeamAbbr) {
+						console.log("currentGame: {" + currentGame + "}");
 						const currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
+						console.log("currentDate: {" + currentDate + "}");
 						let opponentAbbr = "";
 						if (currentGame.homeTeam == currentTeamAbbr) {
 							opponentAbbr = currentGame.roadTeam;

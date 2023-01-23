@@ -25,6 +25,6 @@ I'm planning on optimizing the site so it makes more sense from a programming po
 
 ## Where's the Link?
 
-[Right here!](https://blooming-shelf-27515.herokuapp.com/) It's currently hosted on Heroku.
+[Right here!](https://jonathansharpe.github.io/baseball-website/) It's currently hosted on Heroku.
 
 Thanks for reading and I hope you enjoy the site!
