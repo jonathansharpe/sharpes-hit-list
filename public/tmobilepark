@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>T-Mobile Park Overview</title>
-        <script type='text/javascript' src='../scripts/gamebuilder.js'></script>
+        <script type='text/javascript' src='scripts/gamebuilder.js'></script>
 		<script src='https://code.jquery.com/jquery-3.6.0.js' integrity='sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=' crossorigin='anonymous'></script>
 		<style type="text/css">
 			.demoB {
@@ -25,7 +25,7 @@
 				z-index: 2;
 			}
 			.backB {
-				background: url("../images/T-Mobile Park.jpg");
+				background: url("images/T-Mobile Park.jpg");
 				background-repeat: no-repeat;
 				background-position: center 35%;
 				background-size: cover;
