@@ -121,9 +121,9 @@ async function gameBuilder() {
 		// this block sets up the offcanvas. The constant use of the dateBuilder function ensures that all offcanvases are unique and that all the buttons point to the correct game notes
 		output +=
 			"<div class='card-body'>\n" +
-				"<div id='offcanvas" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-dark text-light' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
+				"<div id='offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-dark text-light' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
 			"<div class='offcanvas-header'>\n" +
-			"	<h5 id='offcanvasLabel" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>Game Notes</h5>\n" +
+			"	<h5 id='offcanvasLabel" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>Game Notes</h5>\n" +
 			"	<button class='btn-close text-reset' type='button' data-bs-dismiss='offcanvas' aria-label='Close'></button>\n" +
 			"</div>\n" +
 			"<div class='offcanvas-body' style='white-space: pre-wrap; text-align: justify;'>\n" +
@@ -134,7 +134,7 @@ async function gameBuilder() {
 		// this final block generates the game notes offcanvas trigger button, and the link to the boxscore for the game. The final tags are there to of course close all divs before the HTML is appended to the page
 		output += 
 			"<div class='d-grid d-md-flex btn-group' role='group' aria-label='game" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>\n" +
-			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
+			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
 			"	<a class='btn btn-primary btn-sm' href='" + "https://www.baseball-reference.com/boxes/" + currentGame.homeTeam + "/" + currentGame.homeTeam + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "0.shtml'>Boxscore</a>" +
 			"</div>\n" +
 			"</div>\n" +
