@@ -135,7 +135,7 @@ async function gameBuilder() {
 		output += 
 			"<div class='d-grid d-md-flex btn-group' role='group' aria-label='game" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>\n" +
 			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
-			"	<a class='btn btn-primary btn-sm' href='" + "https://www.baseball-reference.com/boxes/" + currentGame.homeTeam + "/" + currentGame.homeTeam + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "0.shtml'>Boxscore</a>" +
+			"	<a class='btn btn-primary btn-sm' href='" + "https://www.baseball-reference.com/boxes/" + currentGame.homeTeam + "/" + currentGame.homeTeam + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "0.shtml' target='_blank'>Boxscore</a>" +
 			"</div>\n" +
 			"</div>\n" +
 			"</div>\n";
