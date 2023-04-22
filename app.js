@@ -1,12 +1,13 @@
 const http = require('http');
 const fs = require('fs');
 const port = process.env.PORT || 5000;
+const express = require('express');
 
-let express = require('express');
-let path = require('path');
-let app = express();
+const path = require('path');
+const app = express();
 console.log(__dirname + '/');
 app.use(express.static('public'));
+app.use(express.json());
 app.use('/styles', express.static(__dirname + 'public/styles'));
 app.use('/scripts', express.static(__dirname + 'public/scripts'));
 
