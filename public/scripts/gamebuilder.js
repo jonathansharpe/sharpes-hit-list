@@ -57,9 +57,9 @@ async function gameBuilder() {
 		if ($("#accordion" + currentYear).length == 0) {
 			// this block creates the "shell" for a year if it doesn't yet exist. if there were a year with no games in it, this would be the HTML shown
 			output = 
-				"<div style='overflow: auto' class='accordion-item bg-dark text-light' id='accordion" + currentYear + "'>\n" +
+				"<div style='overflow: auto' class='accordion-item bg-light text-dark' id='accordion" + currentYear + "'>\n" +
 				"	<h2 class='accordion-header' id='header" + currentYear + "'></h2>\n" +
-				"		<button class='accordion-button collapsed bg-dark text-light' type='button' data-bs-toggle='collapse' data-bs-target='#collapse" + currentYear + "' aria-expanded='false' aria-controls='collapse" + currentYear + "' data-bs-parent='#yearList'>" + currentYear + "</button>\n" +
+				"		<button class='accordion-button collapsed bg-light text-dark' type='button' data-bs-toggle='collapse' data-bs-target='#collapse" + currentYear + "' aria-expanded='false' aria-controls='collapse" + currentYear + "' data-bs-parent='#yearList'>" + currentYear + "</button>\n" +
 				"		<div style='overflow: auto' id='collapse" + currentYear + "' class='accordion-collapse collapse' aria-labelledby='header" + currentYear + "' data-bs-parent='#yearList'>\n" + 
 				"			<div class='accordion-body' id='accordionbody" + currentYear + "'>\n" +
 				"				<div style='min-width: 60em; overflow: auto' class='card-group wrapper' id='cardgroup" + currentYear + "'>\n" +
@@ -79,8 +79,8 @@ async function gameBuilder() {
 		// console.log("the value of i is " + i);
 		// the output here is replacing the previous output, so the single "=" is correct; it should NOT be "+="
 		output = 
-			"<div class='card bg-dark border border-primary gamecard" + currentYear + "'>\n" +
-			"	<h5 style='height: 3em; line-height: 1em;' class='card-header text-center text-light'>";
+			"<div class='card bg-light border border-primary gamecard" + currentYear + "'>\n" +
+			"	<h5 style='height: 3em; line-height: 1em;' class='card-header text-center text-dark'>";
 
 		const currentDate = new Date(currentGame.year, currentGame.month - 1, currentGame.day);
 		// console.log(currentDate);
@@ -103,7 +103,7 @@ async function gameBuilder() {
 		// this creates the element that houses the image of the venue, and creates the first part of the scoreboard
 		output +=
 			"<img class='card-img-top rounded-0' src='images/" + currentGame.venue + ".jpg' alt='" + currentGame.venue + "'>\n" + 
-			"<table class='table table-borderless rounded'>\n" +
+			"<table class='table table-borderless rounded' style='font-size: 20px'>\n" +
 			"	<tr style='height: 4em;'>\n" +
 			"		<th class='align-middle " + currentRoadTeamClassName + "'>"+ currentRoadFullName +"</th>\n";
 			if (currentRoadTeamAbbr == 'CLE' && currentYear < 2022) {
@@ -121,7 +121,7 @@ async function gameBuilder() {
 		// this block sets up the offcanvas. The constant use of the dateBuilder function ensures that all offcanvases are unique and that all the buttons point to the correct game notes
 		output +=
 			"<div class='card-body'>\n" +
-				"<div id='offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-dark text-light' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
+				"<div id='offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-light text-dark' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
 			"<div class='offcanvas-header'>\n" +
 			"	<h5 id='offcanvasLabel" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>Game Notes</h5>\n" +
 			"	<button class='btn-close text-reset' type='button' data-bs-dismiss='offcanvas' aria-label='Close'></button>\n" +
@@ -212,9 +212,9 @@ async function teamsSeenList() {
 				const currentTeamAbbr = currentTeamIndex.teamAbbr;
 				console.log(currentTeamAbbr);
 				teamsTable += 
-					'<div class="collapse w-100 bg-dark text-light" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
-					'	<div class="card card-body bg-dark text-light">\n' +
-					'		<table class="table table-sm rounded text-center table-dark table-borderless text-light" id="' + currentTeamIndex.teamClassName + 'table">\n' +
+					'<div class="collapse w-100 bg-light text-dark" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
+					'	<div class="card card-body bg-light text-dark">\n' +
+					'		<table class="table table-sm rounded text-center table-light table-borderless text-dark" id="' + currentTeamIndex.teamClassName + 'table">\n' +
 					'			<thead>\n' +
 					'				<tr>\n' +
 					'					<th scope="col" style="width: 25%;">Date</th>\n' +
@@ -280,7 +280,7 @@ async function teamsSeenList() {
 }
 function buildNavbar() {
 	let output = 
-		"<nav class='navbar navbar-expand-lg navbar-dark bg-secondary rounded'>\n" +
+		"<nav class='navbar navbar-expand-lg navbar-light bg-secondary rounded'>\n" +
 		"	<div class='container-fluid'>\n" +
 		"		<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>\n" +
 		"			<span class='navbar-toggler-icon'></span>\n"+
