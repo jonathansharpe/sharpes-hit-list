@@ -3,18 +3,18 @@
     src: url('../fonts/Inter-Regular.ttf');
 }
 @font-face {
-    font-family: CooperHewittBlack;
-    src: url('../fonts/CooperHewitt-Heavy 713.otf');
+    font-family: ReadexProBold;
+    src: url('../fonts/ReadexPro-bold.ttf');
 }
 * {
     font-family: Inter, sans-serif;
 }
 h1, h2 {
-	font-family: CooperHewittBlack;
+	font-family: ReadexProBold, sans-serif;
 }
 .orioles, .redsox, .yankees, .rays, .bluejays, .whitesox, .guardians, .tigers, .royals, .twins, .astros, .angels, .athletics, .mariners, .rangers, .braves, .marlins, .mets, .phillies, .nationals, .cubs, .reds, .brewers, .pirates, .cardinals, .dbacks, .rockies, .dodgers, .padres, .giants {
     -webkit-text-stroke-width: 1px;
-    font-family: CooperHewittBlack, sans-serif;
+    font-family: ReadexProBold, sans-serif;
 }
 .mariners {
     color: #0c2c56 !important;
