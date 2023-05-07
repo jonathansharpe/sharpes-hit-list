@@ -26,7 +26,7 @@ async function getTeams() {
 			teamsList.push(currentTeam);
 		}
 	});
-	console.log(teamsList);
+	// console.log(teamsList);
 	return;
 }
 async function getGames() {
@@ -83,8 +83,8 @@ async function gameBuilder() {
 			"	<h5 style='height: 3em; line-height: 1em;' class='card-header text-center text-dark'>";
 
 		const currentDate = new Date(currentGame.year, currentGame.month - 1, currentGame.day);
-		// console.log(currentDate);
-		const currentMonth = currentDate.toLocaleString('default', {month: 'long'});
+		console.log(currentDate);
+		const currentMonth = currentDate.toLocaleDateString('default', {month: 'long'});
 		const currentRoadTeamIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == currentGame.roadTeam);
 		const currentRoadTeamAbbr = teamsList[currentRoadTeamIndex].teamAbbr;
 		const currentRoadTeamClassName = teamsList[currentRoadTeamIndex].teamClassName;
@@ -95,10 +95,8 @@ async function gameBuilder() {
 		const currentHomeTeamAbbr = teamsList[currentHomeTeamIndex].teamAbbr;
 		const currentHomeTeamClassName = teamsList[currentHomeTeamIndex].teamClassName;
 		const currentHomeFullName = teamsList[currentHomeTeamIndex].fullName;
-		const dateLinkFormat = currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'});
-		// console.log(dateLinkFormat);
 		output +=
-			currentDate.toLocaleString('default', {month: 'long'}) + " " + currentDate.getDate() + " " + currentDate.getFullYear() + "</h5>";
+			currentDate.toLocaleDateString('default', {month: 'long'}) + " " + currentDate.toLocaleDateString('default', {day: '2-digit'}) + " " + currentDate.toLocaleDateString('default', {year: "numeric"}) + "</h5>";
 
 		// this creates the element that houses the image of the venue, and creates the first part of the scoreboard
 		output +=
@@ -121,9 +119,9 @@ async function gameBuilder() {
 		// this block sets up the offcanvas. The constant use of the dateBuilder function ensures that all offcanvases are unique and that all the buttons point to the correct game notes
 		output +=
 			"<div class='card-body'>\n" +
-				"<div id='offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-light text-dark' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + dateBuilder(currentGame.gameYear, currentGame.gameMonth, currentGame.gameDay)+ "'>\n" +
+				"<div id='offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleDateString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' class='offcanvas offcanvas-end bg-light text-dark' tabindex='-1' style='width: 35%;' aria-labelledby='offcanvasLabel" + currentGame.gameYear + currentGame.gameMonth + currentGame.gameDay + "'>\n" +
 			"<div class='offcanvas-header'>\n" +
-			"	<h5 id='offcanvasLabel" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>Game Notes</h5>\n" +
+			"	<h5 id='offcanvasLabel" + currentHomeTeamAbbr + currentDate.toLocaleDateString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>Game Notes</h5>\n" +
 			"	<button class='btn-close text-reset' type='button' data-bs-dismiss='offcanvas' aria-label='Close'></button>\n" +
 			"</div>\n" +
 			"<div class='offcanvas-body' style='white-space: pre-wrap; text-align: justify;'>\n" +
@@ -131,11 +129,14 @@ async function gameBuilder() {
 			"</div>\n" + 
 			"</div>\n";
 
+		console.log(currentDate.toLocaleDateString('default',{month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}));
 		// this final block generates the game notes offcanvas trigger button, and the link to the boxscore for the game. The final tags are there to of course close all divs before the HTML is appended to the page
 		output += 
-			"<div class='d-grid d-md-flex btn-group' role='group' aria-label='game" + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>\n" +
-			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
-			"	<a class='btn btn-primary btn-sm' href='" + "https://www.baseball-reference.com/boxes/" + currentGame.homeTeam + "/" + currentGame.homeTeam + currentDate.toLocaleString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "0.shtml' target='_blank'>Boxscore</a>" +
+			"<div class='d-grid d-md-flex btn-group' role='group' aria-label='game" + currentDate.toLocaleDateString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "'>\n" +
+			"	<button class='btn btn-primary btn-sm' type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvas" + currentHomeTeamAbbr + currentDate.toLocaleDateString('default', {year: 'numeric'}) + currentDate.toLocaleString('default', {month: '2-digit'}) + currentDate.toLocaleString('default', {day: '2-digit'}) + "' aria-controls='offcanvasRight'>Game Notes</button>\n" +
+			"	<a class='btn btn-primary btn-sm' href='" + 
+			linkBuilder(currentDate, currentHomeTeamAbbr) + 
+			"' target='_blank'>Boxscore</a>" +
 			"</div>\n" +
 			"</div>\n" +
 			"</div>\n";
@@ -156,22 +157,11 @@ async function gameBuilder() {
  * @param {any} hTeam: the home team for the current game
  * @returns {string}: returns the URL of the boxscore that goes into the button 
  */
-function linkBuilder(gDay, gMonth, gYear, hTeam) {
-	const currentDate = dateBuilder(gDay, gMonth, gYear);
-	return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + currentDate +"0.shtml";
-}
-// this just formats the date correctly
-/**
- * @param {any} gameDay 
- * @param {any} gameMonth 
- * @param {any} gameYear 
- * @returns {} 
- */
-function dateBuilder(gameDay, gameMonth, gameYear) {
-	gameDay += '';
-	gameMonth += '';
-	gameYear += '';
-	return gameYear + gameMonth + gameDay;
+function linkBuilder(currentDate, hTeam) {
+	const curDay = currentDate.toLocaleDateString('default', {day: '2-digit'});
+	const curMonth = currentDate.toLocaleDateString('default', {month: '2-digit'});
+	const curYear = currentDate.toLocaleDateString('default', {year: 'numeric'});
+	return "https://www.baseball-reference.com/boxes/" + hTeam + "/" + hTeam + curYear + curMonth + curDay +"0.shtml";
 }
 /**this function generates the list of games I've seen for each team. this function is asynchronous for the same reasons as the gameBuilder function
  * @returns {void} 
@@ -210,7 +200,7 @@ async function teamsSeenList() {
 				//console.log(k);
 				currentTeamIndex = teamsList[k];
 				const currentTeamAbbr = currentTeamIndex.teamAbbr;
-				console.log(currentTeamAbbr);
+				// console.log(currentTeamAbbr);
 				teamsTable += 
 					'<div class="collapse w-100 bg-light text-dark" id="' + currentTeamIndex.teamClassName + 'btn">\n' +
 					'	<div class="card card-body bg-light text-dark">\n' +
@@ -226,11 +216,12 @@ async function teamsSeenList() {
 					'			<tbody>\n';
 				for (let j = 0; j < gamesList.length; j++) {
 					const currentGame = gamesList[j];
-					console.log("gamesList: {" + gamesList + "}");
+					const currentDate = new Date(currentGame.year, currentGame.month - 1, currentGame.day);
+					// console.log("gamesList: {" + gamesList + "}");
 					if (currentGame.homeTeam == currentTeamAbbr || currentGame.roadTeam == currentTeamAbbr) {
-						console.log("currentGame: {" + currentGame + "}");
-						const currentDate = new Date(currentGame.gameYear, currentGame.gameMonth-1, currentGame.gameDay);
-						console.log("currentDate: {" + currentDate + "}");
+						// console.log("currentGame: {" + currentGame + "}");
+						console.log(currentDate);
+						// console.log("currentDate: {" + currentDate + "}");
 						let opponentAbbr = "";
 						if (currentGame.homeTeam == currentTeamAbbr) {
 							opponentAbbr = currentGame.roadTeam;
@@ -239,16 +230,18 @@ async function teamsSeenList() {
 							opponentAbbr = currentGame.homeTeam;
 						}
 						const opponentIndex = teamsList.findIndex(arrayItem => arrayItem.teamAbbr == opponentAbbr);
-						console.log("opponentIndex: " + opponentIndex);
+						// console.log("opponentIndex: " + opponentIndex);
 
-						const currentMonth = currentDate.toLocaleString('default', {month: 'long'});
+						const currentMonth = currentDate.toLocaleDateString('default', {month: 'long'});
+						const currentDay = currentDate.toLocaleDateString('default', {day: '2-digit'});
+						const currentYear = currentDate.toLocaleDateString('default', {year: 'numeric'});
 						teamsTable += 
 							'				<tr class="align-middle">\n' + 
-							'					<td scope="row">' + currentMonth + ' ' + currentGame.gameDay +  ' ' + currentGame.gameYear + '</td>\n' +
+							'					<td scope="row">' + currentMonth + ' ' + currentDay +  ' ' + currentYear + '</td>\n' +
 							'					<td class="' + teamsList[opponentIndex].teamClassName + '">' + teamsList[opponentIndex].fullName + '</td>\n' +
 							'					<td>' + currentGame.venue + '</td>\n' +
 							'					<td>\n' +
-							'						<a class="btn btn-primary" href="' + linkBuilder(currentGame.gameDay, currentGame.gameMonth, currentGame.gameYear, currentGame.homeTeam) + '">Boxscore</a>\n' +
+							'						<a class="btn btn-primary" href="' + linkBuilder(currentDate, currentGame.homeTeam) + '" target="_blank">Boxscore</a>\n' +
 							'					</td>\n' +
 							'				</tr>\n';
 						teamsList[k].games++;
@@ -270,7 +263,7 @@ async function teamsSeenList() {
 	$("#teamCollapse").html(teamsTable);
 	// document.getElementById("teamCollapse").innerHTML = teamsTable;
 	for (let i = 0; i < teamsList.length; i++) {
-		console.log(teamsList[i].games);
+		// console.log(teamsList[i].games);
 		$("button").eq(i+1).append('<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>')
 		// let currentButton = document.getElementsByTagName("button")[i+1];
 		// currentButton.innerHTML += '<span class="badge bg-primary" style="color: white; -webkit-text-stroke-color: initial;">' + teamsList[i].games + '</span>';
