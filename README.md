@@ -25,6 +25,6 @@ I'm planning on optimizing the site so it makes more sense from a programming po
 
 ## Where's the Link?
 
-[Right here,](https://jonathansharpe.github.io/baseball-website/) on GitHub Pages.
+[Right here,](https://jsharpe.xyz) hosted on my own domain.
 
 Thanks for reading and I hope you enjoy the site!
