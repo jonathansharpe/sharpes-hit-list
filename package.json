@@ -23,7 +23,6 @@
     "nodemon": "^3.0.1"
   },
   "devDependencies": {
-    "node-sass": "^9.0.0",
-    "rerun-script": "^0.6.0"
+    "node-sass": "^9.0.0"
   }
 }
