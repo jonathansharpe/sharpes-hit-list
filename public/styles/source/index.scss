@@ -1,0 +1,11 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+	background-color: $gray-400;
+}
+.container-md, p {
+	background-color: $white;
+}
+nav, img, .container-md {
+	border-radius: 15px;
+}

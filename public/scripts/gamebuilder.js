@@ -5,6 +5,7 @@ function importHeadModules() {
 	$("head").append("<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous'>\n");
 	$("head").append("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous'></script>\n");
 	$("head").append("<link rel='stylesheet' type='text/css' href='styles/stylesheet.css'>\n");
+	$("head").append("<link rel='stylesheet' type='text/css' href='styles/index.css'>\n");
 	$("head").append("");
 	return;
 }
@@ -273,7 +274,7 @@ async function teamsSeenList() {
 }
 function buildNavbar() {
 	let output = 
-		"<nav class='navbar navbar-expand-lg navbar-light bg-secondary rounded'>\n" +
+		"<nav class='navbar navbar-expand-lg navbar-light bg-light'>\n" +
 		"	<div class='container-fluid'>\n" +
 		"		<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>\n" +
 		"			<span class='navbar-toggler-icon'></span>\n"+

@@ -6,68 +6,16 @@
         <script type='text/javascript' src='scripts/gamebuilder.js'></script>
 		<script src='https://code.jquery.com/jquery-3.6.0.js' integrity='sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=' crossorigin='anonymous'></script>
 		<style type="text/css">
-			.demoB {
-				width: 100%;
-				height: 300px;
-				position: relative;
-			}
-			.backB, .frontB {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-			}
-			.backB {
-				z-index: 1;
-			}
-			.frontB {
-				z-index: 2;
-			}
-			.backB {
-				background: url("images/home-page.jpg");
-				background-repeat: no-repeat;
-				background-position: center 35%;
-				background-size: cover;
-				/*filter: blur(2px);*/	
-			}
-			/* FRONT TEXT */
-			.frontB {
-				display: flex;
-				text-align: center;
-				align-items: center;
-				justify-content: center;
-			}
-			.frontB h1 {
-				transform: translate(0%, -100%);
-			}
-			.image-text {
-				background: black;
-				opacity: .8;
-				border-radius: 5px;
-			}
 		</style>
     </head>
-    <body class="bg-light text-dark">
+    <body class="text-dark">
         <div class="m-4" id='teamNavbar'></div>
-		<div class="m-4 border border-primary border-radius">
-			<div class="demoB">
-				<div class="backB"></div>
-				<div class="frontB border-light border border-2 rounded"><h1 class="p-2 text-light image-text">Website Overview</h1></div>
-			</div>
-			<p class="p-4">This is my baseball website, which currently is a database of all the baseball games I've attended in person. While a couple pages are finished, the site as a whole is still in development, and I'm interested to see what other content I can add to improve the site. It is written in HTML and CSS, with Bootstrap as a framework. I also use JavaScript for generating the list of games for example.</p>
-			<h2 class="px-4">Home Page</h2>
-			<p class="px-4 pb-4">What you're looking at! Currently used as an overview of what all the pages are for, might change in the future.</p>
-			<h2 class="px-4">Games Attended</h2>
-			<p class="px-4 pb-4">This is the page with all the data. There are collapsible lists of each year, housing the games I've gone to. Each game has the final score, a picture representing the location, and a link to the boxscore on baseball-reference.com. There's also a slide-out panel with some game notes. These detail the experience, along with any significant happenings at that game. You may notice the game notes get more detailed as time goes on, mostly because I became more attentive to each game, and my local team, the Seattle Mariners, became more interesting to watch.</p>
-			<h2 class="px-4">Teams Seen</h2>
-			<p class="px-4 pb-4">This page puts the teams in a nicely organized list, with dropdown lists showing what games I've been to involving that team. One goal is to see all 30 MLB teams, which seems very doable, as I'm now only missing 5, all in the National League.</p>
-			<h2 class="px-4">Ballpark Pages</h2>
-			<p class="px-4 pb-4">I have a page for each ballpark I've been to. It goes over the details of what each ballpark has, how the experience is, and more. Sort of a ballpark review/overview, if you will.</p>
-			<h2 class="px-4">Tier List</h2>
-			<p class="px-4 pb-4">I'm going to rank all the ballparks I've been to, with little snippets about why I placed them there.</p>
-			<h2 class="px-4">Future Plans</h2>
-			<p class="px-4 pb-4">I will improve the site performance and appearance, as well as add new pages as I go. Keep checking back for more!</p>
+		<div class="container-md">
+			<img class="img-fluid p-4 rounded" src="images/home-page.jpg" alt="">
+			<h1 class="px-4">Website Overview</h1>
+			<p class="px-4 pt-4">I grew up going to baseball games as a kid. We lived about an hour away from Seattle, so I would attend one Mariners game every year. As I got older, my interest in baseball increased dramatically. I started keeping track of what games I went to in 2012, and haven't stopped since.</p>
+			<p class="px-4">However, I knew I wanted to go to more stadiums than just T-Mobile Park. I got to go to my first game outside of Seattle in 2014, when I attended a game at Wrigley Field for its 100th anniversary, and Guaranteed Rate Field (then-U.S. Cellular Field). My next trip occurred in 2016, when I visited Kansas City and Minneapolis for a game each. The subsequent trip in 2019 took me to the east coast for the first time, for a game at Fenway Park and Yankee Stadium. I toured all five California MLB parks in 2021 in the span of ten days with a friend. I made my first trip to spring training in Arizona in 2023, seeing four games in the span of just three days. My next trip will be to Texas, where I will get to double-dip in Houston, while seeing the Mariners on the road for the first time. To close out the trip, I will see a game in the newest ballpark in baseball, Globe Life Field.</p>
+			<p class="px-4 pb-4">After my trip to the state of Texas, I will have managed to see 14 of the 30 active MLB stadiums. It's incredible to see how quickly that number has increased over the years, and I want to document my experiences and opinions for others to see. I have a list of all the games I've attended, separated by year, and some notes from each game. While I don't have pictures from every game, I will soon add a page that features the pictures I do have from the games I've attended.</p>
 		</div>
     </body>
 	<script>
