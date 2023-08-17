@@ -3,6 +3,7 @@
    * Copyright 2011-2023 The Bootstrap Authors
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap");
 :root,
 [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
@@ -9284,10 +9285,12 @@ textarea.form-control-lg {
     display: none !important; } }
 
 body {
-  background-color: #ced4da; }
-
-.container-md, p {
-  background-color: #fff; }
-
-nav, img, .container-md {
-  border-radius: 15px; }
+  background-color: #ced4da;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300; }
+  body h1, body .h1, body h2, body .h2, body nav {
+    font-weight: 700; }
+  body .container, body p {
+    background-color: #fff; }
+  body nav, body .container {
+    border-radius: 15px; }

@@ -1,11 +1,16 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap";
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap');
 body {
 	background-color: $gray-400;
-}
-.container-md, p {
-	background-color: $white;
-}
-nav, img, .container-md {
-	border-radius: 15px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
+	h1, h2, nav {
+		font-weight: 700;
+	}
+	.container, p {
+		background-color: $white;
+	}
+	nav, .container {
+		border-radius: 15px;
+	}
 }

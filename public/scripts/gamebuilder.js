@@ -274,7 +274,7 @@ async function teamsSeenList() {
 }
 function buildNavbar() {
 	let output = 
-		"<nav class='navbar navbar-expand-lg navbar-light bg-light'>\n" +
+		"<nav class='navbar navbar-expand-sm bg-light'>\n" +
 		"	<div class='container-fluid'>\n" +
 		"		<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>\n" +
 		"			<span class='navbar-toggler-icon'></span>\n"+
@@ -307,9 +307,9 @@ function buildNavbar() {
 		"						<li><a class='dropdown-item' href='yankeestadium.html'>Yankee Stadium II</a></li>\n" +
 		"					</ul>\n"+
 		"				</li>\n" +
-		"				<li class='nav-item'>\n" +
-		"					<a class='nav-link' href='tier-list.html'>Tier List</a>\n" +
-		"				</li>\n" +
+		// "				<li class='nav-item'>\n" +
+		// "					<a class='nav-link' href='tier-list.html'>Tier List</a>\n" +
+		// "				</li>\n" +
 		"				<li class='nav-item'>\n" +
 		"					<a class='nav-link' href='teams-seen.html'>Teams Seen</a>\n" +
 		"				</li>\n" +
