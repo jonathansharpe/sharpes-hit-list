@@ -1,33 +1,38 @@
 {
-  "name": "baseball-website",
-  "version": "1.0.0",
-  "description": "baseball website with neat info",
-  "main": "app.js",
-  "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "sass": "node-sass -w public/styles/source -o public/styles/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jonathansharpe/baseball-website.git"
-  },
-  "author": "Jonathan Sharpe",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jonathansharpe/baseball-website/issues"
-  },
-  "homepage": "https://github.com/jonathansharpe/baseball-website#readme",
-  "dependencies": {
-    "bootstrap": "^5.3.1",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongodb": "^6.1.0",
-    "next": "^13.4.19",
-    "nodemon": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "node-sass": "^9.0.0"
-  }
+	"type": "module",
+	"name": "baseball-website",
+	"version": "1.0.0",
+	"description": "baseball website with neat info",
+	"scripts": {
+		"dev": "remix dev -c \"node server.mjs\"",
+		"start": "npx remix-serve build/index.js",
+		"sass": "node-sass -w public/styles/source -o public/styles/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jonathansharpe/baseball-website.git"
+	},
+	"author": "Jonathan Sharpe",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jonathansharpe/baseball-website/issues"
+	},
+	"homepage": "https://github.com/jonathansharpe/baseball-website#readme",
+	"dependencies": {
+		"@remix-run/react": "^2.0.0",
+		"@remix-run/serve": "^2.0.0",
+		"bootstrap": "^5.3.1",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"isbot": "^3.7.0",
+		"mongodb": "^6.1.0",
+		"next": "^13.4.19",
+		"nodemon": "^3.0.1",
+		"npm": "^10.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"node-sass": "^9.0.0"
+	}
 }
