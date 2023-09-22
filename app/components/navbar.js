@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function Navbar() {
-	const [showDropdown, setShowDropdown] = useState(true);
+	const [showDropdown, setShowDropdown] = useState(false);
 
 	function toggleDropdown() {
 		setShowDropdown(!showDropdown);
@@ -13,18 +13,16 @@ export default function Navbar() {
 	return (
 		<div class='flex justify-center'>
 		<nav class='m-4 w-3/4 block gap-4 outline rounded'>
-			<div class='inline p-4'><a href='#'>Home Page</a></div>
-			<div class='inline p-4'><a href='#'>Games</a></div>
-		<button class='inline p-4' onClick={toggleDropdown}>Dropdown</button>
-		{showDropdown && ( 
-			<div>
-				<ul class='dropdown-menu z-50 min-w-max items-centerlist-none bg-clip-padding'>
-					<li><a class='dropdown-item block' href='#'>park 1</a></li>
-					<li><a class='dropdown-item block' href='#'>park 2</a></li>
-					<li><a class='dropdown-item block' href='#'>park 3</a></li>
-				</ul>
+			<div class='inline-block p-4'><a href='#'>Home Page</a></div>
+			<div class='inline-block p-4'><a href='#'>Games</a></div>
+		<div class='inline-block p-4' onClick={toggleDropdown}>
+		<button>Dropdown</button>
+			<div class={`${showDropdown ? `block` : 'invisible'} absolute`}>
+				<a class='block py-2' href='#'>park 1</a>
+				<a class='block py-2' href='#'>park 1</a>
+				<a class='block py-2' href='#'>park 1</a>
 			</div>
-		)}
+		</div>
 		</nav>
 		</div>
 	)
