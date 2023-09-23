@@ -11,9 +11,13 @@ const schibstedGrotesk = Schibsted_Grotesk({
 export default function RootLayout ({ children }) {
 	return (
 		<html lang="en" className={schibstedGrotesk.className}>
-			<body>
-		<Navbar />
-				{children}
+			<body class='bg-zinc-200'>
+				<Navbar />
+				<div class='flex justify-center'>
+					<div class='w-10/12 bg-zinc-50 block rounded-lg p-4'>
+						{children}
+					</div>
+				</div>
 			</body>
 		</html>
 	)
