@@ -1,13 +1,11 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 
 export default function ImageHeader({imageLink, headerText}) {
 	console.log(imageLink);
-	const img1 = require(imageLink);
 	return (
 		<div class='relative h-64 overflow-hidden rounded-md'>
-			<img src={img1} alt='image not found'/>
+			<img src={imageLink} alt='image not found'/>
 			<div class='absolute p-4 left-0 bottom-0 text-black bg-zinc-50 rounded-tr-md font-bold text-6xl'>
 				{headerText}
 			</div>

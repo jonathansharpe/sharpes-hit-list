@@ -12,7 +12,7 @@ export default function Navbar() {
 
 	return (
 		<div class='flex justify-center'>
-		<nav class='m-4 w-3/4 block gap-4 bg-zinc-50 rounded-lg'>
+		<nav class='z-20 m-4 w-3/4 block gap-4 bg-zinc-50 rounded-lg drop-shadow'>
 			<div class='inline-block p-4'><a href='#'>Home Page</a></div>
 			<div class='inline-block p-4'><a href='#'>Games</a></div>
 			<div class='inline-block relative rounded-md' onClick={toggleDropdown}>
