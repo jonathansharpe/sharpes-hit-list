@@ -2,6 +2,7 @@ import './globals.css';
 import React from 'react';
 import { Schibsted_Grotesk } from 'next/font/google';
 import Navbar from './components/navbar.js';
+import ImageHeader from './components/image-header.js';
 
 const schibstedGrotesk = Schibsted_Grotesk({
 	subsets: ['latin'],
@@ -13,11 +14,7 @@ export default function RootLayout ({ children }) {
 		<html lang="en" className={schibstedGrotesk.className}>
 			<body class='bg-zinc-200'>
 				<Navbar />
-				<div class='flex justify-center'>
-					<div class='w-10/12 bg-zinc-50 block rounded-lg p-4'>
-						{children}
-					</div>
-				</div>
+				{children}
 			</body>
 		</html>
 	)

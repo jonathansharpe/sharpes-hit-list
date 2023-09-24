@@ -4,8 +4,6 @@ const fs = require('fs');
 const {MongoClient, ServerApiVersion} = require('mongodb');
 const uri = process.env.MONGODB_URI;
 const port = process.env.PORT || 5000;
-import {createRequestHandler} from "@remix-run/express";
-import {broadcastDevReady} from "@remix-run/node";
 import express from "express";
 
 // console.log("uri:",uri);
