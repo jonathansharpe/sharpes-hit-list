@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Target Field Review</title>
+        <script type='text/javascript' src='scripts/gamebuilder.js'></script>
+		<script src='https://code.jquery.com/jquery-3.6.0.js' integrity='sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=' crossorigin='anonymous'></script>
+		<style type="text/css">
+			.demoB {
+				width: 100%;
+				height: 300px;
+				position: relative;
+			}
+			.backB, .frontB {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+			.backB {
+				z-index: 1;
+			}
+			.frontB {
+				z-index: 2;
+			}
+			.backB {
+				background: url("images/Target Field.jpg");
+				background-repeat: no-repeat;
+				background-position: center 35%;
+				background-size: cover;
+				/*filter: blur(2px);*/	
+			}
+			/* FRONT TEXT */
+			.frontB {
+				display: flex;
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+			}
+			.frontB h1 {
+				transform: translate(0%, -100%);
+			}
+			.image-text {
+				background: black;
+				opacity: .8;
+				border-radius: 5px;
+			}
+		</style>
+    </head>
+    <body class="bg-light text-dark">
+        <div class="m-4" id='teamNavbar'></div>
+		<div class="m-4 border border-primary border-radius">
+			<div class="demoB">
+				<div class="backB"></div>
+				<div class="frontB border-light border border-2 rounded"><h1 class="p-2 text-light image-text">Target Field Review</h1></div>
+			</div>
+			<h2 class="px-4 mt-4">Introduction</h2>
+			<p class="px-4 pb-4">Target Field was the 4th park I went to, and it wasn't really near the top of my list to be honest. I didn't think poorly of it, but seeing it on TV for many years, it never really jumped out at me as a place I <i>needed</i> to visit, compared to places like Wrigley Field, and Fenway Park. However, I was extremely surprised and enjoyed my experience here quite a lot.</p>
+			<h2 class="px-4">Exterior</h2>
+			<p class="px-4 pb-4">So Target Field is probably the only modern stadium that was actually built with quite significant restraints from the city grid. While plenty of modern stadiums today have returned to the city, the Twins really had to just fit Target Field in right in this spot. They even moved a highway underneath the park! However, they were coming from the Hubert H. Humphrey Metrodome, which was probably one of the worst parks when it was still in use by the Twins. While most park gates are numbered or named off location, like the "Left Field Gate" or "Gate 3", the Twins named the Target Field gates from their retired numbers, which is a neat way to honor their greats. We entered the gate nearest to right field, which is at street level. The playing field is actually below street level, which is a neat view when coming in. I don't think we walked around much outside the park, but it looks very nice.</p>
+			<h2 class="px-4">Concourses</h2>
+			<p class="px-4 pb-4">Being an extremely recent park, there were some notable differences from T-Mobile Park. The concourses were <i>extremely</i> wide, wider than any of the three parks I'd seen before. But I was very impressed so far. I remember there being a small model of the ballpark concept near an escalator we took upward. There was also a neat bar area down the left field line. Since it's pretty enclosed, I was able to take a picture from the upper deck in center field, which yielded a nice panoramic view.</p>
+			<h2 class="px-4">Field</h2>
+			<p class="px-4 pb-4">The field is fairly standard, but one notable exception is that there is an overhang in right field. If a ball is hit over there, it could be right in line to be caught by the right fielder, before landing in the seats. Off the top of my head, only the Polo Grounds in New York, and Tiger Stadium in Detroit had overhangs in the outfield.</p>
+			<h2 class="px-4">Game Experience</h2>
+			<p class="px-4 pb-4"></p>
+			<h2 class="px-4">Conclusion</h2>
+			<p class="px-4 pb-4"></p>
+			<p class="px-4 pb-4"></p>
+		</div>
+    </body>
+	<script>
+		$("head").ready(importHeadModules());
+		$("#teamNavbar").ready(buildNavbar());
+	</script>
+</html>
