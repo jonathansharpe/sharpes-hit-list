@@ -2,28 +2,21 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
 const { MONGODB_URI } = process.env;
-
-let cachedClient = null;
+let db;
 
 async function connectToDatabase() {
-  if (cachedClient) {
-    return cachedClient;
-  }
-
-  const client = new MongoClient(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  if (!client.isConnected) {
-    await client.connect();
-  }
-
-  cachedClient = client;
-  return client;
+	if (!db) {
+		const client = new MongoClient(MONGODB_URI, {
+			useNewUrlParser: true, 
+			useUnifiedTopology: true
+		}
+		)
+		await client.connect();
+		db = client.db();
+		console.log('Connected to MongoDB');
+	}
+	return db;
 }
 
-module.exports = {
-  connectToDatabase,
-};
+module.exports = connectToDatabase;
 
