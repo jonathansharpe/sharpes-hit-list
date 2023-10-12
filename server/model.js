@@ -1,5 +1,5 @@
 
-const connectToDatabase = require('db.js');
+const connectToDatabase = require('./db.js');
 
 async function performDatabaseOperation() {
 	const db = await connectToDatabase(); 

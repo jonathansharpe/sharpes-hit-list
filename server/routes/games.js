@@ -1,15 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const Game = require('../models/Game.js');
+const { fetchGames } = require('../handlers/games.js');
 
-router.get('/getGames', async (req, res) => {
-	try {
-		const games = await Game.find({});
-		res.json(games);
-	} catch (e) {
-		console.error(`Something went wrong: ${e}`);
-		res.status(500);
-	}
-});
+const router = express.Router();
+const dbo = require('../db.js');
+const ObjectId = require('mongodb').ObjectId;
+
+router.route('getGames').get(function (req, res) {
+	let db_connect = dbo.connectToDatabase('games')
+})
 
 module.exports = router;

@@ -2,19 +2,20 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
 const { MONGODB_URI } = process.env;
+const client = new MongoClient(MONGODB_URI, {
+	useNewUrlParser: true, 
+	useUnifiedTopology: true
+});
 let db;
 
 async function connectToDatabase() {
-	if (!db) {
-		const client = new MongoClient(MONGODB_URI, {
-			useNewUrlParser: true, 
-			useUnifiedTopology: true
-		}
-		)
+	try {
 		await client.connect();
-		db = client.db();
-		console.log('Connected to MongoDB');
+	} catch (e) {
+		console.error(`db.js: Something went wrong: ${e}`);
 	}
+	db = client.db('games');
+	console.log('Connected to MongoDB');
 	return db;
 }
 
