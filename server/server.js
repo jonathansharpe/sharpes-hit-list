@@ -1,6 +1,7 @@
 const express = require('express');
 const {MongoClient} = require('mongodb');
 require('dotenv').config();
+const db = require('./db.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,9 +34,8 @@ async function getGames(client) {
 }
 
 async function main() {
-	const client = new MongoClient(MONGODB_URI);
 	try {
-		await client.connect();
+		const client = await db.initiateConnection();
 		await getGames(client);
 	} catch (e) {
 		console.error(`Something went wrong: ${e}`);
