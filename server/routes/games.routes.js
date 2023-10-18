@@ -3,7 +3,8 @@ module.exports = app => {
 	
 	const router = require('express').Router();
 
-	router.get('/get-games', games.getAllGames);
+	router.get('/getAllGames', games.getAllGames);
+	router.get('/getGames', games.getGames);
 
 	app.use('/api/games', router);
 };
