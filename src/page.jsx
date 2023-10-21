@@ -1,6 +1,8 @@
-import Paragraph from './components/paragraph.js';
-import ImageHeader from './components/image-header.js';
-import PrimaryDiv from './components/primary-div.js';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import Paragraph from './components/paragraph.jsx';
+import ImageHeader from './components/image-header.jsx';
+import PrimaryDiv from './components/primary-div.jsx';
 import homeImg from './public/images/T-Mobile-Park.jpg'
 
 export default function Page() {
