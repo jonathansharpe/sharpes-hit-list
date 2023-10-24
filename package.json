@@ -4,9 +4,9 @@
 	"description": "baseball website with neat info",
 	"scripts": {
 		"build": "vite build",
-		"dev": "concurrently \"vite\" \"nodemon server/server.js\"",
+		"dev": "vite",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview"
+		"preview": "vite preview",
 	},
 	"repository": {
 		"type": "git",
