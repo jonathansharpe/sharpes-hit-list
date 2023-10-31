@@ -8,7 +8,9 @@ module.exports = {
     extend: {
 		fontFamily: {
 			'manrope': ['Manrope', 'sans-serif'],
-			'dmSans': ['DM Sans', 'sans-serif']
+			'dmSans': ['DM Sans', 'sans-serif'],
+			'dmSerifDisplay': ['DM Serif Display', 'serif'],
+			'workSans': ['Work Sans', 'sans-serif']
 		},
 	},
   },

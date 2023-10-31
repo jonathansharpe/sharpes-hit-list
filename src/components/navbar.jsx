@@ -15,9 +15,10 @@ export default function Navbar() {
 	function convertToUrl(venueName) {
 		let retVal = venueName.replaceAll(" ","-");
 		retVal = retVal.toLowerCase();
-		retVal += ".html";
+		retVal = "parks/" + retVal + "/index.html";
 		return retVal;
 	}
+	console.log(import.meta.env.VITE_API_BASEURL);
 
 	useEffect(() => {
 		fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues")
@@ -39,9 +40,9 @@ export default function Navbar() {
 
 
 	return (
-		<div className='flex justify-center'>
+		<div className='flex justify-center font-dmSans font-bold'>
 		<nav className='z-20 m-4 w-3/4 block gap-4 bg-zinc-50 rounded-lg drop-shadow'>
-			<div className='inline-block p-4'><a href='#'>Home Page</a></div>
+			<div className='inline-block p-4'><a href='/'>Home Page</a></div>
 			<div className='inline-block p-4'><a href='#'>Games</a></div>
 			<div className='inline-block relative rounded-md' ref={dropdownRef}>
 				<input type='text' className='p-4 w-48 text-slate-950 bg-zinc-50' placeholder='Park Reviews' onClick={() => setIsOpen(!isOpen)} onChange={event => setQuery(event.target.value)}></input>
