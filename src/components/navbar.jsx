@@ -1,8 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function Navbar() {
-	const [showDropdown, setShowDropdown] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const dropdownRef = useRef(null)
 	const [jsonData, setJsonData] = useState(null);
 	const [query, setQuery] = useState("");
 
@@ -11,12 +12,30 @@ export default function Navbar() {
 		// console.log("test");
 	}
 
+	function convertToUrl(venueName) {
+		let retVal = venueName.replaceAll(" ","-");
+		retVal = retVal.toLowerCase();
+		retVal += ".html";
+		return retVal;
+	}
+
 	useEffect(() => {
 		fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues")
 			.then(response => response.json())
 			.then(data => setJsonData(data))
 			.catch(error => console.error('Error fetching data:', error));
-	}, []);
+		function handleClickOutside(event) {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+				setIsOpen(false);
+			}
+		}
+		if (isOpen) {
+			document.addEventListener('click', handleClickOutside);
+		}
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		}
+	}, [isOpen]);
 
 
 	return (
@@ -24,9 +43,9 @@ export default function Navbar() {
 		<nav className='z-20 m-4 w-3/4 block gap-4 bg-zinc-50 rounded-lg drop-shadow'>
 			<div className='inline-block p-4'><a href='#'>Home Page</a></div>
 			<div className='inline-block p-4'><a href='#'>Games</a></div>
-			<div className='inline-block relative rounded-md' onClick={toggleDropdown}>
-				<input type='text' className='p-4 w-48 text-slate-950 bg-zinc-50' placeholder='Park Reviews' onChange={event => setQuery(event.target.value)}></input>
-				<div className={`${showDropdown ? `block` : 'invisible'} absolute z-10 bg-zinc-200 w-auto max-h-48 border border-gray-400 rounded-b-md overflow-scroll`}>
+			<div className='inline-block relative rounded-md' ref={dropdownRef}>
+				<input type='text' className='p-4 w-48 text-slate-950 bg-zinc-50' placeholder='Park Reviews' onClick={() => setIsOpen(!isOpen)} onChange={event => setQuery(event.target.value)}></input>
+				<div className={`${isOpen ? `block` : 'invisible'} absolute bg-zinc-200 w-auto max-h-48 border border-gray-400 rounded-b-md overflow-scroll`}>
 		{jsonData ? (
 			<div>
 			{
@@ -38,7 +57,7 @@ export default function Navbar() {
 						return venue;
 					}
 				}).map((item, index) => (
-					<a className='block p-2 hover:bg-sky-600' href='#'>
+					<a className='block p-2 hover:bg-sky-600' href={convertToUrl(item.curName)}>
 					{item.curName}
 					</a>
 				))}
