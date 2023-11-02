@@ -10,7 +10,8 @@ module.exports = {
 			'manrope': ['Manrope', 'sans-serif'],
 			'dmSans': ['DM Sans', 'sans-serif'],
 			'dmSerifDisplay': ['DM Serif Display', 'serif'],
-			'workSans': ['Work Sans', 'sans-serif']
+			'workSans': ['Work Sans', 'sans-serif'],
+			'poppins': ['Poppins', 'sans-serif']
 		},
 	},
   },

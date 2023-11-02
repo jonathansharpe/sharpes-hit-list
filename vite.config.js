@@ -15,8 +15,7 @@ export default defineConfig({
 		sourcemap: true,
 		rollupOptions: {
 			input: {
-				main: resolve(root, 'index.html'),
-				tmobilepark: resolve(root, 'parks', 't-mobile-park', 'index.html'),
+				main: resolve(root, 'index.html')
 			}
 		}
 	},
