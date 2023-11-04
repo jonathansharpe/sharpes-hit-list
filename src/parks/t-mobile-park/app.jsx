@@ -1,4 +1,5 @@
 import Essentials from './../../components/essentials.jsx';
+import MainTextDiv from '../../components/main-text-div.jsx';
 import ImageHeader from './../../components/image-header.jsx';
 import Paragraph from './../../components/paragraph.jsx';
 import SectionHeader from '../../components/park-review-header.jsx'
@@ -8,7 +9,7 @@ import {GamesList} from './../../helpers/games-list.jsx';
 export default function App(){
 	return (
 		<Essentials>
-		<div className='w-10/12 bg-zinc-50 block rounded-lg p-4'>
+		<MainTextDiv>
 		<ImageHeader imageLink={tmobileparkImg} headerText={'T-Mobile Park Review'} />
 		<SectionHeader>Intro</SectionHeader>
 		<Paragraph>T-Mobile Park is the home park of my Seattle Mariners. I grew up going to games here, and have gone to almost 60 games over the past ten seasons. This has been home to many memorable experiences, including historic games and other exciting moments. While I won't be going over every game I've attended, as I already have the game notes for that, I'll expand upon certain aspects of the park that I haven't dug into yet.</Paragraph>
@@ -26,7 +27,7 @@ export default function App(){
 		<Paragraph>The game experience is pretty great. The scoreboard always has fun attractions. The most notable includes the hydro boat race, where 3 animated boats race on Lake Washington. The winner means absolutely nothing, but it's funny seeing people getting so passionate about a meaningless boat race during a commercial break (full disclosure, I get into it as well). There is also the hat trick, where a baseball is placed under a hat, the hats are shuffled, and then everyone guesses where the ball is. I've seen these in other stadiums, so this one seems rather common. There's also a "guess the song" challenge done by the local classic rock radio station, along with some baseball trivia based on the year the song was from. The Mariners play "Louie Louie" in the 7th inning stretch after Take Me Out to the Ballgame. The scoreboard will also encourage fans to get loud at certain times, which isn't terrible, but I prefer the more natural excitement from fans just paying attention to the situation. It feels more genuine that way. One thing I dislike about T-Mobile Park's scoreboard and audio is that the organ sounds really fake, and honestly it probably is. Fortunately, it's not relied on too heavily, as the sound person does a great job of playing songs that get you excited for the game. Speaking of songs, the Mariners will play a song from their TV intro from the 90s; it's also currently played on the radio. It's a fantastic song, and has no right to be as good as it is. </Paragraph>
 		<SectionHeader>Conclusion</SectionHeader>
 		<Paragraph>While the Mariners have generally been considered "not good" over the past decade, they've had at least some success. They had 4 winning seasons where they came relatively close to a playoff spot, and every year in between those they had a competitive team. The only full seasons I'd definitely say were non-competitive are 2012, 2013, and 2019. All together, I've seen 20 Mariners wins and 16 losses.</Paragraph>
-		</div>
+		</MainTextDiv>
 		</Essentials>
 	)
 }

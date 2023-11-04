@@ -3,11 +3,12 @@ import ImageHeader from './../../components/image-header.jsx';
 import Paragraph from './../../components/paragraph.jsx';
 import SectionHeader from '../../components/park-review-header.jsx'
 import guaranteedRateFieldImg from './../../images/Guaranteed-Rate-Field.jpg';
+import MainTextDiv from '../../components/main-text-div.jsx';
 
 export default function App(){
 	return (
 		<Essentials>
-		<div className='w-10/12 bg-zinc-50 block rounded-lg p-4'>
+		<MainTextDiv>
 		<ImageHeader imageLink={guaranteedRateFieldImg} headerText={'Guaranteed Rate Field Review'} />
 		<SectionHeader>Intro</SectionHeader>
 		<Paragraph>Guaranteed Rate Field, then named U.S. Cellular Field, is the home park of the Chicago White Sox and has been since 1991. It replaced the south side equivalent of Wrigley Field, which sadly was not preserved like it's north side counterpart. It also opened in a really unfortunate time, as it was literally just one season before Oriole Park at Camden Yards opened, and started the retro ballpark trend around Major League Baseball. That being said, the White Sox have made some improvements to Guaranteed Rate Field to try and make it feel old-style, some of which are better than others.</Paragraph>
@@ -23,7 +24,7 @@ export default function App(){
 		<Paragraph>Regarding the video boards, at this point the White Sox were slightly behind T-Mobile Park in that department. Prior to the 2013 season, the Mariners converted their entire scoreboard real estate in center field into a giant HD video board, where only a portion of it had been video before. Guaranteed Rate had a couple video boards; one straight away center field, and another beyond right field, which served as the out-of-town scoreboard. There were also a couple of old-school dot-matrix scoreboards, which were actually pretty neat! I'm guessing those had been there since the park's opening, but I really liked these for some reason. Maybe the simplicity of them and the slightly 80s feel is what got me. However, these have understandably since been replaced, and I don't think any parks in MLB still have a dot matrix scoreboard of any kind. They shoot off fireworks for each White Sox home run, which is always a neat touch.</Paragraph>
 		<SectionHeader>Conclusion</SectionHeader>
 		<Paragraph>The game experience was solid, though less so than Wrigley Field, and also worse than T-Mobile Park, basically by default. While it was the worst stadium (also by default) I'd been to at that point, I absolutely would not rank it the worst anymore, which is probably not a surprise, as I went to the Oakland Coliseum in 2021. While it will likely forever be second place in Chicago, it is still a solid ballpark that I would recommend checking out if you're in town and have time to spare after checking out Wrigley.</Paragraph>
-		</div>
+		</MainTextDiv>
 		</Essentials>
 	)
 }

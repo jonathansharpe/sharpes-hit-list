@@ -1,4 +1,5 @@
 import Essentials from './../../components/essentials.jsx';
+import MainTextDiv from '../../components/main-text-div.jsx';
 import ImageHeader from './../../components/image-header.jsx';
 import Paragraph from './../../components/paragraph.jsx';
 import SectionHeader from '../../components/park-review-header.jsx'
@@ -7,7 +8,7 @@ import wrigleyFieldImg from './../../images/Wrigley Field.jpg';
 export default function App(){
 	return (
 		<Essentials>
-		<div className='w-10/12 bg-zinc-50 block rounded-lg p-4'>
+		<MainTextDiv>
 		<ImageHeader imageLink={wrigleyFieldImg} headerText={'Wrigley Field Review'} />
 		<SectionHeader>Intro</SectionHeader>
 		<Paragraph>This was my second ever park, and it was a pretty great second park to go to. However, I am writing this review almost 9 years after the game, so I won't have as many details, compared to more recent reviews. But nonetheless, I hope this review will be an interesting read.</Paragraph>
@@ -22,7 +23,7 @@ export default function App(){
 		<Paragraph>The game experience was pretty great! Wrigley has the organ, which the Mariners don't have 99% of the time. The only time I remember them having an organ in Seattle was in a Turn Back the Clock game in 2013 (also against the Cubs as it happens), when they were throwing it back to 1906, and it was an extremely fake-sounding organ to be honest. But you could tell this organ in Wrigley was the real deal. It was playing various tunes before the game as background music. It was actually a little cloudy before the game started, to the point where the tarp was out. When it was wrapped up, the crowd that had gathered to that point applauded. Another note about Wrigley at this time, is that it had <i>no jumbotron to speak of.</i>They couldn't even show a replay review to the fans when there was a challenge during the game, because there was nothing to show it on! It was really quite a throwback in that sense. Like the rebuilt bleachers, I missed the jumbotron additions by a year, as they were added for the 2015 season. However, it really didn't detract from the experience at all. They also had someone sing along to "Take Me Out to the Ballgame" in the 7th inning stretch, which is something that Harry Caray would do long ago. There is also a manual out of town scoreboard out beyond center field, which is in the banner picture. I will swap out that banner picture if I can find a picture of the field itself, but I didn't have a great smartphone camera at the time, so I didn't take too many photos.</Paragraph>
 		<SectionHeader>Conclusion</SectionHeader>
 		<Paragraph>In general, Wrigley Field is an excellent experience and a must-visit for baseball fans. While I would love to return to all ballparks I've been to, Wrigley Field is near the top of the list, partly because I enjoyed it so much originally, partially because I really enjoyed Chicago, but also because there are just so many changes since I last went. When I went to Fenway Park in 2019, they had already done basically all of the big renovations to that point. But with Wrigley, I was going the year before a lot of them started. So I hope to return there soon, perhaps even in the next few years.</Paragraph>
-		</div>
+		</MainTextDiv>
 		</Essentials>
 	)
 }

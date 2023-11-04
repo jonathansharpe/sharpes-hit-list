@@ -1,13 +1,14 @@
 import Essentials from './../../components/essentials.jsx';
 import ImageHeader from './../../components/image-header.jsx';
 import Paragraph from './../../components/paragraph.jsx';
+import MainTextDiv from '../../components/main-text-div.jsx';
 import SectionHeader from '../../components/park-review-header.jsx'
 import targetFieldImg from './../../images/Target Field.jpg';
 
 export default function App(){
 	return (
 		<Essentials>
-		<div className='w-10/12 bg-zinc-50 block rounded-lg p-4'>
+		<MainTextDiv>
 		<ImageHeader imageLink={targetFieldImg} headerText={'Target Field Review'} />
 		<SectionHeader>Intro</SectionHeader>
 		<Paragraph>Target Field was the 4th park I went to, and it wasn't really near the top of my list to be honest. I didn't think poorly of it, but seeing it on TV for many years, it never really jumped out at me as a place I <i>needed</i> to visit, compared to places like Wrigley Field, and Fenway Park. However, I was extremely surprised and enjoyed my experience here quite a lot.</Paragraph>
@@ -21,7 +22,7 @@ export default function App(){
 		<Paragraph></Paragraph>
 		<SectionHeader>Conclusion</SectionHeader>
 		<Paragraph></Paragraph>
-		</div>
+		</MainTextDiv>
 		</Essentials>
 	)
 }
