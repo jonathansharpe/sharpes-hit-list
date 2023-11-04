@@ -8,7 +8,7 @@ import homeImg from './images/T-Mobile-Park.jpg';
 export default function App(){
 	return (
 		<Essentials>
-		<div className='w-10/12 bg-zinc-50 block rounded-lg p-4'>
+		<div className='w-10/12 bg-zinc-50 block rounded-lg p-4 mb-4'>
 		<ImageHeader imageLink={homeImg} headerText={'Sharpe\'s Hit List'} />
 		<SectionHeader>Visiting Every MLB Park</SectionHeader>
 		<Paragraph>I grew up going to baseball games as a kid. We lived about an hour away from Seattle, so I would attend one Mariners game every year. As I got older, my interest in baseball increased dramatically. I started keeping track of what games I went to in 2012, and haven't stopped since</Paragraph>
