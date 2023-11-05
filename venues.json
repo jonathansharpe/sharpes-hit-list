@@ -1,0 +1,115 @@
+[
+	{
+		"curName": "T-Mobile Park",
+		"firstYear": 1999,
+		"prevNames": ["Safeco Field"],
+		"springTraining": false
+	},
+	{
+		"curName": "Wrigley Field",
+		"firstYear": 1914,
+		"prevNames": [],
+		"springTraining": false
+	},
+	{
+		"curName": "Guaranteed Rate Field",
+		"firstYear": 1991,
+		"prevNames": ["U.S. Cellular Field"],
+		"springTraining": false
+	},
+	{
+		"curName": "Target Field",
+		"firstYear": 2010,
+		"prevNames": [],
+		"springTraining": false
+	},
+	{
+		"curName": "Kauffman Stadium",
+		"firstYear": 1973,
+		"prevNames": [],
+		"springTraining": false
+	},
+	{
+		"curName": "Fenway Park",
+		"firstYear": 1912,
+		"prevNames": [],
+		"springTraining": false
+	},
+	{
+		"curName": "Yankee Stadium II",
+		"firstYear": 2009,
+		"prevNames": [],
+		"springTraining": false
+	},
+	{
+		"curName": "Dodger Stadium",
+		"firstYear": 1962,
+		"prevNames": [],
+		"springTraining": false
+
+	},
+	{
+		"curName": "Petco Park",
+		"firstYear": 2004,
+		"prevNames": [],
+		"springTraining": false
+
+	},
+	{
+		"curName": "Oakland Coliseum",
+		"firstYear": 1966,
+		"prevNames": [],
+		"springTraining": false
+
+	},
+	{
+		"curName": "Oracle Park",
+		"firstYear": 2000,
+		"prevNames": [],
+		"springTraining": false
+
+	},
+	{
+		"curName": "Angel Stadium",
+		"firstYear": 1966,
+		"prevNames": [],
+		"springTraining": false
+
+	},
+	{
+		"curName": "Peoria Stadium",
+		"firstYear": 1994,
+		"prevNames": [],
+		"springTraining": true
+	},
+	{
+		"curName": "Camelback Ranch",
+		"firstYear": 2009,
+		"prevNames": [],
+		"springTraining": true
+	},
+	{
+		"curName": "Goodyear Ballpark",
+		"firstYear": 2009,
+		"prevNames": [],
+		"springTraining": true
+	},
+	{
+		"curName": "Surprise Stadium",
+		"firstYear": 2002,
+		"prevNames": [],
+		"springTraining": true
+	},
+	{
+		"curName": "Minute Maid Park",
+		"firstYear": 2000,
+		"prevNames": [],
+		"springTraining": false
+	},
+	{
+		"curName": "Globe Life Field",
+		"firstYear": 2020,
+		"prevNames": [],
+		"springTraining": false
+	}
+]
