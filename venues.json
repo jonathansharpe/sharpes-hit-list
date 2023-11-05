@@ -27,84 +27,97 @@
 		"curName": "Wrigley Field",
 		"firstYear": 1914,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Guaranteed Rate Field",
 		"firstYear": 1991,
 		"prevNames": ["U.S. Cellular Field"],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Target Field",
 		"firstYear": 2010,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Kauffman Stadium",
 		"firstYear": 1973,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Fenway Park",
 		"firstYear": 1912,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Yankee Stadium II",
 		"firstYear": 2009,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Dodger Stadium",
 		"firstYear": 1962,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 
 	},
 	{
 		"curName": "Petco Park",
 		"firstYear": 2004,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 
 	},
 	{
 		"curName": "Oakland Coliseum",
 		"firstYear": 1966,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 
 	},
 	{
 		"curName": "Oracle Park",
 		"firstYear": 2000,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 
 	},
 	{
 		"curName": "Angel Stadium",
 		"firstYear": 1966,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 
 	},
 	{
 		"curName": "Peoria Stadium",
 		"firstYear": 1994,
 		"prevNames": [],
-		"springTraining": true
+		"springTraining": true,
+		"review": []
 	},
 	{
 		"curName": "Camelback Ranch",
 		"firstYear": 2009,
 		"prevNames": [],
-		"springTraining": true
+		"springTraining": true,
+		"review": []
 	},
 	{
 		"curName": "Goodyear Ballpark",
@@ -116,18 +129,21 @@
 		"curName": "Surprise Stadium",
 		"firstYear": 2002,
 		"prevNames": [],
-		"springTraining": true
+		"springTraining": true,
+		"review": []
 	},
 	{
 		"curName": "Minute Maid Park",
 		"firstYear": 2000,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	},
 	{
 		"curName": "Globe Life Field",
 		"firstYear": 2020,
 		"prevNames": [],
-		"springTraining": false
+		"springTraining": false,
+		"review": []
 	}
 ]
