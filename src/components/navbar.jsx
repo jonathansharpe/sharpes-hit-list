@@ -40,7 +40,7 @@ export default function Navbar() {
 
 
 	return (
-		<div className='flex justify-center font-poppins font-bold'>
+		<div className='flex justify-center font-syne font-bold'>
 		<nav className='z-20 m-4 w-3/4 block gap-4 bg-zinc-50 rounded-lg drop-shadow'>
 			<div className='inline-block p-4'><a href='/'>Home Page</a></div>
 			<div className='inline-block p-4'><a href='#'>Games</a></div>

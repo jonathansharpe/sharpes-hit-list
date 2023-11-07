@@ -3,7 +3,7 @@ import ImageHeader from './components/image-header.jsx';
 import Paragraph from './components/paragraph.jsx';
 import SectionHeader from './components/park-review-header.jsx';
 import MainTextDiv from './components/main-text-div.jsx';
-import homeImg from './images/T-Mobile-Park.jpg';
+import homeImg from './images/T-Mobile Park.jpg';
 // import {GamesList} from './helpers/games-list.jsx';
 
 export default function App(){

@@ -11,7 +11,10 @@ module.exports = {
 			'dmSans': ['DM Sans', 'sans-serif'],
 			'dmSerifDisplay': ['DM Serif Display', 'serif'],
 			'workSans': ['Work Sans', 'sans-serif'],
-			'poppins': ['Poppins', 'sans-serif']
+			'poppins': ['Poppins', 'sans-serif'],
+			'syne': ['Syne', 'sans-serif'],
+			'spaceGrotesk': ['Space Grotesk', 'sans-serif'],
+			'youngSerif': ['Young Serif', 'serif']
 		},
 	},
   },
