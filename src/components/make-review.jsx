@@ -1,7 +1,8 @@
 'use client';
 import React, { useState, useEffect} from 'react';
 import Paragraph from './paragraph.jsx';
-import SectionHeader from './park-review-header.jsx'
+import SectionHeader from './park-review-header.jsx';
+import parse from 'html-react-parser';
 
 export default function GetReview({venueName}) {
 
@@ -35,10 +36,10 @@ export default function GetReview({venueName}) {
 	const jsxElements = [];
 	for (let i = 0; i < searchResults.length; i++) {
 		if (searchResults[i].type === "SectionHeader") {
-			jsxElements.push(<SectionHeader key={i}>{searchResults[i].text}</SectionHeader>);
+			jsxElements.push(<SectionHeader key={i}>{ parse(searchResults[i].text) }</SectionHeader>);
 		}
 		else if (searchResults[i].type === "Paragraph") {
-			jsxElements.push(<Paragraph key={i}>{searchResults[i].text}</Paragraph>);
+			jsxElements.push(<Paragraph key={i}>{ parse(searchResults[i].text)}</Paragraph>);
 		}
 		else {
 			jsxElements.push(<p key={i}>Unknown Element</p>);
