@@ -40,11 +40,11 @@ export default function Navbar() {
 
 
 	return (
-		<div className='flex justify-center font-syne font-bold'>
-		<nav className='z-20 m-4 w-3/4 block gap-4 bg-zinc-50 rounded-lg drop-shadow'>
+		<nav className='flex font-syne font-bold sticky top-0 z-20 mb-4 w-full block gap-4 bg-zinc-50 rounded-b-lg drop-shadow items-center'>
+			<div className='inline-block p-4 font-youngSerif bg-cyan-300 text-xl'><a href='/'>Sharpe's Hit List</a></div>
 			<div className='inline-block p-4'><a href='/'>Home Page</a></div>
 			<div className='inline-block p-4'><a href='#'>Games</a></div>
-			<div className='inline-block relative rounded-md' ref={dropdownRef}>
+			<div className='inline-block relative rounded-md align-middle' ref={dropdownRef}>
 				<input type='text' className='p-4 w-48 text-slate-950 bg-zinc-50' placeholder='Park Reviews' onClick={() => setIsOpen(!isOpen)} onChange={event => setQuery(event.target.value)}></input>
 				<div className={`${isOpen ? `block` : 'invisible'} absolute bg-zinc-200 w-auto max-h-48 border border-gray-400 rounded-b-md overflow-scroll`}>
 		{jsonData ? (
@@ -58,7 +58,7 @@ export default function Navbar() {
 						return venue;
 					}
 				}).map((item, index) => (
-					<a className='block p-2 hover:bg-sky-600' href={convertToUrl(item.curName)}>
+					<a className='block p-2 hover:bg-zinc-600' href={convertToUrl(item.curName)}>
 					{item.curName}
 					</a>
 				))}
@@ -69,6 +69,5 @@ export default function Navbar() {
 				</div>
 			</div>
 		</nav>
-		</div>
 	);
 }
