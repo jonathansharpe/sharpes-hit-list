@@ -4,10 +4,10 @@ import PageTitle from './../../components/page-title.jsx';
 import Essentials from './../../components/essentials.jsx';
 import MainTextDiv from '../../components/main-text-div.jsx';
 import ImageHeader from './../../components/image-header.jsx';
-import GetReview from '../../components/make-review.jsx';
+import GetReview from './../../components/make-review.jsx';
 
 export default function App(){
-	const currentPark = "Guaranteed Rate Field"; // << changing this will change the review shown
+	const currentPark = "Guaranteed Rate Field"; // << changing this will change the header shown
 	const [imgSrc, setImgSrc] = useState('');
 
 	useEffect(() => {
