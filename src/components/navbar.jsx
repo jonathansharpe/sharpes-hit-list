@@ -1,104 +1,67 @@
 'use client';
+import Dropdown from './dropdown-table.jsx';
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function Navbar() {
-	const [isOpenmlb, setIsOpenmlb] = useState(false);
-	const [isOpenst, setIsOpenst] = useState(false);
-	const dropdownRefmlb = useRef(null)
-	const dropdownRefst = useRef(null)
 	const [jsonData, setJsonData] = useState(null);
-	const [query, setQuery] = useState("");
+	const [isMlbOpen, setMlbIsOpen] = useState(false);
+	const [isStOpen, setStIsOpen] = useState(false);
+	const mlbDropdownRef = useRef();
+	const stDropdownRef = useRef();
 
-	function convertToUrl(venueName) {
-		let retVal = venueName.replaceAll(" ","-");
-		retVal = retVal.toLowerCase();
-		retVal = "/parks/" + retVal + "/index.html";
-		return retVal;
-	}
-	console.log(import.meta.env.VITE_API_BASEURL);
+	// console.log(import.meta.env.VITE_API_BASEURL);
 
 	useEffect(() => {
-		fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues")
-			.then(response => response.json())
-			.then(data => setJsonData(data))
-			.catch(error => console.error('Error fetching data:', error));
-		function handleClickOutsidemlb(event) {
-			if (dropdownRefmlb.current && !dropdownRefmlb.current.contains(event.target)) {
-				setIsOpenmlb(false);
+		const fetchData = async () => {
+			try {
+				const response = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues");
+				const data = await response.json();
+				setJsonData(data);
+				console.log(data);
+			} catch (error) {
+				console.error(`Error fetching data: ${error}`);
 			}
-		}
-		function handleClickOutsidest(event) {
-			if (dropdownRefst.current && !dropdownRefst.current.contains(event.target)) {
-				setIsOpenst(false);
-			}
-		}
-		if (isOpenmlb) {
-			document.addEventListener('click', handleClickOutsidemlb);
-		}
-		if (isOpenst) {
-			document.addEventListener('click', handleClickOutsidest);
-		}
-		return () => {
-			document.removeEventListener('click', handleClickOutsidemlb);
-			document.removeEventListener('click', handleClickOutsidest);
-		}
-	}, [isOpenmlb, isOpenst]);
+		};
+		fetchData();
 
+		const handleClickOutside = (event) => {
+			if (
+				(mlbDropdownRef.current && isMlbOpen && !mlbDropdownRef.current.contains(event.target)) ||
+				(stDropdownRef.current && isStOpen && !stDropdownRef.current.contains(event.target))
+			) {
+				setMlbIsOpen(false);
+				setStIsOpen(false);
+			}
+		};
+
+		document.addEventListener('click', handleClickOutside);
+
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		}
+	}, [isMlbOpen, isStOpen]);
+
+	if (!jsonData) {
+		return null;
+	}
+
+	const mlbParks = jsonData.filter(park => !park.springTraining);
+	const stParks = jsonData.filter(park => park.springTraining);
 
 	return (
-		<nav className='flex font-syne font-bold sticky top-0 z-20 mb-4 w-full block gap-4 bg-zinc-50 rounded-b-lg drop-shadow items-center'>
-			<div className='inline-block p-4 font-youngSerif bg-cyan-300 text-xl'><a href='/'>Sharpe's Hit List</a></div>
-			<div className='inline-block p-4'><a href='#'>Games</a></div>
-			<div className='inline-block relative rounded-md align-middle' ref={dropdownRefmlb}>
-				<input type='text' className='p-4 w-48 text-slate-950 bg-zinc-50' placeholder='MLB Park Reviews' onClick={() => setIsOpenmlb(!isOpenmlb)} onChange={event => setQuery(event.target.value)}></input>
-				<div className={`${isOpenmlb ? `block` : 'invisible'} absolute bg-zinc-200 w-auto max-h-48 border border-gray-400 rounded-b-md overflow-scroll`}>
-		{jsonData ? (
-			<div>
-			{
-				jsonData.filter(venue => {
-					if (!venue.springTraining) {
-						if (query === "") {
-							return venue;
-						}
-						else if (venue.curName.toLowerCase().includes(query.toLowerCase())) {
-							return venue;
-						}
-					}
-				}).map((item, index) => (
-					<a className='block p-2 hover:bg-zinc-600' href={convertToUrl(item.curName)}>
-					{item.curName}
-					</a>
-				))}
-			</div>
-		) : (
-			<p>Loading data...</p>
-		)}
+		<nav className='flex font-bold sticky top-0 z-20 mb-4 w-full block bg-zinc-50 rounded-b-lg drop-shadow items-center'>
+			<div className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all font-syne text-xl border border-gray-400'><a href='/'>Sharpe's Hit List</a></div>
+			<div className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all'><a href='#'>Games</a></div>
+			<div ref={mlbDropdownRef}>
+				<button className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' onClick={() => setMlbIsOpen(!isMlbOpen)}>MLB Parks</button>
+				<div className={`${isMlbOpen ? 'block' : 'invisible'} `}>
+					<Dropdown isOpen={isMlbOpen} setIsOpen={setMlbIsOpen} parks={mlbParks} />
 				</div>
 			</div>
-			<div className='inline-block relative rounded-md align-middle' ref={dropdownRefst}>
-				<input type='text' className='p-4 w-64 text-slate-950 bg-zinc-50' placeholder='Spring Training Park Reviews' onClick={() => setIsOpenst(!isOpenst)} onChange={event => setQuery(event.target.value)}></input>
-				<div className={`${isOpenst ? `block` : 'invisible'} absolute bg-zinc-200 w-auto max-h-48 border border-gray-400 rounded-b-md overflow-scroll`}>
-		{jsonData ? (
-			<div>
-			{
-				jsonData.filter(venue => {
-					if (venue.springTraining) {
-						if (query === "") {
-							return venue;
-						}
-						else if (venue.curName.toLowerCase().includes(query.toLowerCase())) {
-							return venue;
-						}
-					}
-				}).map((item, index) => (
-					<a className='block p-2 hover:bg-zinc-600' href={convertToUrl(item.curName)}>
-					{item.curName}
-					</a>
-				))}
-			</div>
-		) : (
-			<p>Loading data...</p>
-		)}
+			<div ref={stDropdownRef}>
+				<button className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' onClick={() => setStIsOpen(!isStOpen)}>Spring Training Parks</button>
+				<div className={`${isStOpen ? 'block' : 'invisible'} `}>
+					<Dropdown isOpen={isStOpen} setIsOpen={setStIsOpen} parks={stParks} />
 				</div>
 			</div>
 		</nav>
