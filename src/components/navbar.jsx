@@ -49,9 +49,9 @@ export default function Navbar() {
 	const stParks = jsonData.filter(park => park.springTraining);
 
 	return (
-		<nav className='flex font-bold sticky top-0 z-20 mb-4 w-full block bg-zinc-50 rounded-b-lg drop-shadow items-center'>
-			<div className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all font-syne text-xl border border-gray-400'><a href='/'>Sharpe's Hit List</a></div>
-			<div className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all'><a href='#'>Games</a></div>
+		<nav className='font-manrope flex font-bold sticky top-0 z-20 mb-4 w-full block bg-zinc-50 rounded-b-lg drop-shadow items-center'>
+			<a className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all font-syne text-xl border border-gray-400' href='/'>Sharpe's Hit List</a>
+			<a className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' href='#'>Games</a>
 			<div ref={mlbDropdownRef}>
 				<button className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' onClick={() => setMlbIsOpen(!isMlbOpen)}>MLB Parks</button>
 				<div className={`${isMlbOpen ? 'block' : 'invisible'} `}>

@@ -14,7 +14,9 @@ module.exports = {
 			'poppins': ['Poppins', 'sans-serif'],
 			'syne': ['Syne', 'sans-serif'],
 			'spaceGrotesk': ['Space Grotesk', 'sans-serif'],
-			'youngSerif': ['Young Serif', 'serif']
+			'youngSerif': ['Young Serif', 'serif'],
+			'ibmPlexSans': ['IBM Plex Sans', 'sans-serif'],
+			'rubik': ['Rubik', 'sans-serif'],
 		},
 	},
   },
