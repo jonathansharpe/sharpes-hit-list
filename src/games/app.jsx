@@ -95,15 +95,14 @@ export default function App(){
 		<div className="flex-none w-1/5 mb-4 mr-4 ml-4 p-2 bg-zinc-50 rounded rounded-lg">
 			this is where the filters will go
 		</div>
-		<div className={`flex-none grid grid-cols-${numColumns} w-4/5 mb-4 mr-4 ml-4 p-2 rounded rounded-lg border`}>
-			this is where all the games will go
+		<div className={`flex-none grid grid-cols-3 grid-flow-row gap-4 w-4/5 mb-4 mr-4 ml-4 p-2 rounded rounded-lg border`}>
 		{sortedGames.map((curGame, index) => {
 			if (curGame) {
 				const curDate = new Date(curGame.year, curGame.month - 1, curGame.day);
 				const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
 				const formattedDate = new Intl.DateTimeFormat('en-US', options).format(curDate);
 				return (
-					<div key={index} className={`${expandedDivs[index] ? 'fixed w-9/12 left-1/2 z-50 -translate-x-1/2 transition-opacity' : 'items-center flex-1'} text-sm p-2 bg-zinc-50 m-2 rounded-md ease-in-out`}>
+					<div key={index} className={`${expandedDivs[index] ? 'fixed w-9/12 left-1/2 z-50 -translate-x-1/2 transition-opacity' : 'items-center'} text-sm p-2 bg-zinc-50 m-2 rounded-md ease-in-out`}>
 					<div className="relative h-16 overflow-hidden rounded-md w-full bg-center bg-cover">
 					<img src={`../images/${curGame.venue}.jpg`} alt={curGame.venue} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
 					</div>
