@@ -90,7 +90,7 @@ export default function App(){
 
 	return (
 		<Essentials>
-		<div className={`hidden fixed left-0 top-0 z-40 w-full h-full inset-0 bg-gray-900 bg-opacity-60`}></div>
+		<div className={`${ Object.values(expandedDivs).includes(true) ? '' : 'hidden' } fixed left-0 top-0 z-40 w-full h-full inset-0 bg-gray-900 bg-opacity-60`}></div>
 		<div className="flex w-10/12 font-rubik">
 		<div className="flex-none w-1/5 mb-4 mr-4 ml-4 p-2 bg-zinc-50 rounded rounded-lg">
 			this is where the filters will go
@@ -111,7 +111,7 @@ export default function App(){
 					{formattedDate}
 					</div>
 					{/* road team followed by home team */}
-					<div className="grid grid-cols-[5fr,1fr] items-center">
+					<div className="grid grid-cols-[5fr,1fr] items-center content-center max-w-md">
 					<div className="p-1">
 					{teamsData.map((team) => {
 						if (team.abbreviation === curGame.roadTeam) {
@@ -134,11 +134,11 @@ export default function App(){
 					<div className="p-1 text-right">{curGame.homeTeamRuns}</div>
 					</div>
 					{ curGame.springTraining ?
-						<button onClick={() => handleExpansion(index)} type="button" className="p-1 text-center w-full rounded rounded-md bg-indigo-500 hover:bg-indigo-300 transition-all text-white">
+						<button onClick={() => handleExpansion(index)} type="button" className="p-1 text-center w-full max-w-sm rounded rounded-md bg-indigo-500 hover:bg-indigo-300 transition-all text-white">
 						Game Log
 						</button>
 						:
-						<div className="grid grid-cols-2 rounded rounded-md bg-indigo-500">
+						<div className="grid grid-cols-2 rounded rounded-md bg-indigo-500 max-w-md">
 						<button onClick={() => handleExpansion(index)} type="button" className="p-1 rounded-l-md text-center hover:bg-indigo-300 transition-all text-white">
 						Game Log
 						</button>
