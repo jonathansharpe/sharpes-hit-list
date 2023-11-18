@@ -48,7 +48,7 @@ export default function Navbar() {
 	const stParks = jsonData?.filter(park => park.springTraining);
 
 	return (
-		<nav className='font-manrope flex font-bold sticky top-0 z-20 mb-4 w-full block bg-zinc-50 rounded-b-lg drop-shadow items-center'>
+		<nav className='font-manrope flex font-bold sticky top-0 z-10 mb-4 w-full block bg-zinc-50 rounded-b-lg drop-shadow items-center'>
 			<a className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all font-syne text-xl border border-gray-400' href='/'>Sharpe's Hit List</a>
 			<a className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' href='/games/index.html'>Games</a>
 			<div ref={mlbDropdownRef}>

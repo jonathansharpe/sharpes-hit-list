@@ -25,7 +25,6 @@ export default function App(){
 				// console.log(data);
 			} catch (error) {
 				console.error(`Error fetching data: ${error}`);
-			} finally {
 			}
 		};
 		const handleEscapeKey = (event) => {
@@ -81,16 +80,26 @@ export default function App(){
 		<div className="flex-none w-1/5 mb-4 mr-4 ml-4 p-2 bg-zinc-50 rounded rounded-lg">
 			this is where the filters will go
 		</div>
-		<div className={`flex-none grid grid-cols-3 grid-flow-row w-4/5 mb-4 mr-4 ml-4 p-2 rounded rounded-lg border`}>
+		<div className={`flex-none items-center grid grid-cols-4 w-4/5 mb-4 mr-4 ml-4 p-2 rounded rounded-lg border`}>
 		{sortedGames.map((curGame, index) => {
 			if (curGame) {
 				const curDate = new Date(curGame.year, curGame.month - 1, curGame.day);
 				const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
 				const formattedDate = new Intl.DateTimeFormat('en-US', options).format(curDate);
 				return (
+					<div className={`${expandedDivs[index] ? '' : ''}`}>
 					<div 
 						key={index} 
-						className={`${expandedDivs[index] ? 'fixed w-9/12 left-1/2 z-50 -translate-x-1/2' : 'items-center w-auto'} duration-200 transition-scale text-sm p-2 bg-zinc-50 m-2 rounded-md`}
+						className={`${expandedDivs[index] ? 'z-50 mx-auto inset-x-0 scale-125 fixed w-8/12' : 'scale-100'} text-sm p-2 bg-zinc-50 m-2 rounded-md`}
+						style={{
+							...(expandedDivs[index] ? {
+								// position: "fixed", 
+								// top: "50%", 
+								// left: "50%", 
+								// transform: "translate(-50%, -50%)",
+							} : {}),
+							transition: "all 0.25s ease-out",
+						}}
 					>
 					<div className={`${expandedDivs[index] ? 'h-72' : 'h-16'} relative h-16 overflow-hidden rounded-md w-full bg-center bg-cover`}>
 					<img src={`../images/${curGame.venue}.jpg`} alt={curGame.venue} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
@@ -145,6 +154,7 @@ export default function App(){
 						</a>
 						</div>
 					}
+					</div>
 					</div>
 					</div>
 				);
