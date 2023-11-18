@@ -18,6 +18,10 @@ module.exports = {
 			'ibmPlexSans': ['IBM Plex Sans', 'sans-serif'],
 			'rubik': ['Rubik', 'sans-serif'],
 		},
+		transitionProperty: {
+			'width': 'width',
+			'height': 'height',
+		}
 	},
   },
   plugins: [],
