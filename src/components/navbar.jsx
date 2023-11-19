@@ -3,10 +3,10 @@ import Dropdown from './dropdown-table.jsx';
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function Navbar() {
-	const [jsonData, setJsonData] = useState(null);
-	const [isMlbOpen, setMlbIsOpen] = useState(false);
-	const [isStOpen, setStIsOpen] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [ jsonData, setJsonData ] = useState(null);
+	const [ isMlbOpen, setMlbIsOpen ] = useState(false);
+	const [ isStOpen, setStIsOpen ] = useState(false);
+	const [ loading, setLoading ] = useState(true);
 	const mlbDropdownRef = useRef();
 	const stDropdownRef = useRef();
 
@@ -39,10 +39,8 @@ export default function Navbar() {
 
 		document.addEventListener('click', handleClickOutside);
 
-		return () => {
-			document.removeEventListener('click', handleClickOutside);
-		}
-	}, [isMlbOpen, isStOpen]);
+		return () => document.removeEventListener('click', handleClickOutside)
+	}, [ isMlbOpen, isStOpen ]);
 
 	const mlbParks = jsonData?.filter(park => !park.springTraining);
 	const stParks = jsonData?.filter(park => park.springTraining);
@@ -52,7 +50,10 @@ export default function Navbar() {
 			<a className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all font-syne text-xl border border-gray-400' href='/'>Sharpe's Hit List</a>
 			<a className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' href='/games/index.html'>Games</a>
 			<div ref={mlbDropdownRef}>
-				<button className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' onClick={() => setMlbIsOpen(!isMlbOpen)}>MLB Parks</button>
+				<button
+					className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all'
+					onClick={() => setMlbIsOpen(!isMlbOpen)}
+				>MLB Parks</button>
 				<div className={`${isMlbOpen ? 'block' : 'invisible'} `}>
 					{ loading ?
 						<div></div>
@@ -62,7 +63,10 @@ export default function Navbar() {
 				</div>
 			</div>
 			<div ref={stDropdownRef}>
-				<button className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all' onClick={() => setStIsOpen(!isStOpen)}>Spring Training Parks</button>
+				<button
+					className='inline-block p-4 rounded-md hover:bg-zinc-200 transition-all'
+					onClick={() => setStIsOpen(!isStOpen)}
+				>Spring Training Parks</button>
 				<div className={`${isStOpen ? 'block' : 'invisible'} `}>
 					{ loading ?
 						<div></div>

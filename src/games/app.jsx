@@ -5,10 +5,10 @@ import SectionHeader from './../components/park-review-header.jsx';
 import MainTextDiv from './../components/main-text-div.jsx';
 
 export default function App(){
-	const [gamesData, setGamesData] = useState(null);
-	const [teamsData, setTeamsData] = useState(null);
-	const [venueData, setVenueData] = useState(null);
-	const [expandedDivs, setExpandedDivs] = useState(false);
+	const [ gamesData, setGamesData ] = useState(null);
+	const [ teamsData, setTeamsData ] = useState(null);
+	const [ venueData, setVenueData ] = useState(null);
+	const [ expandedDivs, setExpandedDivs ] = useState(false);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -55,15 +55,10 @@ export default function App(){
 		return `https://www.baseball-reference.com/boxes/${game.homeTeam}/${game.homeTeam}${game.year}${formattedMonth}${formattedDay}0.shtml`;
 	}
 
-	if (!gamesData || !teamsData || !venueData) {
-		return null;
-	}
+	if (!gamesData || !teamsData || !venueData) { return null; }
 	
 	const handleExpansion = (index) => {
-		setExpandedDivs((prevExpandedDivs) => ({
-			...prevExpandedDivs,
-			[index]: !prevExpandedDivs[index],
-		}));
+		setExpandedDivs((prevExpandedDivs) => ({ ...prevExpandedDivs, [index]: !prevExpandedDivs[index] }));
 	};
 
 	// console.log(gamesData);
@@ -75,7 +70,10 @@ export default function App(){
 
 	return (
 		<>
-		<div id="backdrop" className={`${ Object.values(expandedDivs).includes(true) ? 'bg-opacity-60' : 'hidden bg-opacity-0' } fixed backdrop-blur z-[1040] inset-0 bg-gray-900 transition-opacity ease-out duration-150`}></div>
+		<div
+			id="backdrop"
+			className={`${ Object.values(expandedDivs).includes(true) ? 'bg-opacity-60' : 'hidden bg-opacity-0' } fixed backdrop-blur z-[1040] inset-0 bg-gray-900 transition-opacity ease-out duration-150`}
+		></div>
 		<Essentials>
 		<div className="relative flex w-10/12 font-rubik">
 		<div className="flex-none w-1/5 mb-4 mr-4 ml-4 p-2 bg-zinc-50 rounded rounded-lg">
@@ -98,9 +96,7 @@ export default function App(){
 					<img src={`../images/${curGame.venue}.jpg`} alt={curGame.venue} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
 					</div>
 					{/* date */}
-					<div className="p-1 font-bold text-lg mx-auto max-w-md">
-					{formattedDate}
-					</div>
+					<div className="p-1 font-bold text-lg mx-auto max-w-md">{formattedDate}</div>
 					{/* road team followed by home team */}
 					<div className="grid grid-cols-[5fr,1fr] flex mx-auto items-center max-w-md">
 					<div className="p-1">
@@ -115,18 +111,18 @@ export default function App(){
 					<div className="p-1 text-right">{curGame.roadTeamRuns}</div>
 					<div className="p-1">
 					{teamsData.map((team) => {
-						if (team.abbreviation === curGame.homeTeam) {
-							return (
-								team.fullName
-							)
-						}
+						if (team.abbreviation === curGame.homeTeam) {return ( team.fullName )}
 					})}
 					</div>
 					<div className="p-1 text-right">{curGame.homeTeamRuns}</div>
 					</div>
 					<div className="flex justify-center">
 					{ curGame.springTraining ?
-						<button onClick={() => handleExpansion(index)} type="button" className="p-1 text-center w-full max-w-sm rounded rounded-md bg-indigo-500 hover:bg-indigo-300 transition-all text-white">
+						<button
+							onClick={() => handleExpansion(index)}
+							type="button"
+							className="p-1 text-center w-full max-w-sm rounded rounded-md bg-indigo-500 hover:bg-indigo-300 transition-all text-white"
+						>
 						{
 							expandedDivs[index] ?
 							"Click to Exit" :
@@ -135,7 +131,11 @@ export default function App(){
 						</button>
 						:
 						<div className="flex-1 grid grid-cols-2 rounded rounded-md bg-indigo-500 max-w-md">
-						<button onClick={() => handleExpansion(index)} type="button" className="p-1 rounded-l-md text-center hover:bg-indigo-300 transition-all text-white">
+						<button
+							onClick={() => handleExpansion(index)}
+							type="button"
+							className="p-1 rounded-l-md text-center hover:bg-indigo-300 transition-all text-white"
+						>
 						{
 							expandedDivs[index] ?
 							"Click to Exit" :
@@ -148,7 +148,9 @@ export default function App(){
 						</div>
 					}
 					</div>
-					<div className={`${expandedDivs[index] ? '' : 'hidden'} text-left`}>this is where the log will go</div>
+					<div className={`${expandedDivs[index] ? '' : 'hidden'} text-left`}>
+						this is where the log will go
+					</div>
 					</div>
 					</div>
 				);
