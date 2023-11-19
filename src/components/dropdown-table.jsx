@@ -15,7 +15,7 @@ const Dropdown = ({ isOpen, setIsOpen, parks }) => {
 	const sortedParks = parks.slice().sort((a, b) => a.curName.localeCompare(b.curName));
 
 	return (
-		<div className={`absolute mt-4 bg-zinc-50 rounded-md mx-auto max-w-screen-xl left-0 right-0 w-full transform transition-all duration-150 ease-in-out ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} style={{ transformOrigin: 'top' }}>
+		<div className={`z-30 absolute mt-4 bg-zinc-50 rounded-md mx-auto max-w-screen-xl left-0 right-0 w-full transform transition-all duration-150 ease-out ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} style={{ transformOrigin: 'top' }}>
 		{Array.from({ length: numParksRows }).map((_, rowIndex) => (
 			<div className="flex" key={rowIndex}>
 			{Array.from({ length: numColumns }).map((_, colIndex) => {

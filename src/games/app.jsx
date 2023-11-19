@@ -74,9 +74,10 @@ export default function App(){
 	//
 
 	return (
+		<>
+		<div id="backdrop" className={`${ Object.values(expandedDivs).includes(true) ? 'bg-opacity-60' : 'hidden bg-opacity-0' } fixed backdrop-blur z-[1040] inset-0 bg-gray-900 transition-opacity ease-out duration-150`}></div>
 		<Essentials>
-		<div className={`${ Object.values(expandedDivs).includes(true) ? '' : 'hidden' } fixed x-0 y-0 z-40 w-full h-full inset-0 bg-gray-900 bg-opacity-60`}></div>
-		<div className="flex w-10/12 font-rubik">
+		<div className="relative flex w-10/12 font-rubik">
 		<div className="flex-none w-1/5 mb-4 mr-4 ml-4 p-2 bg-zinc-50 rounded rounded-lg">
 			this is where the filters will go
 		</div>
@@ -90,16 +91,8 @@ export default function App(){
 					<div className={`${expandedDivs[index] ? '' : ''}`}>
 					<div 
 						key={index} 
-						className={`${expandedDivs[index] ? 'z-50 mx-auto inset-x-0 scale-125 fixed w-8/12' : 'scale-100'} text-sm p-2 bg-zinc-50 m-2 rounded-md`}
-						style={{
-							...(expandedDivs[index] ? {
-								// position: "fixed", 
-								// top: "50%", 
-								// left: "50%", 
-								// transform: "translate(-50%, -50%)",
-							} : {}),
-							transition: "all 0.25s ease-out",
-						}}
+						id={`card-${index}`}
+						className={`${expandedDivs[index] ? 'z-[1050] mx-auto inset-x-0 scale-125 absolute w-8/12' : 'scale-100 relative z-0'} text-sm p-2 bg-zinc-50 m-2 rounded-md transition-all ease-out duration-150`}
 					>
 					<div className={`${expandedDivs[index] ? 'h-72' : 'h-16'} relative h-16 overflow-hidden rounded-md w-full bg-center bg-cover`}>
 					<img src={`../images/${curGame.venue}.jpg`} alt={curGame.venue} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
@@ -155,6 +148,7 @@ export default function App(){
 						</div>
 					}
 					</div>
+					<div className={`${expandedDivs[index] ? '' : 'hidden'} text-left`}>this is where the log will go</div>
 					</div>
 					</div>
 				);
@@ -163,5 +157,6 @@ export default function App(){
 		</div>
 		</div>
 		</Essentials>
+		</>
 	)
 }
