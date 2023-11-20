@@ -16,29 +16,21 @@ const Dropdown = ({ isOpen, setIsOpen, parks }) => {
 
 	return (
 		<div
-			className={`z-30 absolute mt-4 bg-zinc-50 rounded-md mx-auto max-w-screen-xl left-0 right-0 w-full transform transition-all duration-150 ease-out ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`}
+			className={`absolute grid grid-cols-5 bg-zinc-50 rounded-b-md max-w-screen-lg transition-all duration-150 ease-out ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`}
 			style={{ transformOrigin: 'top' }}
 		>
-		{Array.from({ length: numParksRows }).map((_, rowIndex) => (
-			<div
-				className="flex"
-				key={rowIndex}
-			>
-			{Array.from({ length: numColumns }).map((_, colIndex) => {
-				const index = rowIndex * numColumns + colIndex;
-				const curPark = sortedParks[index];
-				return (
-					<a
-						key={colIndex}
-						className="text-sm p-2 flex-1 hover:bg-zinc-200 rounded-md transition-all"
-						href={curPark ? convertToUrl(curPark.curName) : '#'}
-					>
-					{curPark && curPark.curName}
-					</a>
-				);
-			})}
-			</div>
-		))}
+		{sortedParks.map((_curVenue, index) => {
+			const curPark = sortedParks[index];
+			return (
+				<a
+				key={index}
+				className="relative z-30 text-sm p-2 hover:bg-zinc-200 rounded-md transition-all"
+				href={curPark ? convertToUrl(curPark.curName) : '#'}
+				>
+				{curPark && curPark.curName}
+				</a>
+			);
+		})}
 		</div>
 	);
 }

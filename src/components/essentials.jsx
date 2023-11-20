@@ -8,9 +8,7 @@ export default function Essentials({children}) {
 	return (
 		<BackgroundDiv>
 		<Navbar />
-		<PrimaryDiv>
 		{children}
-		</PrimaryDiv>
 		</BackgroundDiv>
 	)
 }
