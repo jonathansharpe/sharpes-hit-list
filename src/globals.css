@@ -8,9 +8,19 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: Inter Display Medium;
+	src: url('./assets/InterDisplay-Medium.woff2');
+}
+
+.interDisplayMedium {
+	font-family: Inter Display Medium;
+}
 
 ::placeholder {
 	color: #020617 !important;
