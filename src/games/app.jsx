@@ -14,7 +14,6 @@ export default function App(){
 	const [ venueData, setVenueData ] = useState(null);
 	const [ expandedDivs, setExpandedDivs ] = useState(false);
 	const [ logData, setLogData ] = useState([]);
-	const [ selectedYears, setSelectedYears ] = useState([]);
 	const [ filters, setFilters ] = useState({
 		month: '',
 		day: '',
@@ -26,8 +25,18 @@ export default function App(){
 		venue: '',
 		springTraining: '',
 	});
-
-	const availableYears = [];
+	const defaultFilters = {
+		month: [],
+		day: [],
+		year: [],
+		homeTeam: [],
+		roadTeam: [],
+		homeTeamRuns: [],
+		roadTeamRuns: [],
+		venue: [],
+		springTraining: [],
+	}
+	let maxArrayLength = 0;
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -76,6 +85,19 @@ export default function App(){
 
 				return dateA - dateB;
 			})
+			if (data1.length > maxArrayLength) {
+				maxArrayLength = data1.length;
+				data1.forEach((item) => {
+					for (let key of Object.keys(defaultFilters)) {
+						if (item[key] !== undefined && item[key] !== null) {
+							if (!defaultFilters[key].includes(item[key])) {
+								defaultFilters[key].push(item[key]);
+							}
+						}
+					}
+				})
+			}
+			console.log(defaultFilters);
 			// console.log(data1);
 			setGamesData(data1);
 		}
@@ -109,12 +131,6 @@ export default function App(){
 		fetchLogs();
 	}, [gamesData]);
 
-	/**
-	 * @param {any} games is the array of games that is passed through
-	 * to be sorted
-	 * @returns {} returns the sorted array
-	 */
-
 	function handleFilterChange(filterType, value) {
 		setFilters((prevFilters) => ({ ...prevFilters, [filterType]: value}));
 	}
@@ -125,15 +141,6 @@ export default function App(){
 		const lowercaseRoad = game.roadTeam.toLowerCase();
 		const lowercaseHome = game.homeTeam.toLowerCase();
 		return `../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`
-	}
-
-	function getAvailableYears() {
-		if(!gamesData) {
-			return [];
-		}
-
-		const years = Array.from(new Set(gamesData.map((game) => game.year)));
-		return years;
 	}
 
 	/**
@@ -161,11 +168,6 @@ export default function App(){
 	const components = {
 		p: ({ children }) => <Paragraph>{children}</Paragraph>,
 	}
-
-	// function renderGames(gamesArray) {
-	// 	return (
-	// 	)
-	// }
 
 	return (
 		<>
@@ -216,10 +218,10 @@ export default function App(){
 						</div>
 					</div>
 				</div>
-				{console.log(availableYears)}
-				{gamesData !== null && (
-					<MultiSelectDropdown formFieldName={"years"} options={getAvailableYears()}/>
+				{defaultFilters !== null && (
+					<MultiSelectDropdown formFieldName={'year'} options={defaultFilters.year} />
 				)}
+				{/* this dropdown is for the years */}
 			</div>
 			<div className="w-4/5 m-4">
 				<div className="flex-none grid grid-cols-4 rounded-lg p-2">
@@ -295,6 +297,7 @@ export default function App(){
 					}	
 					</div>
 					<div className={`${expandedDivs[index] ? '' : 'hidden'} text-left overflow-scroll flex-1 p-2`}>
+					<hr />
 					<ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
 					{logData[curGame._id]}
 					</ReactMarkdown>
