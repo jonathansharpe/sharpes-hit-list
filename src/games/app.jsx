@@ -15,17 +15,6 @@ export default function App(){
 	const [ expandedDivs, setExpandedDivs ] = useState(false);
 	const [ logData, setLogData ] = useState([]);
 	const [ filters, setFilters ] = useState({
-		month: '',
-		day: '',
-		year: '',
-		homeTeam: '',
-		roadTeam: '',
-		homeTeamRuns: '',
-		roadTeamRuns: '',
-		venue: '',
-		springTraining: '',
-	});
-	const defaultFilters = {
 		month: [],
 		day: [],
 		year: [],
@@ -35,7 +24,18 @@ export default function App(){
 		roadTeamRuns: [],
 		venue: [],
 		springTraining: [],
-	}
+	});
+	const [ defaultFilters, setDefaultFilters ] = useState({
+		month: [],
+		day: [],
+		year: [],
+		homeTeam: [],
+		roadTeam: [],
+		homeTeamRuns: [],
+		roadTeamRuns: [],
+		venue: [],
+		springTraining: [],
+	});
 	let maxArrayLength = 0;
 
 	useEffect(() => {
@@ -97,7 +97,8 @@ export default function App(){
 					}
 				})
 			}
-			console.log(defaultFilters);
+			console.log(filters.springTraining);
+			// console.log(defaultFilters);
 			// console.log(data1);
 			setGamesData(data1);
 		}
@@ -107,9 +108,11 @@ export default function App(){
 	}
 
 	useEffect(() => {
-		fetchGameData();
+		if (filters && Object.keys(filters).length > 0) {
+			fetchGameData();
+		}
 	}, [filters]);
-
+	
 	useEffect(() => {
 		const fetchLogs = async () => {
 			try {
@@ -130,10 +133,6 @@ export default function App(){
 
 		fetchLogs();
 	}, [gamesData]);
-
-	function handleFilterChange(filterType, value) {
-		setFilters((prevFilters) => ({ ...prevFilters, [filterType]: value}));
-	}
 
 	function makeLogFileName(game) {
 		const formattedMonth = game.month.toString().padStart(2, '0');
@@ -169,6 +168,20 @@ export default function App(){
 		p: ({ children }) => <Paragraph>{children}</Paragraph>,
 	}
 
+	const handleSelectionChange = (fieldName, selectedValues) => {
+		const filterString = JSON.stringify(filters[fieldName]);
+		const selectedValuesString = JSON.stringify(selectedValues);
+
+		if (selectedValuesString !== filterString) {
+			setFilters((prevFilters) => {
+				return {...prevFilters, [fieldName]: selectedValues};
+			})
+		}
+		else {
+			return;
+		}
+	};
+
 	return (
 		<>
 		<PageTitle title={"Games"} />
@@ -184,10 +197,10 @@ export default function App(){
 									name="springTraining"
 									value="allGames"
 									className="peer hidden"
-									checked={filters.springTraining === ''}
-									onChange={() => handleFilterChange('springTraining', '')}
+									checked={filters.springTraining.length == 0}
+									onChange={() => handleSelectionChange('springTraining', [])}
 								/>
-								<div className="peer-checked:bg-blue-500 peer-checked:text-white p-2 rounded-md">Include All Games</div>
+								<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Include All Games</div>
 							</label>
 						</div>
 						<div>
@@ -197,10 +210,10 @@ export default function App(){
 									name="springTraining"
 									value="true"
 									className="peer hidden"
-									checked={filters.springTraining === true}
-									onChange={() => handleFilterChange('springTraining', true)}
+									checked={filters.springTraining.includes(true)}
+									onChange={() => handleSelectionChange('springTraining', [true])}
 								/>
-								<div className="peer-checked:bg-blue-500 peer-checked:text-white p-2 rounded-md">Spring Training Only</div>
+								<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Spring Training Only</div>
 							</label>
 						</div>
 						<div>
@@ -210,18 +223,28 @@ export default function App(){
 									name="springTraining"
 									value="false"
 									className="peer hidden"
-									checked={filters.springTraining === false}
-									onChange={() => handleFilterChange('springTraining', false)}
+									checked={filters.springTraining.includes(false)}
+									onChange={() => handleSelectionChange('springTraining', [false])}
 								/>
-								<div className="peer-checked:bg-blue-500 peer-checked:text-white rounded-md p-2">Regular Season Only</div>
+								<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 rounded-md p-2">Regular Season Only</div>
 							</label>
 						</div>
 					</div>
 				</div>
-				{defaultFilters !== null && (
-					<MultiSelectDropdown formFieldName={'year'} options={defaultFilters.year} />
+				<div className="grid grid-cols-1">
+				{defaultFilters.year.length !== null && (
+					<MultiSelectDropdown fieldName="year" options={defaultFilters.year} selectedValues={filters.year} onSelectionChange={handleSelectionChange}/>
+				)}
+				<br />
+				{defaultFilters.month.length !== null && (
+					<MultiSelectDropdown fieldName="month" options={defaultFilters.month} selectedValues={filters.month} onSelectionChange={handleSelectionChange}/>
+				)}
+				<br />
+				{defaultFilters.homeTeam.length !== null && (
+					<MultiSelectDropdown fieldName="homeTeam" options={defaultFilters.homeTeam} selectedValues={filters.homeTeam} onSelectionChange={handleSelectionChange}/>
 				)}
 				{/* this dropdown is for the years */}
+				</div>
 			</div>
 			<div className="w-4/5 m-4">
 				<div className="flex-none grid grid-cols-4 rounded-lg p-2">
@@ -269,7 +292,7 @@ export default function App(){
 						<button
 						onClick={() => handleExpansion(index)}
 						type="button"
-						className="p-1 text-center w-full max-w-sm rounded rounded-md bg-indigo-500 hover:bg-indigo-300 transition-all text-white"
+						className="p-1 text-center w-full max-w-sm rounded rounded-md hover:bg-blue-100 transition-all border"
 						>
 						{
 							expandedDivs[index] ?
@@ -278,11 +301,11 @@ export default function App(){
 						}
 						</button>
 						:
-						<div className="flex-1 grid grid-cols-2 rounded rounded-md bg-indigo-500 max-w-md">
+						<div className="flex-1 grid grid-cols-2 rounded rounded-md max-w-md border">
 						<button
 						onClick={() => handleExpansion(index)}
 						type="button"
-						className="p-1 rounded-l-md hover:bg-indigo-300 transition-all text-white flex justify-center items-center"
+						className="p-1 rounded-l-md hover:bg-blue-100 transition-all flex justify-center items-center"
 						>
 						{
 							expandedDivs[index] ?
@@ -290,7 +313,7 @@ export default function App(){
 							"Game Log"
 						}
 						</button>
-						<a className="p-1 text-center hover:bg-indigo-300 rounded-r-md transition-all text-white flex justify-center items-center" href={makeUrl(curGame)} target="_blank">
+						<a className="p-1 text-center hover:bg-blue-100 rounded-r-md transition-all flex justify-center items-center" href={makeUrl(curGame)} target="_blank">
 						Boxscore
 						</a>
 						</div>
@@ -304,6 +327,11 @@ export default function App(){
 					</div>
 					</div>
 					</>
+				);
+			} 
+			else {
+				return (
+					<div>No games match query</div>
 				);
 			}
 		})
