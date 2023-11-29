@@ -164,6 +164,19 @@ export default function App(){
 		}));
 	}
 
+	function resetFilters() {
+		setFilters((prevFilters) => {
+			const newFilters = { ...prevFilters };
+
+			for (const field in newFilters) {
+				if (Object.hasOwnProperty.call(newFilters, field)) {
+					newFilters[field] = [];
+				}
+			}
+			return newFilters;
+		});
+	}
+
 	const components = {
 		p: ({ children }) => <Paragraph>{children}</Paragraph>,
 	}
@@ -187,63 +200,128 @@ export default function App(){
 		<PageTitle title={"Games"} />
 		<Essentials>
 		<div className="relative flex max-w-screen-xl mx-auto interDisplayMedium">
-			<div className="w-1/5 border border-2 p-2 m-4 bg-zinc-50 rounded-lg drop-shadow-lg">
-				<div className="grid">
-					<div className="grid-cols-3">
-						<div>
-							<label className="block cursor-pointer">
-								<input
-									type="radio"
-									name="springTraining"
-									value="allGames"
-									className="peer hidden"
-									checked={filters.springTraining.length == 0}
-									onChange={() => handleSelectionChange('springTraining', [])}
-								/>
-								<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Include All Games</div>
-							</label>
-						</div>
-						<div>
-							<label className="block cursor-pointer">
-								<input
-									type="radio"
-									name="springTraining"
-									value="true"
-									className="peer hidden"
-									checked={filters.springTraining.includes(true)}
-									onChange={() => handleSelectionChange('springTraining', [true])}
-								/>
-								<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Spring Training Only</div>
-							</label>
-						</div>
-						<div>
-							<label className="block cursor-pointer">
-								<input
-									type="radio"
-									name="springTraining"
-									value="false"
-									className="peer hidden"
-									checked={filters.springTraining.includes(false)}
-									onChange={() => handleSelectionChange('springTraining', [false])}
-								/>
-								<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 rounded-md p-2">Regular Season Only</div>
-							</label>
-						</div>
+			<div className="w-1/5 border border-2 p-2 m-4 bg-zinc-50 rounded-lg drop-shadow-lg h-fit">
+				<div className="border-2 rounded-md">
+					<div>
+						<label className="block cursor-pointer">
+							<input
+								type="radio"
+								name="springTraining"
+								value="allGames"
+								className="peer hidden"
+								checked={filters.springTraining.length == 0}
+								onChange={() => handleSelectionChange('springTraining', [])}
+							/>
+							<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Include All Games</div>
+						</label>
+					</div>
+					<div>
+						<label className="block cursor-pointer">
+							<input
+								type="radio"
+								name="springTraining"
+								value="true"
+								className="peer hidden"
+								checked={filters.springTraining.includes(true)}
+								onChange={() => handleSelectionChange('springTraining', [true])}
+							/>
+							<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Spring Training Only</div>
+						</label>
+					</div>
+					<div>
+						<label className="block cursor-pointer">
+							<input
+								type="radio"
+								name="springTraining"
+								value="false"
+								className="peer hidden"
+								checked={filters.springTraining.includes(false)}
+								onChange={() => handleSelectionChange('springTraining', [false])}
+							/>
+							<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 rounded-md p-2">Regular Season Only</div>
+						</label>
 					</div>
 				</div>
-				<div className="grid grid-cols-1">
+				<div className="grid grid-cols-1 border-2 rounded-md">
 				{defaultFilters.year.length !== null && (
-					<MultiSelectDropdown fieldName="year" options={defaultFilters.year} selectedValues={filters.year} onSelectionChange={handleSelectionChange}/>
+					<MultiSelectDropdown
+						fieldName="year"
+						options={defaultFilters.year}
+						selectedValues={filters.year}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
 				)}
-				<br />
 				{defaultFilters.month.length !== null && (
-					<MultiSelectDropdown fieldName="month" options={defaultFilters.month} selectedValues={filters.month} onSelectionChange={handleSelectionChange}/>
+					<MultiSelectDropdown
+						fieldName="month"
+						options={defaultFilters.month}
+						selectedValues={filters.month}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
 				)}
-				<br />
-				{defaultFilters.homeTeam.length !== null && (
-					<MultiSelectDropdown fieldName="homeTeam" options={defaultFilters.homeTeam} selectedValues={filters.homeTeam} onSelectionChange={handleSelectionChange}/>
+				{defaultFilters.day.length !== null && (
+					<MultiSelectDropdown
+						fieldName="day"
+						options={defaultFilters.day}
+						selectedValues={filters.day}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
+				)}
+				{defaultFilters.homeTeam.length !== null && teamsData !== null && (
+					<MultiSelectDropdown
+						fieldName="homeTeam"
+						options={defaultFilters.homeTeam}
+						selectedValues={filters.homeTeam}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
+				)}
+				{defaultFilters.roadTeam.length !== null && teamsData !== null && (
+					<MultiSelectDropdown
+						fieldName="roadTeam"
+						options={defaultFilters.roadTeam}
+						selectedValues={filters.roadTeam}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
+				)}
+				{defaultFilters.homeTeamRuns.length !== null && (
+					<MultiSelectDropdown
+						fieldName="homeTeamRuns"
+						options={defaultFilters.homeTeamRuns}
+						selectedValues={filters.homeTeamRuns}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
+				)}
+				{defaultFilters.roadTeamRuns.length !== null && (
+					<MultiSelectDropdown
+						fieldName="roadTeamRuns"
+						options={defaultFilters.roadTeamRuns}
+						selectedValues={filters.roadTeamRuns}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
+				)}
+				{defaultFilters.venue.length !== null && (
+					<MultiSelectDropdown
+						fieldName="venue"
+						options={defaultFilters.venue}
+						selectedValues={filters.venue}
+						onSelectionChange={handleSelectionChange}
+						teamsArr={teamsData}
+					/>
 				)}
 				{/* this dropdown is for the years */}
+				</div>
+				<div className="border-2 rounded-md">
+					<button
+						className="text-left p-2 hover:bg-blue-100 transition-all rounded-md w-full"
+						onClick={resetFilters}
+					>Clear Filters</button>
 				</div>
 			</div>
 			<div className="w-4/5 m-4">
@@ -252,7 +330,12 @@ export default function App(){
 		{gamesData.map((curGame, index) => {
 			if (curGame) {
 				const curDate = new Date(curGame.year, curGame.month - 1, curGame.day);
-				const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+				const options = {
+					weekday: 'short',
+					month: 'short',
+					day: 'numeric',
+					year: 'numeric',
+				};
 				const formattedDate = new Intl.DateTimeFormat('en-US', options).format(curDate);
 				return (
 					<>
@@ -265,9 +348,16 @@ export default function App(){
 					<div className="p-1 border rounded-tl-md">
 					{teamsData.map((team) => {
 						if (team.abbreviation === curGame.roadTeam) {
-							return (
-								team.fullName
-							)
+							if (curGame.roadTeam === "CLE" && curGame.year < 2022) {
+								return (
+									"Cleveland Indians"
+								)
+							}
+							else {
+								return (
+									team.fullName
+								)
+							}
 						}
 					})}
 					</div>

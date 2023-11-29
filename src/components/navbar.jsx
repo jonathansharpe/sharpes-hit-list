@@ -47,11 +47,11 @@ export default function Navbar() {
 
 	return (
 		<nav className='font-manrope sticky flex top-0 font-bold bg-zinc-50 rounded-b-lg drop-shadow-lg items-center z-10'>
-			<a className='p-4 rounded-md hover:bg-zinc-200 transition-all font-syne text-xl border border-gray-400' href='/'>Sharpe's Hit List</a>
-			<a className='p-4 rounded-md hover:bg-zinc-200 transition-all' href='/games/index.html'>Games</a>
+			<a className='p-4 rounded-md hover:bg-blue-100 transition-all font-syne text-xl border border-gray-400' href='/'>Sharpe's Hit List</a>
+			<a className='p-4 rounded-md hover:bg-blue-100 transition-all' href='/games/index.html'>Games</a>
 			<div ref={mlbDropdownRef}>
 				<button
-					className='p-4 rounded-md hover:bg-zinc-200 transition-all relative z-30'
+					className='p-4 rounded-md hover:bg-blue-100 transition-all relative z-30'
 					onClick={() => setMlbIsOpen(!isMlbOpen)}
 				>MLB Parks</button>
 				<div className={`${isMlbOpen ? 'block' : 'invisible'}`}>
@@ -64,7 +64,7 @@ export default function Navbar() {
 			</div>
 			<div ref={stDropdownRef}>
 				<button
-					className='p-4 rounded-md hover:bg-zinc-200 transition-all'
+					className='p-4 rounded-md hover:bg-blue-100 transition-all'
 					onClick={() => setStIsOpen(!isStOpen)}
 				>Spring Training Parks</button>
 				<div className={`${isStOpen ? 'block' : 'invisible'} `}>
