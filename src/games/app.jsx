@@ -97,7 +97,7 @@ export default function App(){
 					}
 				})
 			}
-			console.log(filters.springTraining);
+			// console.log(filters.springTraining);
 			// console.log(defaultFilters);
 			// console.log(data1);
 			setGamesData(data1);
