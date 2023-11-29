@@ -8,7 +8,7 @@ const Dropdown = ({ isOpen, setIsOpen, parks }) => {
 	const convertToUrl = (venueName) => {
 		let retVal = venueName.replaceAll(" ", "-");
 		retVal = retVal.toLowerCase();
-		retVal = "/parks/" + retVal + "/index.html";
+		retVal = "/src/parks/" + retVal + "/index.html";
 		return retVal;
 	};
 
