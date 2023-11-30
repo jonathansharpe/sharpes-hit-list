@@ -1,3 +1,4 @@
+// generatePages.js
 const fs = require('fs');
 const path = require('path');
 
@@ -19,8 +20,9 @@ function findHtmlFiles(dir, fileList = []) {
 }
 
 const pages = findHtmlFiles(srcPath).reduce((acc, filePath) => {
-  const entryName = path.relative(srcPath, filePath).replace(/\\/g, '/').replace('/index.html', '').replace('/home/jonathan/git/sharpes-hit-list/src/', 'root');
-  acc[entryName] = filePath;
+  const relativePath = path.relative(srcPath, filePath).replace(/\\/g, '/');
+  const entryName = relativePath.replace('/index.html', '');
+  acc[entryName] = `./src/${relativePath}`;
   return acc;
 }, {});
 
@@ -30,6 +32,16 @@ const viteConfig = {
       input: pages,
     },
   },
+  server: {
+    open: true,
+  },
 };
 
-fs.writeFileSync(path.join(__dirname, 'test.config.js'), `import { defineConfig } from 'vite';\n\nexport default defineConfig(${JSON.stringify(viteConfig, null, 2)});`);
+fs.writeFileSync(
+  path.join(__dirname, 'test.config.js'),
+  `import { defineConfig } from 'vite';\n\nexport default defineConfig(${JSON.stringify(
+    viteConfig,
+    null,
+    2
+  )});`
+);
