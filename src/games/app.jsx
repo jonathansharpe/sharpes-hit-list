@@ -41,10 +41,10 @@ export default function App(){
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response2 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/teams/getAllTeams");
+				const response2 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/teams/getAllTeams", {mode: 'cors'});
 				const data2 = await response2.json();
 				setTeamsData(data2);
-				const response3 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues");
+				const response3 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues", {mode: 'cors'});
 				const data3 = await response3.json();
 				setVenueData(data3);
 			} catch (error) {
@@ -73,6 +73,7 @@ export default function App(){
 			// console.log(filters);
 			const response1 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/games/getGames", {
 				method: "POST",
+				mode: 'cors',
 				headers: {
 					"Content-Type": "application/json",
 				},
