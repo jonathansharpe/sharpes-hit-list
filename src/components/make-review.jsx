@@ -14,6 +14,8 @@ export default function GetReview({venueName}) {
 				const response = await fetch('./review.md');
 				const data = await response.text();
 				setReview(data);
+				// const response = await import('./review.md');
+				// setReview(response.default);
 			}
 			catch (error) {
 				console.error(`Error fetching Markdown content; ${error}`);

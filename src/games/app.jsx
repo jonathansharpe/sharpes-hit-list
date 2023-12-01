@@ -341,7 +341,7 @@ export default function App(){
 					<>
 					<div className={`${expandedDivs[index] ? "flex flex-col scale-125 mx-auto inset-0 m-32 fixed w-8/12 max-w-screen-md z-30" : "scale-100 z-0 relative m-2"} text-sm p-2 bg-zinc-50 rounded-lg transition-all ease-out duration-150 drop-shadow-lg`}>
 					<div className={`${expandedDivs[index] ? 'h-72' : 'h-20' } relative overflow-hidden rounded-md w-full bg-center bg-cover`}>
-					<img src={`../images/${curGame.venue}.jpg`} alt={curGame.venue} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
+					<img src={`/images/${curGame.venue}.jpg`} alt={curGame.venue} className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'/>
 					</div>
 					<div className="p-1 font-bold text-lg mx-auto">{formattedDate}</div>
 					<div className="grid grid-cols-[5fr,1fr] mx-auto max-w-md w-full mb-1">

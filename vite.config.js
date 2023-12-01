@@ -9,6 +9,11 @@ const outDir = resolve(__dirname, 'dist');
 export default defineConfig({
 	root,
 	plugins: [react()],
+	resolve: {
+		alias: {
+			src: "/src",
+		}
+	},
 	build: {
 		outDir,
 		emptyOutDir: true,
