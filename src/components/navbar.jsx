@@ -15,7 +15,12 @@ export default function Navbar() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues", {mode: 'cors'});
+				const response = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues", {
+					// mode: 'cors',
+					// headers: {
+					// 	"Access-Control-Allow-Origin": "https://jsharpe.xyz"
+					// }
+				});
 				const data = await response.json();
 				setJsonData(data);
 				// console.log(data);
