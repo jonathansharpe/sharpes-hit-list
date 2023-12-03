@@ -365,6 +365,11 @@ export default function App(){
 									"Cleveland Indians"
 								)
 							}
+							else if (curGame.roadTeam === "TBA" && curGame.year < 2008) {
+								return (
+									"Tampa Bay Devil Rays"
+								)
+							}
 							else {
 								return (
 									team.fullName
