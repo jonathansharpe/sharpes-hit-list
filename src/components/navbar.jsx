@@ -30,7 +30,9 @@ export default function Navbar() {
 				setLoading(false);
 			}
 		};
-		fetchData();
+		if (isMlbOpen == true || isStOpen == true) {
+			fetchData();
+		}
 
 		const handleClickOutside = (event) => {
 			if (
