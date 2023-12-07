@@ -137,6 +137,7 @@ export default function App(){
 					});
 					const logs = await Promise.all(logPromises)
 					setLogData(Object.assign({}, ...logs));
+					console.log(logData);
 				}
 			} catch (error) {
 				console.error(`Error fetching logs; ${error}`);
@@ -337,7 +338,7 @@ export default function App(){
 				</div>
 			</div>
 			<div className="w-4/5 m-4">
-				<div className="flex-none grid grid-cols-4 rounded-lg p-2">
+				<div className="flex-none grid min-[1280px]:grid-cols-4 min-[768px]:grid-cols-2 max-[320px]:grid-cols-1 rounded-lg p-2">
 					<div id="backdrop" className={`${Object.values(expandedDivs).includes(true) ? '' : 'hidden'} bg-gray-900 bg-opacity-60 fixed left-0 top-0 w-screen h-screen backdrop-blur z-20`}></div>
 		{gamesData.map((curGame, index) => {
 			if (curGame) {
