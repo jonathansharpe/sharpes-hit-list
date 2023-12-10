@@ -208,6 +208,38 @@ export default function App(){
 		}
 	};
 
+	function makeSelectionBox(checkedValue, onChangeValue, labelText, fieldValue) {
+		return (
+			<div>
+				<label className="block cursor-pointer">
+					<input
+						type="radio"
+						name="springTraining"
+						value={fieldValue}
+						className="peer hidden"
+						checked={eval(checkedValue)}
+						onChange={() => handleSelectionChange('springTraining', onChangeValue)}
+					/>
+					<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">{labelText}</div>
+				</label>
+			</div>
+		)
+	}
+
+	function makeFilterDropdown(field) {
+		return (
+			defaultFilters[field] !== null && (
+				<MultiSelectDropdown
+					fieldName={field}
+					options={defaultFilters[field]}
+					selectedValues={filters[field]}
+					onSelectionChange={handleSelectionChange}
+					teamsArr={teamsData}
+				/>
+			)
+		)
+	}
+
 	return (
 		<>
 		<PageTitle title={"Games"} />
@@ -215,120 +247,21 @@ export default function App(){
 		<div className="relative flex max-w-screen-xl mx-auto interDisplayMedium">
 			<div className="w-1/5 border border-2 p-2 m-4 bg-zinc-50 rounded-lg drop-shadow-lg h-fit">
 				<div className="border-2 rounded-md">
-					<div>
-						<label className="block cursor-pointer">
-							<input
-								type="radio"
-								name="springTraining"
-								value="allGames"
-								className="peer hidden"
-								checked={filters.springTraining.length == 0}
-								onChange={() => handleSelectionChange('springTraining', [])}
-							/>
-							<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Include All Games</div>
-						</label>
-					</div>
-					<div>
-						<label className="block cursor-pointer">
-							<input
-								type="radio"
-								name="springTraining"
-								value="true"
-								className="peer hidden"
-								checked={filters.springTraining.includes(true)}
-								onChange={() => handleSelectionChange('springTraining', [true])}
-							/>
-							<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 p-2 rounded-md">Spring Training Only</div>
-						</label>
-					</div>
-					<div>
-						<label className="block cursor-pointer">
-							<input
-								type="radio"
-								name="springTraining"
-								value="false"
-								className="peer hidden"
-								checked={filters.springTraining.includes(false)}
-								onChange={() => handleSelectionChange('springTraining', [false])}
-							/>
-							<div className="peer-checked:bg-blue-200 transition-all hover:bg-blue-100 rounded-md p-2">Regular Season Only</div>
-						</label>
-					</div>
+					{makeSelectionBox('filters.springTraining && filters.springTraining.length == 0', [], "Include All Games", "allGames")}
+					{makeSelectionBox('filters.springTraining && filters.springTraining.includes(false)', [false], "Regular Season Only", "false")}
+					{makeSelectionBox('filters.springTraining && filters.springTraining.includes(true)', [true], "Spring Training Only", "true")}
+		
 				</div>
 				<div className="grid grid-cols-1 border-2 rounded-md">
-				{defaultFilters.year.length !== null && (
-					<MultiSelectDropdown
-						fieldName="year"
-						options={defaultFilters.year}
-						selectedValues={filters.year}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.month.length !== null && (
-					<MultiSelectDropdown
-						fieldName="month"
-						options={defaultFilters.month}
-						selectedValues={filters.month}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.day.length !== null && (
-					<MultiSelectDropdown
-						fieldName="day"
-						options={defaultFilters.day}
-						selectedValues={filters.day}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.homeTeam.length !== null && teamsData !== null && (
-					<MultiSelectDropdown
-						fieldName="homeTeam"
-						options={defaultFilters.homeTeam}
-						selectedValues={filters.homeTeam}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.roadTeam.length !== null && teamsData !== null && (
-					<MultiSelectDropdown
-						fieldName="roadTeam"
-						options={defaultFilters.roadTeam}
-						selectedValues={filters.roadTeam}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.homeTeamRuns.length !== null && (
-					<MultiSelectDropdown
-						fieldName="homeTeamRuns"
-						options={defaultFilters.homeTeamRuns}
-						selectedValues={filters.homeTeamRuns}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.roadTeamRuns.length !== null && (
-					<MultiSelectDropdown
-						fieldName="roadTeamRuns"
-						options={defaultFilters.roadTeamRuns}
-						selectedValues={filters.roadTeamRuns}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{defaultFilters.venue.length !== null && (
-					<MultiSelectDropdown
-						fieldName="venue"
-						options={defaultFilters.venue}
-						selectedValues={filters.venue}
-						onSelectionChange={handleSelectionChange}
-						teamsArr={teamsData}
-					/>
-				)}
-				{/* this dropdown is for the years */}
+					{makeFilterDropdown("year")}
+					{makeFilterDropdown("month")}
+					{makeFilterDropdown("day")}
+					{makeFilterDropdown("homeTeam")}
+					{makeFilterDropdown("roadTeam")}
+					{makeFilterDropdown("homeTeamRuns")}
+					{makeFilterDropdown("roadTeamRuns")}
+					{makeFilterDropdown("venue")}
+					{/* this dropdown is for the years */}
 				</div>
 				<div className="border-2 rounded-md">
 					<button
