@@ -11,7 +11,6 @@ export default function App(){
 		<MainTextDiv>
 		<ImageHeader imageLink={homeImg} headerText={'Sharpe\'s Hit List'} />
 		
-		<SectionHeader>NOTICE: This website won't be 100% functional for the next little while, as my server location is moving. This notice will be removed once the website is fully operational again. Thank you for understanding.</SectionHeader>
 		<SectionHeader>Introduction</SectionHeader>
 
 		<Paragraph>Baseball has been forever present in my life in one
