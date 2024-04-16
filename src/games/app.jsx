@@ -152,6 +152,7 @@ export default function App(){
 		const formattedDay = game.day.toString().padStart(2, '0');
 		const lowercaseRoad = game.roadTeam.toLowerCase();
 		const lowercaseHome = game.homeTeam.toLowerCase();
+		// console.log(`../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`);
 		return `../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`
 	}
 
