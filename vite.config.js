@@ -24,6 +24,7 @@ export default defineConfig({
 			input: {
 				"games": "./src/games/index.html",
 				"index.html": "./src/index.html",
+				"parks/american-family-field": "./src/parks/american-family-field/index.html",
 				"parks/angel-stadium": "./src/parks/angel-stadium/index.html",
 				"parks/camelback-ranch": "./src/parks/camelback-ranch/index.html",
 				"parks/dodger-stadium": "./src/parks/dodger-stadium/index.html",
