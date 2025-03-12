@@ -9,6 +9,26 @@ import path from 'path'
 const root = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'dist');
 
+// Function to get base routes (index.html and direct subdirectories of src)
+function getBaseRoutes() {
+	const srcDir = path.join(__dirname, 'src');
+	const routes = {
+		"index.html": "./src/index.html" // Always include the main index.html
+	};
+
+	// Add routes for direct subdirectories that contain index.html
+	fs.readdirSync(srcDir, { withFileTypes: true })
+		.filter(dirent => dirent.isDirectory())
+		.forEach(dirent => {
+			const indexPath = path.join(srcDir, dirent.name, 'index.html');
+			if (fs.existsSync(indexPath)) {
+				routes[dirent.name] = `./src/${dirent.name}/index.html`;
+			}
+		});
+
+	return routes;
+}
+
 // Function to get all park directories
 function getParkRoutes() {
 	const parksDir = path.join(__dirname, 'src/parks');
@@ -38,8 +58,7 @@ export default defineConfig({
 		sourcemap: true,
 		rollupOptions: {
 			input: {
-				"games": "./src/games/index.html",
-				"index.html": "./src/index.html",
+				...getBaseRoutes(),
 				...getParkRoutes()
 			}
 		}
