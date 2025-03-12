@@ -1,11 +1,27 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import fs from 'fs'
+import path from 'path'
 
 // testing something
 
 const root = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'dist');
+
+// Function to get all park directories
+function getParkRoutes() {
+	const parksDir = path.join(__dirname, 'src/parks');
+	const parkFolders = fs.readdirSync(parksDir, { withFileTypes: true })
+		.filter(dirent => dirent.isDirectory())
+		.map(dirent => dirent.name);
+
+	const routes = {};
+	parkFolders.forEach(folder => {
+		routes[`parks/${folder}`] = `./src/parks/${folder}/index.html`;
+	});
+	return routes;
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,25 +40,7 @@ export default defineConfig({
 			input: {
 				"games": "./src/games/index.html",
 				"index.html": "./src/index.html",
-				"parks/american-family-field": "./src/parks/american-family-field/index.html",
-				"parks/angel-stadium": "./src/parks/angel-stadium/index.html",
-				"parks/camelback-ranch": "./src/parks/camelback-ranch/index.html",
-				"parks/dodger-stadium": "./src/parks/dodger-stadium/index.html",
-				"parks/fenway-park": "./src/parks/fenway-park/index.html",
-				"parks/globe-life-field": "./src/parks/globe-life-field/index.html",
-				"parks/goodyear-ballpark": "./src/parks/goodyear-ballpark/index.html",
-				"parks/guaranteed-rate-field": "./src/parks/guaranteed-rate-field/index.html",
-				"parks/kauffman-stadium": "./src/parks/kauffman-stadium/index.html",
-				"parks/minute-maid-park": "./src/parks/minute-maid-park/index.html",
-				"parks/oakland-coliseum": "./src/parks/oakland-coliseum/index.html",
-				"parks/oracle-park": "./src/parks/oracle-park/index.html",
-				"parks/peoria-stadium": "./src/parks/peoria-stadium/index.html",
-				"parks/petco-park": "./src/parks/petco-park/index.html",
-				"parks/surprise-stadium": "./src/parks/surprise-stadium/index.html",
-				"parks/t-mobile-park": "./src/parks/t-mobile-park/index.html",
-				"parks/target-field": "./src/parks/target-field/index.html",
-				"parks/wrigley-field": "./src/parks/wrigley-field/index.html",
-				"parks/yankee-stadium-ii": "./src/parks/yankee-stadium-ii/index.html"
+				...getParkRoutes()
 			}
 		}
 	},
