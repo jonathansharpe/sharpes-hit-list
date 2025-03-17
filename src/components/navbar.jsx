@@ -15,24 +15,23 @@ export default function Navbar() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues", {
-					// mode: 'cors',
-					// headers: {
-					// 	"Access-Control-Allow-Origin": "https://jsharpe.xyz"
-					// }
+				console.log('Fetching from:', "/api/venues/getAllVenues");
+				const response = await fetch("/api/venues/getAllVenues", {
+					mode: 'cors'
 				});
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
 				const data = await response.json();
 				setJsonData(data);
-				// console.log(data);
 			} catch (error) {
 				console.error(`Error fetching data: ${error}`);
 			} finally {
 				setLoading(false);
 			}
 		};
-		if (isMlbOpen == true || isStOpen == true) {
-			fetchData();
-		}
+
+		fetchData(); // Fetch data when component mounts
 
 		const handleClickOutside = (event) => {
 			if (

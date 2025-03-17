@@ -63,4 +63,14 @@ export default defineConfig({
 			}
 		}
 	},
+	server: {
+		proxy: {
+			'/api': {
+				target: 'https://localhost:3000',
+				changeOrigin: true,
+				secure: false,
+				ws: true
+			}
+		}
+	}
 })
