@@ -15,14 +15,36 @@ export default function Navbar() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				console.log('Fetching from:', "/api/venues/getAllVenues");
+				// console.log('Fetching from:', "/api/venues/getAllVenues");
 				const response = await fetch("/api/venues/getAllVenues", {
-					mode: 'cors'
+					mode: 'cors',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					}
 				});
+				
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
-				const data = await response.json();
+				
+				// Log response headers
+				// console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+				
+				// Log the raw response text first
+				const text = await response.text();
+				// console.log('Raw response:', text);
+				
+				// Try to parse the JSON
+				let data;
+				try {
+					data = JSON.parse(text);
+				} catch (parseError) {
+					console.error('JSON parse error:', parseError);
+					throw new Error('Invalid JSON response from server');
+				}
+				
+				// console.log('Parsed data:', data);
 				setJsonData(data);
 			} catch (error) {
 				console.error(`Error fetching data: ${error}`);
