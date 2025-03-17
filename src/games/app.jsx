@@ -131,16 +131,19 @@ export default function App(){
 				if (gamesData) {
 					const logPromises = gamesData.map(async (game) => {
 						const logFileName = makeLogFileName(game);
-						const logResponse = await fetch(logFileName);
-						const logContent = await logResponse.text();
-						return { [game._id]: logContent };
+						try {
+							const module = await import(logFileName);
+							return { [game._id]: module.default };
+						} catch (error) {
+							console.error(`Error loading log file ${logFileName}:`, error);
+							return { [game._id]: '' };
+						}
 					});
-					const logs = await Promise.all(logPromises)
+					const logs = await Promise.all(logPromises);
 					setLogData(Object.assign({}, ...logs));
-					console.log(logData);
 				}
 			} catch (error) {
-				console.error(`Error fetching logs; ${error}`);
+				console.error(`Error fetching logs: ${error}`);
 			}
 		};
 
@@ -152,8 +155,7 @@ export default function App(){
 		const formattedDay = game.day.toString().padStart(2, '0');
 		const lowercaseRoad = game.roadTeam.toLowerCase();
 		const lowercaseHome = game.homeTeam.toLowerCase();
-		// console.log(`../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`);
-		return `../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`
+		return `../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`;
 	}
 
 	/**

@@ -46,10 +46,25 @@ function getParkRoutes() {
 // https://vitejs.dev/config/
 export default defineConfig({
 	root,
-	plugins: [react()],
+	plugins: [
+		react(),
+		{
+			name: 'markdown-loader',
+			transform(code, id) {
+				if (id.endsWith('.md')) {
+					return {
+						code: `export default ${JSON.stringify(code)}`,
+						map: null
+					};
+				}
+			}
+		}
+	],
 	resolve: {
 		alias: {
 			src: "/src",
+			images: "/src/images",
+			gameLogs: "/src/game-logs"
 		}
 	},
 	build: {
