@@ -8,6 +8,9 @@ import MainTextDiv from './../components/main-text-div.jsx';
 import PageTitle from './../components/page-title.jsx';
 import MultiSelectDropdown from './../components/multi-select-dropdown.jsx';
 
+// Define API_BASE_URL directly in this file
+const API_BASE_URL = import.meta.env.VITE_API_BASEURL;
+
 export default function App(){
 	const [ gamesData, setGamesData ] = useState(null);
 	const [ teamsData, setTeamsData ] = useState(null);
@@ -41,10 +44,10 @@ export default function App(){
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response2 = await fetch(`${import.meta.env.VITE_API_BASEURL || 'https://localhost:3000'}/api/teams/getAllTeams`);
+				const response2 = await fetch(`${API_BASE_URL}/api/teams/getAllTeams`);
 				const data2 = await response2.json();
 				setTeamsData(data2);
-				const response3 = await fetch(`${import.meta.env.VITE_API_BASEURL || 'https://localhost:3000'}/api/venues/getAllVenues`);
+				const response3 = await fetch(`${API_BASE_URL}/api/venues/getAllVenues`);
 				const data3 = await response3.json();
 				setVenueData(data3);
 			} catch (error) {
@@ -70,10 +73,9 @@ export default function App(){
 
 	async function fetchGameData() {
 		try {
-			const apiBaseUrl = import.meta.env.VITE_API_BASEURL || 'https://localhost:3000';
-			console.log('Current API Base URL:', apiBaseUrl);
+			console.log('Current API Base URL:', API_BASE_URL);
 			console.log('Environment:', import.meta.env.MODE);
-			const response1 = await fetch(`${apiBaseUrl}/api/games/getGames`, {
+			const response1 = await fetch(`${API_BASE_URL}/api/games/getGames`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

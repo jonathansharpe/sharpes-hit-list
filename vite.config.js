@@ -101,6 +101,9 @@ export default defineConfig(({ mode }) => {
 					}
 				}
 			}
+		},
+		define: {
+			'import.meta.env.VITE_API_BASEURL': JSON.stringify(env.VITE_API_BASEURL || 'https://localhost:3000')
 		}
 	};
 });
