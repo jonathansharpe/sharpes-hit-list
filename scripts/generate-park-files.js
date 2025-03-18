@@ -2,18 +2,28 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import https from 'https';
+import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Only load from .env.development if VITE_API_BASEURL is not already set
+if (!process.env.VITE_API_BASEURL) {
+    dotenv.config({ path: path.resolve(__dirname, '..', '.env.development') });
+}
+
+// Get the API base URL from environment variables
+const API_BASE_URL = new URL(process.env.VITE_API_BASEURL);
 
 // Get the list of parks from the venues API
 async function getParks() {
     return new Promise((resolve, reject) => {
         const options = {
-            hostname: 'localhost',
-            port: 3000,
+            hostname: API_BASE_URL.hostname,
+            port: API_BASE_URL.port || (API_BASE_URL.protocol === 'https:' ? 443 : 80),
             path: '/api/venues/getAllVenues',
             method: 'GET',
+            protocol: API_BASE_URL.protocol,
             rejectUnauthorized: false,
             headers: {
                 'Accept': 'application/json'

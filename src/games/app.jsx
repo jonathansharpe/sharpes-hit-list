@@ -41,20 +41,10 @@ export default function App(){
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response2 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/teams/getAllTeams", {
-					// mode: 'cors',
-					// headers: {
-					// 	"Access-Control-Allow-Origin": "https://jsharpe.xyz"
-					// }
-				});
+				const response2 = await fetch(`${import.meta.env.VITE_API_BASEURL || 'https://localhost:3000'}/api/teams/getAllTeams`);
 				const data2 = await response2.json();
 				setTeamsData(data2);
-				const response3 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/venues/getAllVenues", {
-					// mode: 'cors',
-					// headers: {
-					// 	"Access-Control-Allow-Origin": "https://jsharpe.xyz"
-					// }
-				});
+				const response3 = await fetch(`${import.meta.env.VITE_API_BASEURL || 'https://localhost:3000'}/api/venues/getAllVenues`);
 				const data3 = await response3.json();
 				setVenueData(data3);
 			} catch (error) {
@@ -80,39 +70,48 @@ export default function App(){
 
 	async function fetchGameData() {
 		try {
-			// console.log(filters);
-			const response1 = await fetch(import.meta.env.VITE_API_BASEURL + "/api/games/getGames", {
+			const apiBaseUrl = import.meta.env.VITE_API_BASEURL || 'https://localhost:3000';
+			console.log('Current API Base URL:', apiBaseUrl);
+			console.log('Environment:', import.meta.env.MODE);
+			const response1 = await fetch(`${apiBaseUrl}/api/games/getGames`, {
 				method: "POST",
-				// mode: 'cors',
 				headers: {
 					"Content-Type": "application/json",
-					// "Access-Control-Allow-Origin": "https://jsharpe.xyz"
 				},
 				body: JSON.stringify(filters),
 			});
-			let data1 = await response1.json();
-			data1 = data1.sort((a, b) => {
-				const dateA = new Date (a.year, a.month - 1, a.day);
-				const dateB = new Date (b.year, b.month - 1, b.day);
+			
+			// Add debugging for the response
+			const responseText = await response1.text();
+			
+			try {
+				let data1 = JSON.parse(responseText);
+				data1 = data1.sort((a, b) => {
+					const dateA = new Date (a.year, a.month - 1, a.day);
+					const dateB = new Date (b.year, b.month - 1, b.day);
 
-				return dateA - dateB;
-			})
-			if (data1.length > maxArrayLength) {
-				maxArrayLength = data1.length;
-				data1.forEach((item) => {
-					for (let key of Object.keys(defaultFilters)) {
-						if (item[key] !== undefined && item[key] !== null) {
-							if (!defaultFilters[key].includes(item[key])) {
-								defaultFilters[key].push(item[key]);
+					return dateA - dateB;
+				})
+				if (data1.length > maxArrayLength) {
+					maxArrayLength = data1.length;
+					data1.forEach((item) => {
+						for (let key of Object.keys(defaultFilters)) {
+							if (item[key] !== undefined && item[key] !== null) {
+								if (!defaultFilters[key].includes(item[key])) {
+									defaultFilters[key].push(item[key]);
+								}
 							}
 						}
-					}
-				})
+					})
+				}
+				// console.log(filters.springTraining);
+				// console.log(defaultFilters);
+				// console.log(data1);
+				setGamesData(data1);
 			}
-			// console.log(filters.springTraining);
-			// console.log(defaultFilters);
-			// console.log(data1);
-			setGamesData(data1);
+			catch (error) {
+				console.error(`Error parsing response: ${error}`);
+			}
 		}
 		catch (error) {
 			console.error(`Error fetching data: ${error}`);
