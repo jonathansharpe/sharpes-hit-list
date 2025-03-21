@@ -28,10 +28,11 @@ const allParks = getAllParks();
 console.log(`Found ${allParks.length} parks from reviews`);
 
 // Create routes for all parks for build configuration
-const parkRoutes = allParks.reduce((acc, parkName) => {
-	acc[`parks/${parkName}`] = resolve(sharedDir, 'index.html');
-	return acc;
-}, {});
+const parkRoutes = {};
+allParks.forEach(parkName => {
+	// Define the entry for each park as a path to the shared index.html
+	parkRoutes[`parks/${parkName}/index`] = resolve(sharedDir, 'index.html');
+});
 
 // Define shareable assets that should be handled by the shared folder
 const shareableAssets = ['main.jsx', 'index.html', 'style.css'];
@@ -138,6 +139,38 @@ export default defineConfig({
 					'<script type="module" src="/parks/_shared/main.jsx"></script>'
 				);
 			}
+		},
+		// Add new plugin for generating HTML files
+		{
+			name: 'generate-park-html-files',
+			closeBundle() {
+				// This runs after the build is complete
+				console.log('Generating HTML files for park pages...');
+				
+				// Get the shared park template HTML
+				const sharedHtmlPath = resolve(outDir, 'parks', '_shared', 'index.html');
+				if (!fs.existsSync(sharedHtmlPath)) {
+					console.error('Shared HTML template not found at:', sharedHtmlPath);
+					return;
+				}
+				
+				const sharedHtml = fs.readFileSync(sharedHtmlPath, 'utf-8');
+				
+				// Create HTML files for each park
+				allParks.forEach(parkName => {
+					const parkDirPath = resolve(outDir, 'parks', parkName);
+					const parkHtmlPath = resolve(parkDirPath, 'index.html');
+					
+					// Create directory if it doesn't exist
+					if (!fs.existsSync(parkDirPath)) {
+						fs.mkdirSync(parkDirPath, { recursive: true });
+					}
+					
+					// Write the HTML file for this park
+					fs.writeFileSync(parkHtmlPath, sharedHtml);
+					console.log(`Generated HTML file for ${parkName}`);
+				});
+			}
 		}
 	],
 	resolve: {
@@ -161,9 +194,17 @@ export default defineConfig({
 		assetsInlineLimit: 0, // Disable inlining of images
 		rollupOptions: {
 			input: {
-				"games": "./src/games/index.html",
-				"index.html": "./src/index.html",
+				"games/index": "./src/games/index.html",
+				"index": "./src/index.html",
 				...parkRoutes
+			},
+			output: {
+				// Ensure proper HTML file generation
+				entryFileNames: 'assets/[name]-[hash].js',
+				chunkFileNames: 'assets/[name]-[hash].js',
+				assetFileNames: 'assets/[name]-[hash].[ext]',
+				// Add this to ensure HTML files are correctly placed
+				dir: outDir
 			}
 		}
 	},
