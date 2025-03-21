@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 
-class PageTitle extends Component {
-	componentDidMount() {
-		document.title = this.props.title;
-	}
-	render() {
-		return null;
-	}
+function PageTitle({ title }) {
+	useEffect(() => {
+		document.title = title;
+	}, [title]);
+	
+	return null;
 }
 
 export default PageTitle;
