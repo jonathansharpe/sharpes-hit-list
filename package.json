@@ -4,7 +4,7 @@
 	"description": "baseball website with neat info",
 	"scripts": {
 		"build": "vite build",
-		"dev": "VITE_API_BASEURL=https://localhost:3000 vite dev",
+		"dev": "VITE_API_BASEURL=http://localhost:3000 vite dev",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview"
 	},
