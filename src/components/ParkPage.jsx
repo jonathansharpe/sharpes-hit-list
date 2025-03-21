@@ -64,18 +64,8 @@ export default function ParkPage() {
   useEffect(() => {
     if (!parkName) return;
     
-    const importImage = async () => {
-      try {
-        // Import images directly from the public folder which is served at root
-        const module = await import(`../public/images/${parkName}.jpg`);
-        setImgSrc(module.default);
-      } catch (error) {
-        console.error(`Image import failed for ${parkName}:`, error);
-        // Don't set error state here, just log it - we still want to show the review even if image fails
-      }
-    };
-
-    importImage();
+    // Use direct URL path instead of dynamic import to avoid production issues
+    setImgSrc(`/images/${parkName.replace(/ /g, '%20')}.jpg`);
   }, [parkName]);
 
   // Load review from reviews folder - with improved path handling
@@ -85,7 +75,7 @@ export default function ParkPage() {
     const fetchReview = async () => {
       // Define all the possible paths to try in order
       const pathsToTry = [
-        `/parks/reviews/${parkDir}.md`,           // relative to root
+        `/reviews/${parkDir}.md`,                 // public folder path (primary)
       ];
       
       let reviewContent = null;

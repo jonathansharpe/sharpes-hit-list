@@ -43,6 +43,17 @@ export default defineConfig({
 	plugins: [
 		react(),
 		{
+			name: 'proper-asset-handling',
+			enforce: 'pre',
+			// Ensure assets like images are handled correctly
+			load(id) {
+				if (id.endsWith('.jpg') || id.endsWith('.jpeg') || id.endsWith('.png')) {
+					return `export default ${JSON.stringify(id)}`;
+				}
+				return null;
+			}
+		},
+		{
 			name: 'park-page-handler',
 			configureServer(server) {
 				server.middlewares.use((req, res, next) => {
@@ -147,6 +158,7 @@ export default defineConfig({
 		outDir,
 		emptyOutDir: true,
 		sourcemap: true,
+		assetsInlineLimit: 0, // Disable inlining of images
 		rollupOptions: {
 			input: {
 				"games": "./src/games/index.html",

@@ -3,13 +3,13 @@ import ImageHeader from './components/image-header.jsx';
 import Paragraph from './components/paragraph.jsx';
 import SectionHeader from './components/park-review-header.jsx';
 import MainTextDiv from './components/main-text-div.jsx';
-import homeImg from './public/images/T-Mobile Park.jpg';
+// Use a reference to the image path directly instead of importing
 
 export default function App(){
 	return (
 		<Essentials>
 		<MainTextDiv>
-		<ImageHeader imageLink={homeImg} headerText={'Sharpe\'s Hit List'} />
+		<ImageHeader imageLink={'/images/T-Mobile Park.jpg'} headerText={'Sharpe\'s Hit List'} />
 		
 		<SectionHeader>Introduction</SectionHeader>
 
