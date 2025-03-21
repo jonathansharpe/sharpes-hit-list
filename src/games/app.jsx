@@ -157,7 +157,7 @@ export default function App(){
 		const formattedDay = game.day.toString().padStart(2, '0');
 		const lowercaseRoad = game.roadTeam.toLowerCase();
 		const lowercaseHome = game.homeTeam.toLowerCase();
-		// Using game-logs at the project root
+		// Updated path to reference game logs without /public prefix
 		return `/game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`
 	}
 

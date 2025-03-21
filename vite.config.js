@@ -9,6 +9,7 @@ const outDir = resolve(__dirname, 'dist');
 const parksDir = resolve(__dirname, 'src/parks');
 const reviewsDir = resolve(parksDir, 'reviews');
 const sharedDir = resolve(parksDir, '_shared');
+const publicDir = resolve(__dirname, 'src/public');
 
 // Get list of all parks from review files (the source of truth)
 const getAllParks = () => {
@@ -38,6 +39,7 @@ const shareableAssets = ['main.jsx', 'index.html', 'style.css'];
 // https://vitejs.dev/config/
 export default defineConfig({
 	root,
+	publicDir,
 	plugins: [
 		react(),
 		{

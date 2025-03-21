@@ -3,7 +3,7 @@ import ImageHeader from './components/image-header.jsx';
 import Paragraph from './components/paragraph.jsx';
 import SectionHeader from './components/park-review-header.jsx';
 import MainTextDiv from './components/main-text-div.jsx';
-import homeImg from './images/T-Mobile Park.jpg';
+import homeImg from './public/images/T-Mobile Park.jpg';
 
 export default function App(){
 	return (
@@ -13,14 +13,7 @@ export default function App(){
 		
 		<SectionHeader>Introduction</SectionHeader>
 
-		<Paragraph>Baseball has been forever present in my life in one
-		way or another. I played little league a few years when I was
-		a kid, but most of all, I enjoyed attending Mariners games. At
-		some point in 2012, a switch flipped and I became far more
-		interested in baseball than before. I began watching every
-		game and logging every game I went to. It all started with a
-		spreadsheet, then evolved into a website, then back to a
-		spreadsheet, and now back to a website again.</Paragraph>
+		<Paragraph>I've been a lifelong fan of baseball. I played some little league, but I found joy in watching, listening, and especially attending baseball games. I became more interested in the league as a whole in 2012, and began logging games I attended from that point forward.</Paragraph>
 
 		<SectionHeader>Games</SectionHeader>
 

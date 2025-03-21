@@ -66,7 +66,8 @@ export default function ParkPage() {
     
     const importImage = async () => {
       try {
-        const module = await import(`../images/${parkName}.jpg`);
+        // Import images directly from the public folder which is served at root
+        const module = await import(`../public/images/${parkName}.jpg`);
         setImgSrc(module.default);
       } catch (error) {
         console.error(`Image import failed for ${parkName}:`, error);
