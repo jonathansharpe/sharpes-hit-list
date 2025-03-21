@@ -134,6 +134,7 @@ export default defineConfig({
 			'@components': resolve(root, 'components'),
 			'@images': resolve(root, 'images'),
 			'@shared': sharedDir,
+			'@game-logs': resolve(root, 'game-logs'),
 			// Alias for each park to its review
 			...Object.fromEntries(
 				allParks.map(park => [`@${park}`, resolve(reviewsDir, `${park}.md`)])

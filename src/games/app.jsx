@@ -131,9 +131,14 @@ export default function App(){
 				if (gamesData) {
 					const logPromises = gamesData.map(async (game) => {
 						const logFileName = makeLogFileName(game);
-						const logResponse = await fetch(logFileName);
-						const logContent = await logResponse.text();
-						return { [game._id]: logContent };
+						try {
+							const logResponse = await fetch(logFileName);
+							const logContent = await logResponse.text();
+							return { [game._id]: logContent };
+						} catch (error) {
+							console.error(`Failed to fetch log for game ${game._id}: ${error}`);
+							return { [game._id]: "Failed to load game log." };
+						}
 					});
 					const logs = await Promise.all(logPromises)
 					setLogData(Object.assign({}, ...logs));
@@ -152,8 +157,8 @@ export default function App(){
 		const formattedDay = game.day.toString().padStart(2, '0');
 		const lowercaseRoad = game.roadTeam.toLowerCase();
 		const lowercaseHome = game.homeTeam.toLowerCase();
-		// console.log(`../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`);
-		return `../game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`
+		// Using game-logs at the project root
+		return `/game-logs/${game.year}-${formattedMonth}-${formattedDay}-${lowercaseRoad}-vs-${lowercaseHome}.md`
 	}
 
 	/**
