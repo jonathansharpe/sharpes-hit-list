@@ -11,65 +11,33 @@ export default function App(){
 		<MainTextDiv>
 		<ImageHeader imageLink={'/images/T-Mobile Park.jpg'} headerText={'Sharpe\'s Hit List'} />
 		
-		<SectionHeader>Introduction</SectionHeader>
+				<SectionHeader>Intro</SectionHeader>
 
-		<Paragraph>I've been a lifelong fan of baseball. I played some little league, but I found joy in watching, listening, and especially attending baseball games. I became more interested in the league as a whole in 2012, and began logging games I attended from that point forward.</Paragraph>
+				<Paragraph>
+					I've been a lifelong fan of baseball. I played some little league, but I found joy in watching, listening, and especially attending baseball games. I became more interested in the league as a whole in 2012, and began logging games I attended from that point forward. This site catalogues these games, along with the stadiums I've visited and my thoughts on them.
+				</Paragraph>
 
-		<SectionHeader>Games</SectionHeader>
+				<SectionHeader>Games</SectionHeader>
 
-		<Paragraph>As of December 2023, the list of games on the games
-		page is likely 100% complete! For many years the oldest game I
-		went to was in 2012, but with the help of my dad, I added 4
-		more games to it, and based on information he had on games he
-		attended, the game in 2007 is likely the first ever Mariners
-		game I went to. I've also added filters, which is a first for
-		the history of this website; it used to just be one long list.
-		If you've come from an earlier version of my site, you'll
-		notice this page looks a whole lot different than it did
-		before (and hopefully a whole lot better too). Do note that
-		the filters aren't 100% perfect; for example, if you set the
-		same team as Home and Road, no games will show up since it
-		will look for games that have the same team as home and road,
-		not one with them as the home or road team. I'll improve the
-		logic and presentation over time to make it easier to
-		use.</Paragraph>
+				<Paragraph>
+					For a long time, the data began in 2012 since I didn't have the exact dates of the games I'd been to before then. However, with some help from my dad, we tracked down the other games I'd been to, and now the database is complete!
+				</Paragraph>
 
-		<Paragraph>Each game has some surface level information, along
-		with a link to the boxscore on Baseball-Reference (for regular
-		season and postseason games), and a log for each game,
-		including details that may not show up in the boxscore. These
-		logs start out pretty barebones, but become increasingly
-		detailed over time. I used to include bits in here about the
-		parks I was visiting, but those have almost entirely been
-		moved into the ballpark review pages. I'm working to clean up
-		any remaining bits that have more to do with the park than the
-		game.</Paragraph>
+				<Paragraph>
+					Each game features a log documenting interesting things that happened, particularly things you won't find in the boxscore. However, there is still a link to the boxscore on Baseball-Reference (for regular season and eventual postseason games).
+				</Paragraph>
 
-		<SectionHeader>Park Reviews</SectionHeader>
-		
-		<Paragraph>Having been to 14 Major League Baseball stadiums
-		and 4 Spring Training stadiums, I wanted to leave my thoughts
-		and experiences for others to read. Since the Spring Training
-		parks are way smaller in both capacity and size, and are
-		frankly far less interesting than the regular season
-		equivalents, I've put them in a separate menu from the major
-		league parks. If you're coming from an earlier version of my
-		website, you'll notice that all the reviews are <i>finally</i> 
-		done, the first time I've ever been completely up to date on
-		them.</Paragraph>
+				<SectionHeader>Park Reviews</SectionHeader>
 
-		<SectionHeader>Other Plans</SectionHeader>
+				<Paragraph>
+					I've now attended 15 Major League Baseball stadiums (14 active) and 4 Spring Training parks. Included are reviews of each park. Eventually I want to rank them all as well.
+				</Paragraph>
 
-		<Paragraph>I would also like to rank all the ballparks I've
-		been to. I have a list in my head and have made notes here an
-		there about how one park is better or worse than another, but
-		eventually I will compile them onto a page. I will also likely
-		change the format of my ballpark reviews, since I feel like
-		they don't give as much information on how my opinion was
-		formed. Lastly, I will work on maintaining the website and
-		improving it, as it's much easier to work with than before.
-		Thanks for reading and I hope you enjoy your time here
-		🙂</Paragraph>
+				<SectionHeader>Other Plans</SectionHeader>
+
+				<Paragraph>
+					As mentioned, a tier list of all the parks I've been to is on my to do list. I'll also improve the UX and UI over time.
+				</Paragraph>
 
 		</MainTextDiv>
 		</Essentials>
