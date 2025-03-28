@@ -3,7 +3,9 @@
 T-Mobile Park is the home park of my Seattle Mariners. I grew up going to games here, and have gone to almost 60 games over the past ten seasons. This has been home to many memorable experiences, including historic games and other exciting moments. While I won't be going over every game I've attended, as I already have the game notes for that, I'll expand upon certain aspects of the park that I haven't dug into yet.
 
 # Exterior
-There are four main gates; left field, center field, right field, and home plate. There is also the third base entry, but that is currently only available for T-Mobile customers, a change made when T-Mobile purchased the naming rights to the stadium after Safeco Insurance decided to not renew the naming rights contract. It had previously been known as Safeco Field. While the home plate gate has the fancy bat sculpture chandelier, I always enter the center field gate. The stairway is enormous, and it's right across the street from my regular parking spot, the Lumen Field Event Center Parking Garage.
+There are four main gates; left field, center field, right field, and home plate. There is also the third base entry, but that is currently only available for T-Mobile customers, a change made when T-Mobile purchased the naming rights to the stadium after Safeco Insurance decided to not renew the naming rights contract (previous name was Safeco Field). I generally enter the center field gate, as it's closest to the light rail station.
+
+An addition for 2023 is Victory Hall, which is across the street from the left field gate. It is near the Hatback Bar & Grille and Steelheads Alley. Victory Hall is a hangout spot before the game that becomes an indoor beer garden during Mariners games. This trio of locations is part of what's called The Boxyard. I had some extra time on Opening Day 2025, so I hung out here for a while and I think it would be a great spot to hang out with friends prior to Mariners games. One could also go to the location just to watch the game on TV if you aren't going to the game but want to be around Mariners fans.
 
 # Concourses
 
@@ -25,4 +27,4 @@ The game experience is pretty great. The scoreboard always has fun attractions. 
 
 # Conclusion
 
-While the Mariners have generally been considered not good over the past decade, they've had at least some success. They had 4 winning seasons where they came relatively close to a playoff spot, and every year in between those they had a competitive team. The only full seasons I'd definitely say were non-competitive are 2012, 2013, and 2019. All together, I've seen 20 Mariners wins and 16 losses
+T-Mobile Park is an excellent experience, and consistently ranked in the top ten best parks in MLB. While I have some nitpicks and featuers I wish the Mariners would implement from other parks around the country, it's an outstanding park and worth the trip.

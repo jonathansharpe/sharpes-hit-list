@@ -23,6 +23,7 @@ export default function ParkPage() {
       try {
         // Extract park name from URL path
         const path = window.location.pathname;
+        console.log(path);
         
         // Use a more forgiving regex to extract park name
         const parkMatch = /\/parks\/([^\/]+)/.exec(path);

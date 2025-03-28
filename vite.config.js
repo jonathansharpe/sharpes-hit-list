@@ -7,9 +7,9 @@ import fs from 'fs'
 const root = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'dist');
 const parksDir = resolve(__dirname, 'src/parks');
-const reviewsDir = resolve(parksDir, 'reviews');
 const sharedDir = resolve(parksDir, '_shared');
 const publicDir = resolve(__dirname, 'src/public');
+const reviewsDir = resolve(publicDir, 'reviews');
 
 // Get list of all parks from review files (the source of truth)
 const getAllParks = () => {
