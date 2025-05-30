@@ -13,7 +13,8 @@ export default function App(){
 	const [ teamsData, setTeamsData ] = useState(null);
 	const [ venueData, setVenueData ] = useState(null);
 	const [ expandedDivs, setExpandedDivs ] = useState(false);
-	const [ logData, setLogData ] = useState([]);
+	const [ logData, setLogData ] = useState({});
+	const [ loadingLogs, setLoadingLogs ] = useState({});
 	const [ filters, setFilters ] = useState({
 		month: [],
 		day: [],
@@ -125,33 +126,6 @@ export default function App(){
 		}
 	}, [filters]);
 	
-	useEffect(() => {
-		const fetchLogs = async () => {
-			try {
-				if (gamesData) {
-					const logPromises = gamesData.map(async (game) => {
-						const logFileName = makeLogFileName(game);
-						try {
-							const logResponse = await fetch(logFileName);
-							const logContent = await logResponse.text();
-							return { [game._id]: logContent };
-						} catch (error) {
-							console.error(`Failed to fetch log for game ${game._id}: ${error}`);
-							return { [game._id]: "Failed to load game log." };
-						}
-					});
-					const logs = await Promise.all(logPromises)
-					setLogData(Object.assign({}, ...logs));
-					console.log(logData);
-				}
-			} catch (error) {
-				console.error(`Error fetching logs; ${error}`);
-			}
-		};
-
-		fetchLogs();
-	}, [gamesData]);
-
 	// this checks if any of the promises have finished yet
 	if (!gamesData || !teamsData || !venueData) { return null; }
 
@@ -244,6 +218,38 @@ export default function App(){
 				/>
 			)
 		)
+	}
+
+	async function fetchSingleLog(gameId, logFileName) {
+		try {
+			setLoadingLogs(prev => ({ ...prev, [gameId]: true }));
+			const logResponse = await fetch(logFileName);
+			if (!logResponse.ok) {
+				setLogData(prev => ({ ...prev, [gameId]: "No game log available for this game." }));
+			} else {
+				const logContent = await logResponse.text();
+				setLogData(prev => ({ ...prev, [gameId]: logContent }));
+			}
+		} catch (error) {
+			console.error(`Failed to fetch log for game ${gameId}: ${error}`);
+			setLogData(prev => ({ ...prev, [gameId]: "No game log available for this game." }));
+		} finally {
+			setLoadingLogs(prev => ({ ...prev, [gameId]: false }));
+		}
+	}
+
+	async function handleGameLogClick(game, index) {
+		// First expand the div
+		setExpandedDivs((prevExpandedDivs) => ({
+			...prevExpandedDivs,
+			[index]: true,
+		}));
+
+		// Then fetch the log if we haven't already
+		if (!logData[game._id] && !loadingLogs[game._id]) {
+			const logFileName = makeLogFileName(game);
+			await fetchSingleLog(game._id, logFileName);
+		}
 	}
 
 	return (
@@ -343,7 +349,7 @@ export default function App(){
 					<div className="flex justify-center">
 					{ curGame.springTraining ?
 						<button
-						onClick={() => handleExpansion(index)}
+						onClick={() => expandedDivs[index] ? handleExpansion(index) : handleGameLogClick(curGame, index)}
 						type="button"
 						className="p-1 text-center w-full max-w-sm rounded rounded-md hover:bg-blue-100 transition-all border"
 						>
@@ -356,7 +362,7 @@ export default function App(){
 						:
 						<div className="flex-1 grid grid-cols-2 rounded rounded-md max-w-md border">
 						<button
-						onClick={() => handleExpansion(index)}
+						onClick={() => expandedDivs[index] ? handleExpansion(index) : handleGameLogClick(curGame, index)}
 						type="button"
 						className="p-1 rounded-l-md hover:bg-blue-100 transition-all flex justify-center items-center"
 						>
@@ -374,9 +380,13 @@ export default function App(){
 					</div>
 					<div className={`${expandedDivs[index] ? '' : 'hidden'} text-left overflow-scroll flex-1 p-2`}>
 					<hr />
-					<ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
-					{logData[curGame._id]}
-					</ReactMarkdown>
+					{logData[curGame._id] === "No game log available for this game." ? (
+						<div className="text-gray-500 italic">No game log available for this game.</div>
+					) : (
+						<ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
+							{logData[curGame._id]}
+						</ReactMarkdown>
+					)}
 					</div>
 					</div>
 					</>

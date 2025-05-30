@@ -16,6 +16,15 @@ export default function MultiSelectDropdown({ fieldName, options, selectedValues
 		options.sort();
 	}
 
+	function handleChange(option) {
+		const newSelectedOptions = selectedOptions.includes(option)
+			? selectedOptions.filter(item => item !== option)
+			: [...selectedOptions, option];
+		
+		setSelectedOptions(newSelectedOptions);
+		onSelectionChange(fieldName, newSelectedOptions);
+	}
+
 	function renderOptions(curFieldName, curOption) {
 		if (curFieldName == 'homeTeam' || curFieldName == 'roadTeam') {
 			if (!teamsArr) { return curOption; }
