@@ -4,15 +4,6 @@ import React, { useState, useEffect } from 'react';
 export default function MultiSelectDropdown({ fieldName, options, selectedValues, onSelectionChange, teamsArr }) {
 
 	const [selectedOptions, setSelectedOptions] = useState(selectedValues);
-	const handleChange = (option) => {
-		const isSelected = selectedValues.includes(option);
-
-		const updatedSelectedValues = isSelected
-			? selectedValues.filter((selected) => selected !== option)
-			: [...selectedValues, option];
-
-		onSelectionChange(fieldName, updatedSelectedValues);
-	};
 
 	useEffect(() => {
 		setSelectedOptions(selectedValues)
@@ -27,16 +18,17 @@ export default function MultiSelectDropdown({ fieldName, options, selectedValues
 
 	function renderOptions(curFieldName, curOption) {
 		if (curFieldName == 'homeTeam' || curFieldName == 'roadTeam') {
+			if (!teamsArr) { return curOption; }
+			
 			const curIndex = teamsArr.findIndex(obj => obj['abbreviation'] === curOption);
+			// Add check for when team is not found
+			if (curIndex === -1) return curOption;
+
 			const curFullName = teamsArr[curIndex].fullName;
-			return (
-				curFullName
-			)
+			return curFullName;
 		}
 		else {
-			return (
-				curOption
-			)
+			return curOption;
 		}
 	}
 

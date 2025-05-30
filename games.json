@@ -874,8 +874,30 @@
 		"year": 2025,
 		"homeTeam": "SEA", 
 		"roadTeam": "OAK",
-		"homeTeamRuns": 0,
-		"roadTeamRuns": 0,
+		"homeTeamRuns": 4,
+		"roadTeamRuns": 2,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 5,
+		"day": 10,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "TOR",
+		"homeTeamRuns": 3,
+		"roadTeamRuns": 6,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 5,
+		"day": 27,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "WSN",
+		"homeTeamRuns": 9,
+		"roadTeamRuns": 1,
 		"venue": "T-Mobile Park",
 		"springTraining": false
 	}

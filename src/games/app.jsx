@@ -152,6 +152,9 @@ export default function App(){
 		fetchLogs();
 	}, [gamesData]);
 
+	// this checks if any of the promises have finished yet
+	if (!gamesData || !teamsData || !venueData) { return null; }
+
 	function makeLogFileName(game) {
 		const formattedMonth = game.month.toString().padStart(2, '0');
 		const formattedDay = game.day.toString().padStart(2, '0');
@@ -172,9 +175,6 @@ export default function App(){
 		const formattedDay = game.day.toString().padStart(2, '0');
 		return `https://www.baseball-reference.com/boxes/${game.homeTeam}/${game.homeTeam}${game.year}${formattedMonth}${formattedDay}0.shtml`;
 	}
-
-	// this checks if any of the promises have finished yet
-	if (!gamesData || !teamsData || !venueData) { return null; }
 	
 	function handleExpansion(index) {
 		setExpandedDivs((prevExpandedDivs) => ({
@@ -240,7 +240,7 @@ export default function App(){
 					options={defaultFilters[field]}
 					selectedValues={filters[field]}
 					onSelectionChange={handleSelectionChange}
-					teamsArr={teamsData}
+					teamsArr={teamsData || []}
 				/>
 			)
 		)
