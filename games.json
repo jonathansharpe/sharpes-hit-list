@@ -900,5 +900,82 @@
 		"roadTeamRuns": 1,
 		"venue": "T-Mobile Park",
 		"springTraining": false
+	},
+	{
+		"month": 8,
+		"day": 10,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "TBA",
+		"homeTeamRuns": 7,
+		"roadTeamRuns": 4,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 9,
+		"day": 13,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "ANA",
+		"homeTeamRuns": 5,
+		"roadTeamRuns": 3,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 9,
+		"day": 14,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "ANA",
+		"homeTeamRuns": 11,
+		"roadTeamRuns": 2,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 9,
+		"day": 25,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "COL",
+		"homeTeamRuns": 6,
+		"roadTeamRuns": 2,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 10,
+		"day": 15,
+		"year": 2025,
+		"homeTeam": "SEA", 
+		"roadTeam": "TOR",
+		"homeTeamRuns": 4,
+		"roadTeamRuns": 13,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 3,
+		"day": 26,
+		"year": 2026,
+		"homeTeam": "SEA", 
+		"roadTeam": "CLE",
+		"homeTeamRuns": 4,
+		"roadTeamRuns": 6,
+		"venue": "T-Mobile Park",
+		"springTraining": false
+	},
+	{
+		"month": 4,
+		"day": 18,
+		"year": 2026,
+		"homeTeam": "SEA", 
+		"roadTeam": "TEX",
+		"homeTeamRuns": 7,
+		"roadTeamRuns": 3,
+		"venue": "T-Mobile Park",
+		"springTraining": false
 	}
 ]
